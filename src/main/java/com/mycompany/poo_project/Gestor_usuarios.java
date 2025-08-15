@@ -17,8 +17,10 @@ import java.util.List;
  * @author admin
  */
 class Gestor_usuarios {
+    //ATRIBUTOS
     private static final String Ruta_archivo = "usuarios.txt";
     
+    //METODOS
     public void registrar_usuario (String usuario,String contraseña){
         try(BufferedWriter bw= new BufferedWriter (new FileWriter(Ruta_archivo,true)) ){
             bw.write(usuario + "," + contraseña);
@@ -33,8 +35,8 @@ class Gestor_usuarios {
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split("\\,");
-                if (datos.length >= 2) {
+                String[] datos = linea.split(",");
+                if (datos.length == 2) {
                     String validarUsuario = datos[0];
                     String validarUser = datos[1];
                     if (validarUsuario.equals(usuario) && validarUser.equals(contraseña)) {

@@ -29,7 +29,7 @@ public class POO_project {
                     System.out.println("Nombre de Usuario: ");
                     String user_name=scanner.nextLine();
                     scanner.nextLine();
-                    System.out.println("C2onstraseña: ");
+                    System.out.println("Contraseña: ");
                     String contraseña=scanner.nextLine();
                     gu.login(user_name, contraseña);
                     
