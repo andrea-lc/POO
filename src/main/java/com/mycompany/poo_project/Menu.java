@@ -33,8 +33,12 @@ public class Menu {
                 case 2 -> System.out.println("Aquí irá el módulo de clientes...");
                 case 3 -> System.out.println("Aquí irá el módulo de adopciones...");
                 case 4 -> System.out.println("Aquí irá el módulo de reportes...");
+<<<<<<< HEAD
                 case 0 -> System.out.println("Cerrando sesión...")
                         ;
+=======
+                case 0 -> System.out.println("Cerrando sesión...");
+>>>>>>> 2a47a620c6a3d14b4b2f92dccc006dd692e57b9c
                 default -> System.out.println("pción inválida.");
             }
         } while (opcion != 0);
