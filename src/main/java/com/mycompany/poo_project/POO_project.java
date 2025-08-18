@@ -14,14 +14,15 @@ public class POO_project {
     public static void main(String[] args) {
         Scanner scanner=new Scanner (System.in);
         Gestor_usuarios gu=new Gestor_usuarios(); 
+        Menu menu=new Menu ();
         int opcion;
         do {
             System.out.println("""
-                               ------------------Cat Haven------------------
+                               ========== Cat Haven ==========
                                1) Iniciar sesion
                                2) Registrar nuevo Usuario
                                3) Salir 
-                               --------------------------------------------""");    
+                               ===============================""");    
             opcion=scanner.nextInt(); 
             scanner.nextLine();
             switch (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 opcion){
@@ -36,6 +37,7 @@ public class POO_project {
                         if (gu.login(user_name, contraseña)) {
                             System.out.println("Ingresando...");
                             logincorrecto = true;
+                            menu.mostrar();
                         } else {
                             System.out.println("Usuario o contraseña incorrectos.");
                             System.out.print("Desea intentar de nuevo? (si/no): ");
