@@ -9,6 +9,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;                                          
 
 
 /**
@@ -18,6 +20,7 @@ import java.io.IOException;
 class Gestor_usuarios {
     //ATRIBUTOS
     private static final String Ruta_archivo = "usuarios.txt";
+    private static final String Ruta_gatos = "gatos.txt";
     //METODOS
     public void registrar_usuario (String usuario,String contraseña){
         try(BufferedWriter bw= new BufferedWriter (new FileWriter(Ruta_archivo,true)) ){
@@ -25,7 +28,7 @@ class Gestor_usuarios {
             bw.newLine();
             System.out.println("Usuario agregado correctamente.");
         } catch (IOException ex) {
-            System.out.println("Error al leer usuarios.txt"+ex);
+            System.out.println("Error al leer usuarios.txt");
         }      
     }
     
@@ -43,9 +46,39 @@ class Gestor_usuarios {
                 }
             }
         } catch (IOException ex) {
-            System.out.println("Error leyendo archivo: " + ex);
+            System.out.println("Error leyendo archivo: ");
         }
         return false;
-    }     
+    }
+       
+       public void guardarGato(int iD, String nombre, int edad, String Raza) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_gatos, true))) {
+            bw.write(iD + "," + nombre + ","+ edad + ","+ Raza);
+            bw.newLine();
+            System.out.println("Gato agregado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar gato en el archivo.");
+        }
+    }
+
+    public List<Gatos> leerGatos() {
+        List<Gatos> listaGatos = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(Ruta_gatos))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                if (datos.length == 4) {
+                    int id = Integer.parseInt(datos[0]);
+                    String nombre = datos[1];
+                    int edad = Integer.parseInt(datos[2]);
+                    String raza = datos[3];
+                    listaGatos.add(new Gatos(id, nombre, edad, raza));
+            }
+        }
+    } catch (IOException e) {
+        System.out.println("Error al leer gatos desde el archivo.");
+    }
+    return listaGatos;
+    }
 }
 

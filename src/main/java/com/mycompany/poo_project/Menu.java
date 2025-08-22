@@ -16,30 +16,42 @@ public class Menu {
     public void mostrar() {
         int opcion;
         do {
-            System.out.println("""
-                               ========== Cat Haven ==========
-                               1) Gestión de gatos
-                               2) Gestión de clientes
-                               3) Adopciones
-                               4) Reportes
-                               0) Cerrar sesión
-                               ===============================
-                               """);
+            System.out.println("\n========== Cat Haven ==========");
+            System.out.println("1) Gestión de gatos");
+            System.out.println("2) Gestión de clientes");
+            System.out.println("3) Adopciones");
+            System.out.println("4) Reportes");
+            System.out.println("0) Cerrar sesión");
+            System.out.println("================================");
             System.out.print("Elige una opción: ");
+            
             opcion = leerEntero();
 
             switch (opcion) {
-                case 1 -> System.out.println("Aquí irá el módulo de gatos...");
-                case 2 -> System.out.println("Aquí irá el módulo de clientes...");
-                case 3 -> System.out.println("Aquí irá el módulo de adopciones...");
-                case 4 -> System.out.println("Aquí irá el módulo de reportes...");
-<<<<<<< HEAD
-                case 0 -> System.out.println("Cerrando sesión...")
-                        ;
-=======
-                case 0 -> System.out.println("Cerrando sesión...");
->>>>>>> 2a47a620c6a3d14b4b2f92dccc006dd692e57b9c
-                default -> System.out.println("pción inválida.");
+                case 1: {
+                    Gestion_Gatos gestor_gatos = new Gestion_Gatos(scanner);
+                    gestor_gatos.mostrarMenu();
+                    break;
+                }
+                case 2: {
+                    System.out.println("Aquí irá el módulo de clientes...");
+                    break;
+                }
+                case 3: {
+                    System.out.println("Aquí irá el módulo de adopciones...");
+                    break;
+                }
+                case 4: {
+                    System.out.println("Aquí irá el módulo de reportes...");
+                    break;
+                }
+                case 0: {
+                    System.out.println("Cerrando sesión...");
+                    break;
+                }
+                default: {
+                    System.out.println("Opción inválida.");
+                }
             }
         } while (opcion != 0);
     }
@@ -54,4 +66,3 @@ public class Menu {
         }
     }
 }
-
