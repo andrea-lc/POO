@@ -107,11 +107,11 @@ public class Gestion_Gatos {
                 System.out.println("Gato encontrado:");
                 System.out.println(g); 
                 encontrado = true;
-                break; // salimos del bucle, ya encontramos el gato
+                break; 
             }
         }
 
-        if (!encontrado) {
+        if (!encontrado){
             System.out.println("No se encontró un gato con ese ID.");
             }
         }
