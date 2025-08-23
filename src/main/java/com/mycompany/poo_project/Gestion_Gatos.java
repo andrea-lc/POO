@@ -86,9 +86,9 @@ public class Gestion_Gatos {
         if (gatos.isEmpty()) {
             System.out.println("No hay gatos registrados.");
         } else {
-            System.out.println("=== Lista de gatos ===");
+            System.out.println("======== Lista de gatos ========");
             for (Gatos g : gatos) {
-                System.out.println(g); // usa el toString() de Gato
+                System.out.println(g); 
             }
         }
     }

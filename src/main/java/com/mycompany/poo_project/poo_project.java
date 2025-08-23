@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author admin
  */
-public class POO_project {
+public class poo_project {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Gestor_usuarios gu = new Gestor_usuarios();
