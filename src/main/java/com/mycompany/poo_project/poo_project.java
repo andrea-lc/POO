@@ -23,8 +23,6 @@ public class poo_project {
 
         // Instancia del menú (para mostrar opciones adicionales después de iniciar sesión)
         Menu menu = new Menu();
-
-        // Variable que almacenará la opción elegida por el usuario en el menú principal
         int opcion;
 
         // Bucle principal que mantiene el menú activo hasta que el usuario elija salir (opción 3)
@@ -36,7 +34,6 @@ public class poo_project {
             System.out.println("3) Salir");
             System.out.println("================================");
 
-            // Leer opción del usuario
             opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea
 
@@ -44,8 +41,8 @@ public class poo_project {
             switch (opcion) {
                 case 1: { 
                     // Caso 1: Iniciar sesión
-                    boolean logincorrecto = false;  // Variable para verificar si el login fue exitoso
-                    boolean intentardenuevo = true; // Variable para controlar si el usuario desea reintentar
+                    boolean logincorrecto = false;  
+                    boolean intentardenuevo = false; 
 
                     // Bucle que permite intentar el login varias veces
                     do {
@@ -73,7 +70,7 @@ public class poo_project {
                                 System.out.println("Regresando al menú principal...");
                             }
                         }
-                    } while (!logincorrecto && intentardenuevo); // Repetir si no ha hecho login y quiere intentar
+                    } while (!logincorrecto && intentardenuevo); // Repetir si no ha hecho login y quiere volver a intentarlo
                     break;
                 }
                 case 2: {
