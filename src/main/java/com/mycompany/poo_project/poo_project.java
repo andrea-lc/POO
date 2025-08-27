@@ -12,10 +12,8 @@ import java.util.Scanner;
  */
 // Clase principal del proyecto
 public class poo_project {
-
     // Método principal (punto de entrada del programa)
     public static void main(String[] args) {
-        // Objeto Scanner para leer datos ingresados por el usuario desde la consola
         Scanner scanner = new Scanner(System.in);
 
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
@@ -27,7 +25,6 @@ public class poo_project {
 
         // Bucle principal que mantiene el menú activo hasta que el usuario elija salir (opción 3)
         do {
-            // Mostrar menú principal
             System.out.println("\n========== Cat Haven ==========");
             System.out.println("1) Iniciar sesion");
             System.out.println("2) Registrar nuevo Usuario");
@@ -37,7 +34,6 @@ public class poo_project {
             opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea
 
-            // Estructura switch para manejar las opciones del menú
             switch (opcion) {
                 case 1: { 
                     // Caso 1: Iniciar sesión

@@ -28,8 +28,7 @@ class Gestor_usuarios {
     // Representa la ruta del archivo donde se guardan los usuarios
     private static final String Ruta_archivo = "usuarios.txt";
     
-    // Atributo estático y constante (final): su valor no cambia durante la ejecución
-    // Representa la ruta del archivo donde se guardan los gatos
+    // Lo mismo pero aca se guardaran los gatos
     private static final String Ruta_gatos = "gatos.txt";
 
     // ========================
