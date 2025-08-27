@@ -12,12 +12,27 @@ import java.util.Scanner;
  * @author admin
  */
 public class Gestion_Gatos {
-    private final Scanner scanner;
 
+    // ========================
+    // ATRIBUTOS
+    // ========================
+    // Es final porque se inicializa al crear el objeto y no cambia.
+    private final Scanner scanner;
+    // ========================
+    // CONSTRUCTOR
+    // ========================
+    // Constructor paramétrico que recibe un objeto Scanner
+    // para reutilizar la entrada de datos desde la clase Menu.
     public Gestion_Gatos(Scanner scanner) {
         this.scanner = scanner;
     }
 
+    // ========================
+    // MÉTODOS
+    // ========================
+
+    // Método público, no paramétrico y sin retorno (void).
+    // Muestra el submenú de gestión de gatos y maneja las opciones.
     public void mostrarMenu() {
         int opcion;
         do {
@@ -29,32 +44,41 @@ public class Gestion_Gatos {
             System.out.println("========================");
             System.out.print("Elige una opción: ");
             
+            // Leer la opción elegida
             opcion = leerEntero();
 
+            // Manejar la opción seleccionada
             switch (opcion) {
                 case 1: {
+                    // Registrar un nuevo gato
                     registrarGato();
                     break;
                 }
                 case 2: {
+                    // Listar todos los gatos
                     listarGatos();
                     break;
                 }
                 case 3: {
+                    // Buscar un gato por su ID
                     buscarGato();
                     break;
                 }
                 case 0: {
+                    // Volver al menú principal
                     System.out.println("Volviendo al menú principal...");
                     break;
                 }
                 default: {
+                    // Manejo de opción inválida
                     System.out.println("Opción inválida.");
                 }
             }
-        } while (opcion != 0);
+        } while (opcion != 0); // Se repite hasta que el usuario decida salir
     }
 
+    // Método privado que intenta leer un número entero desde la consola.
+    // Si el usuario ingresa un valor inválido, pide de nuevo hasta que sea correcto.
     private int leerEntero() {
         while (true) {
             try {
@@ -65,6 +89,9 @@ public class Gestion_Gatos {
         }
     }
 
+    // Método privado, no paramétrico y sin retorno.
+    // Permite registrar un nuevo gato solicitando sus datos por consola y 
+    // guardándolos en el archivo mediante Gestor_usuarios.
     private void registrarGato() {      
         System.out.print("ID: ");
         int id = leerEntero();
@@ -79,20 +106,27 @@ public class Gestion_Gatos {
         gestor_gatos.guardarGato(id, nombre, edad, raza);
     }
 
+    // Método privado que lista todos los gatos guardados en el archivo.
+    // Si no hay registros, muestra un mensaje informativo.
     private void listarGatos() {
-         Gestor_usuarios gestor = new Gestor_usuarios();
-         List<Gatos> gatos = gestor.leerGatos();
+        Gestor_usuarios gestor = new Gestor_usuarios();
+        List<Gatos> gatos = gestor.leerGatos();
 
         if (gatos.isEmpty()) {
             System.out.println("No hay gatos registrados.");
         } else {
-            System.out.println("======== Lista de gatos ========");
+            System.out.println("=========== Lista de gatos ===========");
             for (Gatos g : gatos) {
+                // Gracias al método toString() de Gatos,
+                // se imprime la información formateada automáticamente.
                 System.out.println(g); 
             }
         }
     }
 
+    // Método privado que permite buscar un gato por su ID.
+    // Recorre la lista de gatos y muestra el primero que coincida.
+    // Si no se encuentra, informa al usuario.
     private void buscarGato() {
         Gestor_usuarios gestor = new Gestor_usuarios();
         List<Gatos> gatos = gestor.leerGatos();
@@ -102,17 +136,19 @@ public class Gestion_Gatos {
 
         boolean encontrado = false;
 
+        // Buscar en la lista de gatos
         for (Gatos g : gatos) {
             if (g.getId() == idBuscado) {
                 System.out.println("Gato encontrado:");
-                System.out.println(g); 
+                System.out.println(g); // Se imprime gracias a toString()
                 encontrado = true;
                 break; 
             }
         }
 
+        // Si no se encontró ningún gato con el ID ingresado
         if (!encontrado){
             System.out.println("No se encontró un gato con ese ID.");
-            }
         }
+    }
 }
