@@ -89,6 +89,15 @@ public class Gestion_Gatos {
         }
     }
 
+        private String leerString() {
+        while (true) {
+            try {
+                return scanner.nextLine().trim();
+            } catch (NumberFormatException e) {
+                System.out.print("Ingresa un número válido: ");
+            }
+        }
+    }
     // Método privado, no paramétrico y sin retorno.
     // Permite registrar un nuevo gato solicitando sus datos por consola y 
     // guardándolos en el archivo mediante Gestor_usuarios.
@@ -136,13 +145,13 @@ public class Gestion_Gatos {
         List<Gatos> gatos = gestor.leerGatos();
 
         System.out.print("Ingrese el ID del gato a buscar: ");
-        int idBuscado = leerEntero(); 
+        String nombre_Buscado = leerString(); 
 
         boolean encontrado = false;
 
         // Buscar en la lista de gatos
         for (Gatos g : gatos) {
-            if (g.getId() == idBuscado) {
+            if (g.getNombre().equalsIgnoreCase(nombre_Buscado)) {
                 System.out.println("Gato encontrado:");
                 System.out.println(g); // Se imprime gracias a toString()
                 encontrado = true;
@@ -150,9 +159,9 @@ public class Gestion_Gatos {
             }
         }
 
-        // Si no se encontró ningún gato con el ID ingresado
+        // Si no se encontró ningún gato con el nombre ingresado
         if (!encontrado){
-            System.out.println("No se encontró un gato con ese ID.");
+            System.out.println("No se encontró un gato con ese .");
         }
     }
 }
