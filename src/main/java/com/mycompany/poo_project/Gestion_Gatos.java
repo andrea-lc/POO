@@ -39,7 +39,7 @@ public class Gestion_Gatos {
             System.out.println("\n=== Gestión de Gatos ===");
             System.out.println("1) Registrar nuevo gato");
             System.out.println("2) Listar gatos");
-            System.out.println("3) Buscar gato por ID");
+            System.out.println("3) Buscar gato por nombre");
             System.out.println("0) Volver");
             System.out.println("========================");
             System.out.print("Elige una opción: ");
@@ -144,7 +144,7 @@ public class Gestion_Gatos {
         Gestor_usuarios gestor = new Gestor_usuarios();
         List<Gatos> gatos = gestor.leerGatos();
 
-        System.out.print("Ingrese el ID del gato a buscar: ");
+        System.out.print("Ingrese el nombre del gato a buscar: ");
         String nombre_Buscado = leerString(); 
 
         boolean encontrado = false;
@@ -161,7 +161,7 @@ public class Gestion_Gatos {
 
         // Si no se encontró ningún gato con el nombre ingresado
         if (!encontrado){
-            System.out.println("No se encontró un gato con ese .");
+            System.out.println("No se encontró un gato con ese nombre");
         }
     }
 }
