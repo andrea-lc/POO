@@ -1,1 +1,13 @@
-1,Toulouse,3,mestizo
+1,Toulouse,3,mestizo,adoptado,requiere control de vacunas
+2,Luna,2,siamés,en adopción,requiere desparasitación
+3,Simón,5,persa,adoptado,requiere dieta especial
+4,Michi,1,mestizo,en recuperación,requiere tratamiento para resfriado
+5,Nala,4,angora,en cuidado,requiere control post-quirúrgico
+6,Tom,7,mestizo,adoptado,no requiere cuidados especiales
+7,Bella,3,siamés,en adopción,requiere esterilización
+8,Rocky,6,maine coon,en recuperación,requiere fisioterapia
+9,Olivia,2,bengalí,en adopción,requiere control de vacunas
+10,Chispa,8,mestizo,en cuidado,requiere atención dental
+11,Zoe,1,siamés,adoptado,requiere revisión pediátrica
+
+
