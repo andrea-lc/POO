@@ -27,7 +27,7 @@ public class Menu {
         do {
             System.out.println("\n========== Cat Haven ==========");
             System.out.println("1) Gestión de gatos");
-            System.out.println("2) Gestión de clientes");
+            System.out.println("2) Gestión de adopciones");
             System.out.println("3) Adopciones");
             System.out.println("4) Reportes");
             System.out.println("0) Cerrar sesión");
