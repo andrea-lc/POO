@@ -101,9 +101,13 @@ public class Gestion_Gatos {
         int edad = leerEntero();
         System.out.print("Raza: ");
         String raza = scanner.nextLine();
+        System.out.println("Estado del gato: (En adopción, Adoptado, En cuidado, En recuperación)");
+        String estado_gato= scanner.nextLine();
+        System.out.println("Cuidado requerido:");
+        String cuidado_requerido=scanner.nextLine();
         
         Gestor_usuarios gestor_gatos = new Gestor_usuarios();
-        gestor_gatos.guardarGato(id, nombre, edad, raza);
+        gestor_gatos.guardarGato(id, nombre, edad, raza, estado_gato, cuidado_requerido);
     }
 
     // Método privado que lista todos los gatos guardados en el archivo.

@@ -100,7 +100,7 @@ class Gestor_usuarios {
                     listaGatos.add(new Gatos(id, nombre, edad, raza,estado_gato, cuidado_requerido)); // Crear objeto y añadir a la lista
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException gestor_usuarie) {
             System.out.println("Error al leer gatos desde el archivo.");
         }
         return listaGatos;
