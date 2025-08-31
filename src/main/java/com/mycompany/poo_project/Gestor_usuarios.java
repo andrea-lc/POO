@@ -37,9 +37,9 @@ class Gestor_usuarios {
 
     // Método público, paramétrico, sin retorno (void).
     // Recibe usuario y contraseña como parámetros y los guarda en el archivo usuarios.txt
-    public void registrar_usuario(String usuario, String contraseña) {
+    public void registrar_usuario(String correo, String usuario, String contraseña) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
-            bw.write(usuario + "," + contraseña); // Guardar en formato CSV
+            bw.write(correo+ ","+ usuario + "," + contraseña); // Guardar en formato CSV
             bw.newLine();
             System.out.println("Usuario agregado correctamente.");
         } catch (IOException ex) {
@@ -50,15 +50,15 @@ class Gestor_usuarios {
     // Método público, paramétrico, con retorno (boolean).
     // Recibe usuario y contraseña como parámetros.
     // Retorna true si las credenciales existen en el archivo usuarios.txt, de lo contrario false.
-    public boolean login(String usuario, String contraseña) {
+    public boolean login(String correo, String contraseña) {
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 2) {
-                    String validarUsuario = datos[0];
-                    String validarContra = datos[1];
-                    if (validarUsuario.equals(usuario) && validarContra.equals(contraseña)) {
+                if (datos.length == 3) {
+                    String validarCorreo = datos[0];
+                    String validarContra = datos[2];
+                    if (validarCorreo.equals(correo) && validarContra.equals(contraseña)) {
                         return true; // Credenciales correctas
                     }
                 }

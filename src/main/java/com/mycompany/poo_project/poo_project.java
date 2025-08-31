@@ -43,20 +43,20 @@ public class POO_project {
                     // Bucle que permite intentar el login varias veces
                     do {
                         // Pedir credenciales
-                        System.out.println("Nombre de Usuario: ");
-                        String user_name = scanner.nextLine();
+                        System.out.println("Correo: ");
+                        String correo = scanner.nextLine();
 
                         System.out.println("Contraseña: ");
                         String contraseña = scanner.nextLine();
 
                         // Verificar credenciales llamando al método login del gestor de usuarios
-                        if (gu.login(user_name, contraseña)) {
+                        if (gu.login(correo, contraseña)) {
                             System.out.println("Ingresando...");
                             logincorrecto = true; // Login correcto
                             menu.mostrar();       // Mostrar menú secundario (una vez logeado)
                         } else {
                             // Mensaje de error si las credenciales no coinciden
-                            System.out.println("Usuario o contraseña incorrectos.");
+                            System.out.println("Correo o contraseña incorrectos.");
                             System.out.print("Desea intentar de nuevo? (si/no): ");
                             String volvermenu = scanner.nextLine();
 
@@ -71,6 +71,10 @@ public class POO_project {
                 }
                 case 2: {
                     // Caso 2: Registrar un nuevo usuario
+                    
+                    System.out.println("Correo: ");
+                    String correo = scanner.nextLine();
+                    
                     System.out.println("Nombre de Usuario: ");
                     String user_name1 = scanner.nextLine();
 
@@ -78,7 +82,7 @@ public class POO_project {
                     String contraseña1 = scanner.nextLine();
 
                     // Llamar al método del gestor para registrar un nuevo usuario
-                    gu.registrar_usuario(user_name1, contraseña1);
+                    gu.registrar_usuario(correo,user_name1, contraseña1);
                     break;
                 }
                 case 3: {
