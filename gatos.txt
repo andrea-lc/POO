@@ -9,5 +9,5 @@
 9,Olivia,2,bengalí,en adopción,requiere control de vacunas
 10,Chispa,8,mestizo,en cuidado,requiere atención dental
 11,Zoe,1,siamés,adoptado,requiere revisión pediátrica
-
+12,Tereza,11,mestiza,en cuidado,no requiere cuidados especiales
 

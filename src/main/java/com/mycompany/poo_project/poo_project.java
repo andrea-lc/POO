@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author andrea
  */
 // Clase principal del proyecto
-public class poo_project {
+public class POO_project {
     // Método principal (punto de entrada del programa)
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -38,7 +38,7 @@ public class poo_project {
                 case 1: { 
                     // Caso 1: Iniciar sesión
                     boolean logincorrecto = false;  
-                    boolean intentardenuevo = false; 
+                    boolean intentardenuevo = true; 
 
                     // Bucle que permite intentar el login varias veces
                     do {

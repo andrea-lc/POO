@@ -90,7 +90,7 @@ class Gestor_usuarios {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 4) {
+                if (datos.length == 6) {
                     int id = Integer.parseInt(datos[0]);
                     String nombre = datos[1];
                     int edad = Integer.parseInt(datos[2]);
