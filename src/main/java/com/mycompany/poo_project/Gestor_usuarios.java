@@ -71,9 +71,9 @@ class Gestor_usuarios {
        
     // Método público, paramétrico, sin retorno (void).
     // Recibe datos de un gato (id, nombre, edad y raza) y los guarda en el archivo gatos.txt
-    public void guardarGato(int iD, String nombre, int edad, String raza) {
+    public void guardarGato(int iD, String nombre, int edad, String raza, String estado_gato, String cuidado_requerido) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_gatos, true))) {
-            bw.write(iD + "," + nombre + ","+ edad + ","+ raza);
+            bw.write(iD + "," + nombre + ","+ edad + ","+ raza + "," + estado_gato + "," + cuidado_requerido);
             bw.newLine();
             System.out.println("Gato agregado correctamente.");
         } catch (IOException e) {
@@ -95,7 +95,9 @@ class Gestor_usuarios {
                     String nombre = datos[1];
                     int edad = Integer.parseInt(datos[2]);
                     String raza = datos[3];
-                    listaGatos.add(new Gatos(id, nombre, edad, raza)); // Crear objeto y añadir a la lista
+                    String estado_gato = datos [4];
+                    String cuidado_requerido = datos[5];
+                    listaGatos.add(new Gatos(id, nombre, edad, raza,estado_gato, cuidado_requerido)); // Crear objeto y añadir a la lista
                 }
             }
         } catch (IOException e) {
