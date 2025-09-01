@@ -69,6 +69,31 @@ public class Gatos {
         return cuidado_requerido;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public void setEstado_gato(String estado_gato) {
+        this.estado_gato = estado_gato;
+    }
+
+    public void setCuidado_requerido(String cuidado_requerido) {
+        this.cuidado_requerido = cuidado_requerido;
+    }
+
+    
     // ========================
     // MÉTODO toString()
     // ========================
