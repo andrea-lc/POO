@@ -40,6 +40,7 @@ public class Gestion_Gatos {
             System.out.println("1) Registrar nuevo gato");
             System.out.println("2) Listar gatos");
             System.out.println("3) Buscar gato por nombre");
+            System.out.println("4) Modificar algun dato");
             System.out.println("0) Volver");
             System.out.println("========================");
             System.out.print("Elige una opción: ");
@@ -64,6 +65,10 @@ public class Gestion_Gatos {
                     buscarGato();
                     break;
                 }
+                case 4: 
+                    // Modificar algun dato
+                    modificar();
+                    
                 case 0: {
                     // Volver al menú principal
                     System.out.println("Volviendo al menú principal...");
@@ -163,5 +168,72 @@ public class Gestion_Gatos {
         if (!encontrado){
             System.out.println("No se encontró un gato con ese nombre");
         }
+    }
+    
+    private void modificar(){ 
+        Gestor_usuarios gestor = new Gestor_usuarios();
+        List<Gatos> gatos = gestor.leerGatos();
+        boolean gato_correcto = false;  
+        boolean intentardenuevo = true; 
+        int id_Buscado;
+            
+        do{ 
+            System.out.println("Ingrese Id del gato a modificar:");
+            id_Buscado=leerEntero();
+            
+            for (Gatos g : gatos) {
+                if (g.getId()==(id_Buscado)) {
+                    gato_correcto=true;
+                    break;                
+                }else{
+                    System.out.println("Gato no encontrado");                      
+                    System.out.print("Desea intentar de nuevo? (si/no): ");
+                    String volver = leerString();
+                    // Si el usuario no quiere volver a intentar, salir del bucle
+                    if (volver.equalsIgnoreCase("no")) {
+                        intentardenuevo = false;
+                        System.out.println("Regresando...");
+                    }        
+                }
+            }
+            
+        }while (!gato_correcto && intentardenuevo);
+        
+        System.out.println("Que dato del gato desea modificar:");
+        System.out.println("1) Nombre"); 
+        System.out.println("2) Edad:");
+        System.out.println("3) Estado");
+        System.out.println("4) Cuidado requerido");      
+        int modificacion=leerEntero();
+
+        switch (modificacion){
+            case 1: {
+                System.out.println("Nuevo nombre: ");
+                String nuevo=leerString();
+                gestor.modificador(nuevo, id_Buscado, modificacion);
+                break;
+            }
+            case 2: {
+                System.out.println("Nueva edad: ");
+                String nuevo=leerString();
+                gestor.modificador(nuevo, id_Buscado, modificacion); 
+                break;
+            }
+            case 3: {
+                System.out.println("Nuevo estado del gato: ");
+                String nuevo=leerString();
+                gestor.modificador(nuevo, id_Buscado, modificacion);
+                break;
+            }
+            case 4: { 
+                System.out.println("Nuevo cuidado requerido: ");
+                String nuevo=leerString();
+                gestor.modificador(nuevo, id_Buscado, modificacion);
+                break;
+            }
+            default: {
+                System.out.println("Numero invalido");
+            }           
+        }       
     }
 }

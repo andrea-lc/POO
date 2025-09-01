@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;                                          
+import java.util.Scanner;
 
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
 // Clase Gestor_usuarios
 // Se encarga de manejar la persistencia de usuarios y gatos en archivos de texto
 class Gestor_usuarios {
-    
+    Scanner scanner=new Scanner (System.in);
     // ========================
     // ATRIBUTOS
     // ========================
@@ -105,5 +106,56 @@ class Gestor_usuarios {
         }
         return listaGatos;
     }
+    
+        private void guardarGatos(List<Gatos> listaGatos) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_gatos))) {
+            for (Gatos g : listaGatos) {
+                bw.write(g.getId() + "," + g.getNombre() + "," + g.getEdad() + "," +
+                         g.getRaza() + "," + g.getEstado_gato() + "," + g.getCuidado_requerido());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al guardar los gatos: " + e.getMessage());
+        }
+    }
+    
+    public void modificador (String nuevo, int Id_gato, int modificador){       
+        List<Gatos> listaGatos = leerGatos(); // Lee la lista
+       
+        boolean encontrado = false;
+        for (Gatos g : listaGatos) {
+            if (g.getId() == Id_gato) {
+                encontrado = true;             
+                    switch (modificador){
+                        case 1: { 
+                            System.out.println("Nuevo nombre: ");
+                            g.setNombre(nuevo);
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Nueva edad: ");
+                            int nuevo_entero=Integer.parseInt(nuevo);
+                            g.setEdad(nuevo_entero);
+                            break;
+                        }
+                        case 3: {
+                            System.out.println("Nuevo estado del gato: ");
+                            g.setEstado_gato(nuevo);
+                            break;
+                        }
+                        case 4: { 
+                            System.out.println("Nuevo cuidado requerido: ");
+                            g.setCuidado_requerido(nuevo);
+                            ;
+                    }                       
+                }
+            }
+        }
+        if (encontrado){
+            guardarGatos(listaGatos);
+            System.out.println("Gato modificado y guardado en el archivo.");
+        } else {
+            System.out.println("No se encontró el gato con ID " + Id_gato);
+        }
+    }
 }
-

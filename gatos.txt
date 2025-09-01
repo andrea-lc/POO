@@ -1,4 +1,4 @@
-1,Toulouse,3,mestizo,adoptado,requiere control de vacunas
+1,Toulouse,4,mestizo,adoptado,requiere control de vacunas
 2,Luna,2,siamés,en adopción,requiere desparasitación
 3,Simón,5,persa,adoptado,requiere dieta especial
 4,Michi,1,mestizo,en recuperación,requiere tratamiento para resfriado
@@ -10,4 +10,3 @@
 10,Chispa,8,mestizo,en cuidado,requiere atención dental
 11,Zoe,1,siamés,adoptado,requiere revisión pediátrica
 12,Tereza,11,mestiza,en cuidado,no requiere cuidados especiales
-
