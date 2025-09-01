@@ -59,23 +59,23 @@ class GestorArchivo {
     }
 
     // Método para leer todo el archivo
-    public List<String> leerArchivo() {
-        List<String> lineas = new ArrayList<>();
-        if (archivo == null) {
-            seleccionarArchivo(false); // si no hay archivo, pedir ruta
-        }
-        if (archivo != null && archivo.exists()) {
-            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    lineas.add(linea);
-                }
-            } catch (IOException e) {
-                System.out.println("Error al leer el archivo: " + e.getMessage());
-            }
-        }
-        return lineas;
+   public List<String> leerArchivo() {
+    List<String> lineas = new ArrayList<>();
+    if (archivo == null) {
+        seleccionarArchivo(false); // si no hay archivo, pedir ruta
     }
+    if (archivo != null && archivo.exists()) {
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    return lineas;
+}
 }
 
 
