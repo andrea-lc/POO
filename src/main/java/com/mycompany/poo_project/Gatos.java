@@ -12,7 +12,7 @@ public class Gatos {
     // ========================
     // ATRIBUTOS
     // ========================
-    private int id;
+    public int id;
     // Nombre del gato
     private String nombre;
     // Edad del gato en años

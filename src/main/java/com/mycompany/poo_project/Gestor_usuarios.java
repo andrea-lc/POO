@@ -21,7 +21,6 @@ import java.util.Scanner;
 // Clase Gestor_usuarios
 // Se encarga de manejar la persistencia de usuarios y gatos en archivos de texto
 class Gestor_usuarios {
-    Scanner scanner=new Scanner (System.in);
     // ========================
     // ATRIBUTOS
     // ========================
