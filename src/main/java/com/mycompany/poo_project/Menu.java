@@ -4,6 +4,7 @@
  */
 package com.mycompany.poo_project;
 
+import Gestores.Gestor_Gatos;
 import java.util.Scanner;
 
 /**
@@ -23,6 +24,7 @@ public class Menu {
     // Método público, no paramétrico y sin retorno (void).
     // Se encarga de mostrar el menú principal en consola
     public void mostrar() {
+        
         int opcion;
         do {
             System.out.println("\n========== Cat Haven ==========");
@@ -40,7 +42,7 @@ public class Menu {
             switch (opcion) {
                 case 1: {
                     // Caso 1: Llama al módulo de gestión de gatos
-                    Gestion_Gatos gestor_gatos = new Gestion_Gatos(scanner);
+                    Gestor_Gatos gestor_gatos = new Gestor_Gatos(scanner);
                     gestor_gatos.mostrarMenu();
                     break;
                 }

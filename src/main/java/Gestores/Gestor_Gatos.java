@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.poo_project;
+package Gestores;
 
+import Entidades.Gatos;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
  *
  * @author admin
  */
-public class Gestion_Gatos {
+public class Gestor_Gatos {
 
     // ========================
     // ATRIBUTOS
@@ -23,7 +24,7 @@ public class Gestion_Gatos {
     // ========================
     // Constructor paramétrico que recibe un objeto Scanner
     // para reutilizar la entrada de datos desde la clase Menu.
-    public Gestion_Gatos(Scanner scanner) {
+    public Gestor_Gatos(Scanner scanner) {
         this.scanner = scanner;
     }
 
