@@ -11,6 +11,11 @@ package com.mycompany.prueba_herencia;
 public class Prueba_herencia {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Persona persona=new Persona (1, "Helena", 946414833, 
+                "Av. Los Pioneros 742, Urb. Santa Clara Cercado de Arequipa", "helenadelc@gmail.com");
+        
+        Adoptante adoptante=new Adoptante ("18/09/2025","ninguna");
+        
+        System.out.println(adoptante);
     }
 }
