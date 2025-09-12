@@ -17,5 +17,8 @@ public class Prueba_herencia {
         Adoptante adoptante=new Adoptante (persona,"18/09/2025","ninguna");
         
         System.out.println(adoptante);
+       
+            
+        
     }
 }
