@@ -22,7 +22,17 @@ public class Persona {
         this.direccion = direccion;
         this.correo = correo;
     }
-
+    // Constructor de copia
+    // constructor especial de una clase que recibe un objeto de 
+    // la misma clase como parametro y copia sus atributos
+    public Persona(Persona otra) {
+        this.id_persona = otra.id_persona;
+        this.nombre = otra.nombre;
+        this.telefono = otra.telefono;
+        this.direccion = otra.direccion;
+        this.correo = otra.correo;
+    }
+    
     public int getId_persona() {
         return id_persona;
     }

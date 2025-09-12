@@ -13,11 +13,13 @@ public class Adoptante extends Persona {
     String fecha;
     String observaciones;
 
-    public Adoptante(String fecha, String observaciones) {
-        super(persona.getId_persona(), persona.getNombre(), persona.getTelefono(), persona.getDireccion(), persona.getCorreo()); 
+    
+    // Parametro "persona" de tipo Persona y con super llama al constructor de copia de la clase Persona
+    public Adoptante(Persona persona, String fecha, String observaciones) {
+        super (persona);
         this.fecha = fecha;
         this.observaciones = observaciones;
-    }  
+    }
 
     public String getFecha() {
         return fecha;
@@ -37,8 +39,19 @@ public class Adoptante extends Persona {
     
     @Override
     public String toString() {
-        return "Id:"+ id_persona+ "Nombre: "+ nombre + "telefono: "+ telefono+ "Direccion: "+ direccion + "fecha"
-                + fecha+"Observaciones"+observaciones;
+        String texto = String.format(
+            "%-20s %-20s%n" +   
+            "%-20s %-20s%n" +  
+            "%-30s%n" +         
+            "%-30s",            
+            "Id: " + id_persona,
+            "Nombre: " + nombre,
+            "Telefono: " + telefono,
+            "Fecha: " + fecha,
+            "Direccion: " + direccion,
+            "Observaciones: " + observaciones
+        );
+        return texto;
     }
 }
 
