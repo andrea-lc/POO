@@ -1,0 +1,37 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.prueba_herencia;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author admin
+ */
+public class Lector {
+    private final Scanner scanner = new Scanner (System.in);
+    
+    public int LeerEntero (){
+        while (true){
+            try {
+                return scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Ingrese un numero valido: ");
+                scanner.nextLine();
+            }
+        }
+    }
+    public String LeerString () {
+     while (true){
+         String salida=scanner.nextLine();
+            if (!salida.isEmpty()){
+              return salida.trim();
+            } else {
+                System.out.println("Ingrese un dato valido: ");
+            }
+        }
+    }
+}
