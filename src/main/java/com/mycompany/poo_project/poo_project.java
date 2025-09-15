@@ -4,6 +4,7 @@
 
 package com.mycompany.poo_project;
 import Gestores.*;
+import Scanner.Lector;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class POO_project {
     // Método principal (punto de entrada del programa)
     public static void main(String[] args) {
+        Lector lector=new Lector();
         Scanner scanner = new Scanner(System.in);
 
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
@@ -31,8 +33,7 @@ public class POO_project {
             System.out.println("3) Salir");
             System.out.println("================================");
 
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea
+            opcion = lector.LeerEntero();
 
             switch (opcion) {
                 case 1: { 
@@ -44,10 +45,10 @@ public class POO_project {
                     do {
                         // Pedir credenciales
                         System.out.println("Correo: ");
-                        String correo = scanner.nextLine();
+                        String correo = lector.LeerString();
 
                         System.out.println("Contraseña: ");
-                        String contraseña = scanner.nextLine();
+                        String contraseña = lector.LeerString();
 
                         // Verificar credenciales llamando al método login del gestor de usuarios
                         if (gu.login(correo, contraseña)) {
@@ -73,13 +74,13 @@ public class POO_project {
                     // Caso 2: Registrar un nuevo usuario
                     
                     System.out.println("Correo: ");
-                    String correo = scanner.nextLine();
+                    String correo = lector.LeerString();
                     
                     System.out.println("Nombre de Usuario: ");
-                    String user_name1 = scanner.nextLine();
+                    String user_name1 = lector.LeerString();
 
                     System.out.println("Cree una contraseña: ");
-                    String contraseña1 = scanner.nextLine();
+                    String contraseña1 = lector.LeerString();
 
                     // Llamar al método del gestor para registrar un nuevo usuario
                     gu.registrar_usuario(correo,user_name1, contraseña1);

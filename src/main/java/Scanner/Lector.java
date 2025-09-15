@@ -17,6 +17,7 @@ public class Lector {
         while (true){
             try {
                 return scanner.nextInt();
+                
             }catch (InputMismatchException e){
                 System.out.println("Ingrese un numero valido: ");
                 scanner.nextLine();
