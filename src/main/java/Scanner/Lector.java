@@ -9,7 +9,7 @@ package Scanner;
  * @author admin
  */
 public class Lector {
-    private final java.util.Scanner scanner = new java.util.Scanner (System.in);
+    private final java.util.Scanner scanner = new java.util.Scanner(System.in);
     
     public int LeerEntero (){
         while (true){

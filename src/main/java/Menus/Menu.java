@@ -2,29 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.poo_project;
+package Menus;
 
 import Gestores.Gestor_Gatos;
-import java.util.Scanner;
+import Scanner.Lector;
 
 /**
  *
  * @author admin
  */
 public class Menu {
-
-    // ========================
-    // ATRIBUTOS
-    // ========================
-    private final Scanner scanner = new Scanner(System.in);
-    // ========================
-    // MÉTODOS
-    // ========================
-
-    // Método público, no paramétrico y sin retorno (void).
-    // Se encarga de mostrar el menú principal en consola
-    public void mostrar() {
         
+    Lector lector=new Lector ();
+
+    // Se encarga de mostrar el menú principal en consola
+    public void mostrar() {    
         int opcion;
         do {
             System.out.println("\n========== Cat Haven ==========");
@@ -37,13 +29,12 @@ public class Menu {
             System.out.print("Elige una opción: ");
             
             // Leer opción ingresada por el usuario
-            opcion = leerEntero();
+            opcion = lector.LeerEntero();
 
             switch (opcion) {
                 case 1: {
                     // Caso 1: Llama al módulo de gestión de gatos
-                    Gestor_Gatos gestor_gatos = new Gestor_Gatos(scanner);
-                    gestor_gatos.mostrarMenu();
+                    mostrarMenuGatos();
                     break;
                 }
                 case 2: {
@@ -73,17 +64,56 @@ public class Menu {
             }
         } while (opcion != 0); // Repite hasta que el usuario elija salir
     }
+    
+    // Muestra el submenú sobre gatos y maneja las opciones.
+    public void mostrarMenuGatos() {
+        Gestor_Gatos gestor_gatos = new Gestor_Gatos();
 
-    // Método privado, no paramétrico y con retorno (int).
-    // Intenta leer un número entero desde la consola.
-    // Si el usuario ingresa algo inválido, muestra un mensaje y vuelve a pedir el valor.
-    private int leerEntero() {
-        while (true) {
-            try {
-                return Integer.parseInt(scanner.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.print("Ingresa un número válido: ");
+        int opcion;
+        do {
+            System.out.println("\n=== Gestión de Gatos ===");
+            System.out.println("1) Registrar nuevo gato");
+            System.out.println("2) Listar gatos");
+            System.out.println("3) Buscar gato por nombre");
+            System.out.println("4) Modificar algun dato");
+            System.out.println("0) Volver");
+            System.out.println("========================");
+            System.out.print("Elige una opción: ");
+            
+            // Leer la opción elegida
+            opcion = lector.LeerEntero();
+
+            // Manejar la opción seleccionada
+            switch (opcion) {
+                case 1: {
+                    // Registrar un nuevo gato
+                    gestor_gatos.registrarGato();
+                    break;
+                }
+                case 2: {
+                    // Listar todos los gatos
+                    gestor_gatos.listarGatos();
+                    break;
+                }
+                case 3: {
+                    // Buscar un gato por su ID
+                    gestor_gatos.buscarGato();
+                    break;
+                }
+                case 4: 
+                    // Modificar algun dato
+                    gestor_gatos.modificar();
+                    
+                case 0: {
+                    // Volver al menú principal
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                }
+                default: {
+                    // Manejo de opción inválida
+                    System.out.println("Opción inválida.");
+                }
             }
-        }
+        } while (opcion != 0); // Se repite hasta que el usuario decida salir
     }
 }

@@ -18,25 +18,19 @@ import java.util.List;
  * @author admin
  */
 // Clase Gestor_usuarios
-// Se encarga de manejar la persistencia de usuarios y gatos en archivos de texto
 public class Gestor_usuarios {
 
     // ========================
     // ATRIBUTOS
     // ========================
-    // Atributo estático y constante (final): su valor no cambia durante la ejecución
-    // Representa la ruta del archivo donde se guardan los usuarios
+
     private static final String Ruta_archivo = "usuarios.txt";
-    
-    // Lo mismo pero aca se guardaran los gatos
     private static final String Ruta_gatos = "gatos.txt";
 
     // ========================
     // MÉTODOS
     // ========================
 
-    // Método público, paramétrico, sin retorno (void).
-    // Recibe usuario y contraseña como parámetros y los guarda en el archivo usuarios.txt
     public void registrar_usuario(String correo, String usuario, String contraseña) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
             bw.write(correo+ ","+ usuario + "," + contraseña); // Guardar en formato CSV
@@ -47,9 +41,8 @@ public class Gestor_usuarios {
         }      
     }
     
-    // Método público, paramétrico, con retorno (boolean).
+
     // Recibe usuario y contraseña como parámetros.
-    // Retorna true si las credenciales existen en el archivo usuarios.txt, de lo contrario false.
     public boolean login(String correo, String contraseña) {
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_archivo))) {
             String linea;
@@ -69,7 +62,6 @@ public class Gestor_usuarios {
         return false; // Si no encuentra coincidencia
     }
        
-    // Método público, paramétrico, sin retorno (void).
     // Recibe datos de un gato (id, nombre, edad y raza) y los guarda en el archivo gatos.txt
     public void guardarGato(int iD, String nombre, int edad, String raza, String estado_gato, String cuidado_requerido) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_gatos, true))) {
@@ -81,8 +73,6 @@ public class Gestor_usuarios {
         }
     }
 
-    // Método público, no paramétrico, con retorno (List<Gatos>).
-    // No recibe parámetros. 
     // Retorna una lista con todos los gatos que están almacenados en el archivo gatos.txt
     public List<Gatos> leerGatos() {
         List<Gatos> listaGatos = new ArrayList<>();

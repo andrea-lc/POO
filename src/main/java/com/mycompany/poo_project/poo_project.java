@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.poo_project;
+import Menus.Menu;
 import Gestores.*;
 import Scanner.Lector;
 import java.util.Scanner;
@@ -13,7 +14,6 @@ import java.util.Scanner;
  */
 // Clase principal del proyecto
 public class POO_project {
-    // Método principal (punto de entrada del programa)
     public static void main(String[] args) {
         Lector lector=new Lector();
         Scanner scanner = new Scanner(System.in);
@@ -21,11 +21,9 @@ public class POO_project {
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
         Gestor_usuarios gu = new Gestor_usuarios();
 
-        // Instancia del menú (para mostrar opciones adicionales después de iniciar sesión)
         Menu menu = new Menu();
         int opcion;
 
-        // Bucle principal que mantiene el menú activo hasta que el usuario elija salir (opción 3)
         do {
             System.out.println("\n========== Cat Haven ==========");
             System.out.println("1) Iniciar sesion");
@@ -67,7 +65,8 @@ public class POO_project {
                                 System.out.println("Regresando al menú principal...");
                             }
                         }
-                    } while (!logincorrecto && intentardenuevo); // Repetir si no ha hecho login y quiere volver a intentarlo
+                    } while (!logincorrecto && intentardenuevo); 
+                    // Repetir si no ha hecho login y quiere volver a intentarlo
                     break;
                 }
                 case 2: {
