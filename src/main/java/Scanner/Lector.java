@@ -4,8 +4,6 @@
  */
 package Scanner;
 
-import java.util.InputMismatchException;
-
 /**
  *
  * @author admin
@@ -16,19 +14,18 @@ public class Lector {
     public int LeerEntero (){
         while (true){
             try {
-                return scanner.nextInt();
-                
-            }catch (InputMismatchException e){
+                String salida=scanner.nextLine().trim();               
+                return Integer.parseInt(salida);               
+            }catch (NumberFormatException e){
                 System.out.println("Ingrese un numero valido: ");
-                scanner.nextLine();
             }
         }
     }
     public String LeerString () {
      while (true){
-         String salida=scanner.nextLine();
+         String salida=scanner.nextLine().trim();
             if (!salida.isEmpty()){
-              return salida.trim();
+              return salida;
             } else {
                 System.out.println("Ingrese un dato valido: ");
             }
