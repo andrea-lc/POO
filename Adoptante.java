@@ -35,7 +35,8 @@ public class Adoptante extends Persona {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
-    }  
+    }
+    
     @Override
     public String toString() {
         String texto = String.format(
