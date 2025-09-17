@@ -8,7 +8,7 @@ package com.mycompany.prueba_herencia;
  *
  * @author admin
  */
-public abstract class Persona {
+public class Persona {
     protected int id_persona;
     protected String nombre; 
     protected int telefono;
@@ -32,10 +32,6 @@ public abstract class Persona {
         this.direccion = otra.direccion;
         this.correo = otra.correo;
     }
-    
-    // metodo que si o si debe ser usado por las clases que hereden Persona
-    public abstract String Rol(
-    );
     
     public int getId_persona() {
         return id_persona;
