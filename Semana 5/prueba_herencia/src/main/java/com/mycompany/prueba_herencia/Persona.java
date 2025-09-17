@@ -8,14 +8,14 @@ package com.mycompany.prueba_herencia;
  *
  * @author admin
  */
-public class Persona {
+public abstract class Persona {
     protected int id_persona;
     protected String nombre; 
     protected int telefono;
     protected String direccion;
     protected String correo;
 
-    public Persona(int id_persona, String nombre, int telefono, String direccion, String correo) {
+    protected Persona(int id_persona, String nombre, int telefono, String direccion, String correo) {
         this.id_persona = id_persona;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -25,13 +25,17 @@ public class Persona {
     // Constructor de copia
     // constructor especial de una clase que recibe un objeto de 
     // la misma clase como parametro y copia sus atributos
-    public Persona(Persona otra) {
+    protected Persona(Persona otra) {
         this.id_persona = otra.id_persona;
         this.nombre = otra.nombre;
         this.telefono = otra.telefono;
         this.direccion = otra.direccion;
         this.correo = otra.correo;
     }
+    
+    // metodo que si o si debe ser usado por las clases que hereden Persona
+    public abstract String Rol(
+    );
     
     public int getId_persona() {
         return id_persona;
