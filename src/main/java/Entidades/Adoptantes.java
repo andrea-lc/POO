@@ -4,7 +4,6 @@
  */
 package Entidades;
 
-import Entidades.Persona;
 import java.time.LocalDate;
 
 /**

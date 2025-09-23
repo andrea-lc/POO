@@ -19,7 +19,7 @@ public class POO_project {
         Scanner scanner = new Scanner(System.in);
 
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
-        Gestor_usuarios gu = new Gestor_usuarios();
+        Gestor_usuarios gu = new Gestor_usuarios() {};
 
         Menu menu = new Menu();
         int opcion;

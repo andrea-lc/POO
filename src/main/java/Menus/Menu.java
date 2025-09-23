@@ -11,7 +11,7 @@ import Scanner.Lector;
  *
  * @author admin
  */
-public class Menu {
+public class Menu extends Gestor_Gatos {
         
     Lector lector=new Lector ();
 
@@ -67,7 +67,7 @@ public class Menu {
     
     // Muestra el submenú sobre gatos y maneja las opciones.
     public void mostrarMenuGatos() {
-        Gestor_Gatos gestor_gatos = new Gestor_Gatos();
+        Gestor_Gatos gestor_gatos = new Gestor_Gatos() {};
 
         int opcion;
         do {
@@ -80,7 +80,7 @@ public class Menu {
             System.out.println("========================");
             System.out.print("Elige una opción: ");
             
-            // Leer la opción elegida
+            // Leer la opcion elegida
             opcion = lector.LeerEntero();
 
             // Manejar la opción seleccionada
