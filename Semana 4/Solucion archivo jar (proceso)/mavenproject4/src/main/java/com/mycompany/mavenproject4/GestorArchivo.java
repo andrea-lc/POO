@@ -21,7 +21,7 @@ import javax.swing.JFileChooser;
 class GestorArchivo {
    private File archivo;
 
-    // Constructor vacío: se pedirá al usuario seleccionar archivo con JFileChooser
+    // Constructor vacío: se pedira al usuario seleccionar archivo con JFileChooser
     public GestorArchivo() {
         this.archivo = null;
     }

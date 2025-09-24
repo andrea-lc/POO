@@ -6,7 +6,6 @@ package com.mycompany.poo_project;
 import Menus.Menu;
 import Gestores.*;
 import Scanner.Lector;
-import java.util.Scanner;
 
 /**
  *
@@ -16,7 +15,6 @@ import java.util.Scanner;
 public class POO_project {
     public static void main(String[] args) {
         Lector lector=new Lector();
-        Scanner scanner = new Scanner(System.in);
 
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
         Gestor_usuarios gu = new Gestor_usuarios() {};
@@ -57,7 +55,7 @@ public class POO_project {
                             // Mensaje de error si las credenciales no coinciden
                             System.out.println("Correo o contraseña incorrectos.");
                             System.out.print("Desea intentar de nuevo? (si/no): ");
-                            String volvermenu = scanner.nextLine();
+                            String volvermenu = lector.LeerString();
 
                             // Si el usuario no quiere volver a intentar, salir del bucle
                             if (volvermenu.equalsIgnoreCase("no")) {
