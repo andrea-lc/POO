@@ -1,0 +1,82 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.poo_project;
+import Menus.Menu;
+import Gestores.*;
+import Scanner.Lector;
+
+/**
+ *
+ * @author andrea
+ */
+// Clase principal del proyecto
+public class POO_project {
+    public static void main(String[] args) {
+        Lector lector=new Lector();
+        // Instancia del gestor de usuarios (encargado de manejar login y registro)
+        Gestor_usuarios gu = new Gestor_usuarios() {};
+        Menu menu = new Menu();
+        int opcion;
+       
+
+        do {
+            System.out.println("\n========== Cat Haven ==========");
+            System.out.println("1) Iniciar sesion");
+            System.out.println("2) Registrar nuevo Usuario");
+            System.out.println("3) Salir");
+            System.out.println("================================");
+            System.out.print("Ingrese una opcion: ");
+            opcion = lector.LeerEntero();
+            
+            switch (opcion) {
+                case 1: { 
+                    while (true) {
+                        System.out.print("Correo: ");
+                        String correo = lector.LeerString();
+                        System.out.print("Contraseña: ");
+                        String contraseña = lector.LeerString();
+
+                        if (gu.login(correo, contraseña)) {
+                            menu.mostrar();
+                            break;
+                        }
+
+                        System.out.println("Credenciales incorrectas.");
+                        System.out.print("¿Reintentar? (si/no): ");
+                        if (lector.LeerString().equalsIgnoreCase("no")) {
+                            break;
+                        }
+                    }
+                    break; 
+                }
+                case 2: {
+                    // Caso 2: Registrar un nuevo usuario
+                    
+                    System.out.print("Correo: ");
+                    String correo = lector.LeerString();
+                    
+                    System.out.print("Nombre de Usuario: ");
+                    String user_name1 = lector.LeerString();
+
+                    System.out.print("Cree una contraseña: ");
+                    String contraseña1 = lector.LeerString();
+
+                    // Llamar al metodo del gestor para registrar un nuevo usuario
+                    gu.registrar_usuario(correo,user_name1, contraseña1);
+                    break;
+                }
+                case 3: { System.out.println("Saliendo...");
+                    break;
+                    }
+                    // Caso 3: Salir del programa
+                    // No se hace nada, el bucle terminará porque opcion = 3
+                
+                default:
+                    // Manejo de entrada inválida
+                    System.out.println("Ingrese una opcion valida");
+            }
+        } while (opcion != 3); // Condición de salida: si elige "3", termina el programa
+    }
+}
