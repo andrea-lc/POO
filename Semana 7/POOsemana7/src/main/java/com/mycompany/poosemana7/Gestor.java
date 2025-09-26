@@ -40,7 +40,7 @@ public abstract class Gestor {
                     Persona persona = new Persona(dni, nombre, telefono, direccion, correo) {
                         @Override
                         public String getTipoPersona() {
-                            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                            return "Persona";
                         }
                     };
                     
@@ -50,5 +50,11 @@ public abstract class Gestor {
         } catch (IOException e) {
             System.out.println("No se pudo cargar usuarios (puede que el archivo esté vacío).");
         }
+    }
+    public static Persona buscarPersona(int dni) {
+        return personas.get(dni);
+    }
+    public static void agregarPersona(Persona persona) {
+        personas.put(persona.getId_persona(), persona);
     }
 }
