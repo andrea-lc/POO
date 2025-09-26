@@ -11,20 +11,20 @@ import java.time.LocalDate;
  * @author admin
  */
 public class Voluntario extends Persona {
-    private LocalDate fechaIngreso;
+    private String fechaIngreso;
     private String areaTrabajo;
     private int horasSemanales;
 
-    public Voluntario(int id_persona, String nombre, int telefono, String direccion, 
-                     String correo, LocalDate fechaIngreso, String areaTrabajo, int horasSemanales) {
-        super(id_persona, nombre, telefono, direccion, correo);
+    public Voluntario(int dni_persona, String nombre, int telefono, String direccion, 
+                     String correo, String fechaIngreso, String areaTrabajo, int horasSemanales) {
+        super(dni_persona, nombre, telefono, direccion, correo);
         this.fechaIngreso = fechaIngreso;
         this.areaTrabajo = areaTrabajo;
         this.horasSemanales = horasSemanales;
     }
 
     // Constructor de copia
-    public Voluntario(Persona persona, LocalDate fechaIngreso, String areaTrabajo, int horasSemanales) {
+    public Voluntario(Persona persona, String fechaIngreso, String areaTrabajo, int horasSemanales) {
         super(persona);
         this.fechaIngreso = fechaIngreso;
         this.areaTrabajo = areaTrabajo;
@@ -44,8 +44,8 @@ public class Voluntario extends Persona {
     }
 
     // Getters y setters específicos
-    public LocalDate getFechaIngreso() { return fechaIngreso; }
-    public void setFechaIngreso(LocalDate fechaIngreso) { this.fechaIngreso = fechaIngreso; }
+    public String getFechaIngreso() { return fechaIngreso; }
+    public void setFechaIngreso(String fechaIngreso) { this.fechaIngreso = fechaIngreso; }
     public String getAreaTrabajo() { return areaTrabajo; }
     public void setAreaTrabajo(String areaTrabajo) { this.areaTrabajo = areaTrabajo; }
     public int getHorasSemanales() { return horasSemanales; }

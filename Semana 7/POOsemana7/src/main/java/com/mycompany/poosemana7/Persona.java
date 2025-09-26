@@ -9,15 +9,15 @@ package com.mycompany.poosemana7;
  * @author admin
  */
 public abstract class Persona {
-    private int id_persona;
+    private int dni_persona;
     private String nombre; 
     private int telefono;
     private String direccion;
     private String correo;
 
     // Constructor original
-    public Persona(int id_persona, String nombre, int telefono, String direccion, String correo) {
-        this.id_persona = id_persona;
+    public Persona(int dni_persona, String nombre, int telefono, String direccion, String correo) {
+        this.dni_persona = dni_persona;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
@@ -26,7 +26,7 @@ public abstract class Persona {
 
     // Constructor de copia
     public Persona(Persona otraPersona) {
-        this.id_persona = otraPersona.id_persona;
+        this.dni_persona = otraPersona.dni_persona;
         this.nombre = otraPersona.nombre;
         this.telefono = otraPersona.telefono;
         this.direccion = otraPersona.direccion;
@@ -39,12 +39,11 @@ public abstract class Persona {
     // Método común que puede ser sobrescrito
     public String getInformacionCompleta() {
         return String.format("ID: %d, Nombre: %s, Tel: %d, Dirección: %s, Email: %s", 
-                           id_persona, nombre, telefono, direccion, correo);
+                           dni_persona, nombre, telefono, direccion, correo);
     }
 
-    // Getters y setters existentes...
-    public int getId_persona() { return id_persona; }
-    public void setId_persona(int id_persona) { this.id_persona = id_persona; }
+    public int getId_persona() { return dni_persona; }
+    public void setId_persona(int dni_persona) { this.dni_persona = dni_persona; }
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public int getTelefono() { return telefono; }
