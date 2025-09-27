@@ -44,8 +44,6 @@ public class POOsemana7 {
         // Buscar voluntario
         Voluntario v = GestorVoluntarios.buscarVoluntario(87654321);
         System.out.println("Voluntario: " + v.getInformacionCompleta());
-
-        System.out.println("\n¡Prueba completada!");
     }
 }
 
