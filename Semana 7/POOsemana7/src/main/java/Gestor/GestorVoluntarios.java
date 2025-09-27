@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.poosemana7;
+package Gestor;
 
+import com.mycompany.poosemana7.Persona;
+import com.mycompany.poosemana7.Voluntario;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -31,7 +33,7 @@ public class GestorVoluntarios {
             voluntarios.put(dniPersona, voluntario);
             guardarVoluntario(voluntario);
         } else {
-            System.out.println("No se encontró una persona con DNI: " + dniPersona);
+            System.out.println("No se encontro una persona con DNI: " + dniPersona);
         }
     }
     

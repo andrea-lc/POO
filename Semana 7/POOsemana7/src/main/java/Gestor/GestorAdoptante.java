@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.poosemana7;
+package Gestor;
 
+import com.mycompany.poosemana7.Adoptantes;
+import com.mycompany.poosemana7.Persona;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -17,8 +19,8 @@ import java.util.Map;
  * @author admin
  */
 public class GestorAdoptante {
-        private static final String Ruta_adoptantes = "adoptantes.txt";
-    private static Map<Integer, Adoptantes> adoptantes = new HashMap<>();
+    private static final String Ruta_adoptantes = "adoptantes.txt";
+    private static final Map<Integer, Adoptantes> adoptantes = new HashMap<>();
     
     static {
         cargarAdoptantes();
@@ -26,7 +28,10 @@ public class GestorAdoptante {
     
     public static void agregarAdoptante(int dniPersona, String fecha, String observaciones) {
         Persona persona = Gestor.buscarPersona(dniPersona);
+        // Si la persona existe continua ya que solo se podra agregar la 
+        // fecha de adopcion y observaciones si la persona esta registrada
         if (persona != null) {
+            // Crea un nuevo objeto Adoptantes usando los datos de la persona encontrada (nombre, teléfono, etc.)
             Adoptantes adoptante = new Adoptantes(persona, fecha, observaciones);
             adoptantes.put(dniPersona, adoptante);
             guardarAdoptante(adoptante);
@@ -71,6 +76,9 @@ public class GestorAdoptante {
     
     public static Adoptantes buscarAdoptante(int dni) {
         return adoptantes.get(dni);
+    
     }
+
+    
 }
 

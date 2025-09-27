@@ -1,8 +1,11 @@
-package com.mycompany.poosemana7;
+package Gestor;
 
 
+import com.mycompany.poosemana7.Persona;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +27,7 @@ public abstract class Gestor {
         cargarUsuarios();
     }
     
-    
-    
+     
     private void cargarUsuarios() {
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_personas))) {
             String linea;
@@ -38,23 +40,35 @@ public abstract class Gestor {
                     String direccion = datos[3].trim();
                     String correo = datos[4].trim();
                     Persona persona = new Persona(dni, nombre, telefono, direccion, correo) {
-                        @Override
-                        public String getTipoPersona() {
-                            return "Persona";
-                        }
                     };
                     
                     personas.put(dni, persona); // [correo, usuario, contraseña]
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar usuarios (puede que el archivo esté vacío).");
+            System.out.println("No se pudo cargar usuarios (puede que el archivo este vacio).");
         }
     }
+    
     public static Persona buscarPersona(int dni) {
         return personas.get(dni);
     }
+    
     public static void agregarPersona(Persona persona) {
         personas.put(persona.getId_persona(), persona);
+        guardarPersona(persona); 
+    }
+    
+    private static void guardarPersona(Persona persona) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_personas, true))) {
+            bw.write(persona.getId_persona() + "," +
+                    persona.getNombre() + "," +
+                    persona.getTelefono() + "," +
+                    persona.getDireccion() + "," +
+                    persona.getCorreo());
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Error al guardar persona en el archivo.");
+        }
     }
 }

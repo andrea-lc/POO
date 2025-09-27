@@ -8,12 +8,12 @@ package com.mycompany.poosemana7;
  *
  * @author admin
  */
-public abstract class Persona {
-    private int dni_persona;
-    private String nombre; 
-    private int telefono;
-    private String direccion;
-    private String correo;
+public class Persona {
+    protected int dni_persona;
+    protected String nombre; 
+    protected int telefono;
+    protected String direccion;
+    protected String correo;
 
     // Constructor original
     public Persona(int dni_persona, String nombre, int telefono, String direccion, String correo) {
@@ -33,10 +33,7 @@ public abstract class Persona {
         this.correo = otraPersona.correo;
     }
 
-    // Método abstracto para polimorfismo
-    public abstract String getTipoPersona();
-
-    // Método común que puede ser sobrescrito
+    // Metodos que puede ser sobrescrito
     public String getInformacionCompleta() {
         return String.format("ID: %d, Nombre: %s, Tel: %d, Dirección: %s, Email: %s", 
                            dni_persona, nombre, telefono, direccion, correo);

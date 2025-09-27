@@ -28,10 +28,6 @@ public class Adoptantes extends Persona {
         this.observaciones = observaciones;
     }
 
-    @Override
-    public String getTipoPersona() {
-        return "Adoptante";
-    }
 
     @Override
     public String getInformacionCompleta() {

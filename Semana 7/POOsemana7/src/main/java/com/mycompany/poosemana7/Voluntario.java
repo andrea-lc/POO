@@ -4,8 +4,6 @@
  */
 package com.mycompany.poosemana7;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author admin
@@ -31,10 +29,6 @@ public class Voluntario extends Persona {
         this.horasSemanales = horasSemanales;
     }
 
-    @Override
-    public String getTipoPersona() {
-        return "Voluntario";
-    }
 
     @Override
     public String getInformacionCompleta() {

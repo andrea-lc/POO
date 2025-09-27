@@ -4,6 +4,10 @@
 
 package com.mycompany.poosemana7;
 
+import Gestor.Gestor;
+import Gestor.GestorVoluntarios;
+import Gestor.GestorAdoptante;
+
 /**
  *
  * @author admin
@@ -12,14 +16,12 @@ public class POOsemana7 {
 
     public static void main(String[] args) {
         // Crear personas de prueba
-        Persona persona1 = new Persona(12345678, "Juan Pérez", 123456789, "Calle 123", "juan@email.com") {
-            @Override
-            public String getTipoPersona() { return "Persona"; }
+ 
+        Persona persona1 = new Persona(12345678, "Juan Perez", 123456789, "Calle 123", "juan@email.com") {
+
         };
         
-        Persona persona2 = new Persona(87654321, "María García", 987654321, "Avenida 456", "maria@email.com") {
-            @Override
-            public String getTipoPersona() { return "Persona"; }
+        Persona persona2 = new Persona(87654321, "Maria Garcia", 987654321, "Avenida 456", "maria@email.com") {
         };
 
         // Agregar al gestor
@@ -27,12 +29,10 @@ public class POOsemana7 {
         Gestor.agregarPersona(persona2);
 
         // Crear adoptante y voluntario
-        GestorAdoptante.agregarAdoptante(12345678, "2024-01-15", "Adoptó un gato");
-        GestorVoluntarios.agregarVoluntario(87654321, "2024-01-10", "Cuidado animal", 8);
+        GestorAdoptante.agregarAdoptante(12345678, "2025-01-15", "Adopto un gato");
+        GestorVoluntarios.agregarVoluntario(87654321, "2025-01-10", "Cuidado animal", 8);
 
         // Probar búsquedas
-        System.out.println("=== PRUEBAS DEL SISTEMA ===\n");
-
         // Buscar persona
         Persona p = Gestor.buscarPersona(12345678);
         System.out.println("Persona encontrada: " + p.getInformacionCompleta());
