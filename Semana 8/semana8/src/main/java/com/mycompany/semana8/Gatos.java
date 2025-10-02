@@ -17,7 +17,7 @@ public class Gatos implements ICuidados, IAdopcion{
     private String cuidado_requerido;
     private boolean vacunasAlDia;
 
-    // Constructor
+  
     public Gatos(int id, String nombre, int edad, String raza, String estado_gato, String cuidado_requerido) {
         this.id = id;
         this.nombre = nombre;
