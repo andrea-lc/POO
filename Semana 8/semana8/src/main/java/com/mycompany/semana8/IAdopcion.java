@@ -10,6 +10,8 @@ package com.mycompany.semana8;
  */
 public interface IAdopcion {
     boolean esAdoptable();
-    void marcarComoAdoptado();
+    default void marcarComoAdoptado(){
+        
+    };
     String getInformacionAdopcion();
 }

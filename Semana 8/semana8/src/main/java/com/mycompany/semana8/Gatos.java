@@ -31,7 +31,7 @@ public class Gatos implements ICuidados, IAdopcion{
     @Override
     public void aplicarTratamiento(String tratamiento) {
         this.cuidado_requerido = tratamiento;
-        System.out.println("✅ Tratamiento aplicado a " + nombre + ": " + tratamiento);
+        System.out.println("Tratamiento aplicado a " + nombre + ": " + tratamiento);
     }
 
     @Override
@@ -47,19 +47,21 @@ public class Gatos implements ICuidados, IAdopcion{
     @Override
     public boolean esAdoptable() {
         // Solo es adoptable si está sano y no necesita cuidados especiales
-        return estado_gato.equalsIgnoreCase("en adopción") && 
+        return estado_gato.equalsIgnoreCase("en adopcion") && 
                cuidado_requerido.equalsIgnoreCase("ninguno");
     }
 
     @Override
     public void marcarComoAdoptado() {
         this.estado_gato = "adoptado";
-        System.out.println("🎉 ¡" + nombre + " ha sido adoptado!");
+        System.out.println(nombre + " ha sido adoptado!");
     }
 
+    
+    
     @Override
     public String getInformacionAdopcion() {
-        return "Gato: " + nombre + " | Adoptable: " + (esAdoptable() ? "SÍ" : "NO");
+        return "Gato: " + nombre + " | Adoptable: " + (esAdoptable() ? "SI" : "NO");
     }
 
     // ========================
@@ -67,10 +69,10 @@ public class Gatos implements ICuidados, IAdopcion{
     // ========================
     public void aplicarVacunas() {
         this.vacunasAlDia = true;
-        System.out.println("💉 Vacunas aplicadas a " + nombre);
+        System.out.println(" Vacunas aplicadas a " + nombre);
     }
 
-    // Getters y Setters (tu código existente)
+    // Getters y Setters (tu codigo existente)
     public int getId() { return id; }
     public String getNombre() { return nombre; }
     public int getEdad() { return edad; }
