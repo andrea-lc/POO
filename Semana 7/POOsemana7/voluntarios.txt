@@ -1,1 +1,2 @@
 87654321,Maria Garcia,987654321,Avenida 456,maria@email.com,2025-01-10,Cuidado animal,8
+87654321,Maria Garcia,987654321,Avenida 456,maria@email.com,2025-01-10,Cuidado animal,8

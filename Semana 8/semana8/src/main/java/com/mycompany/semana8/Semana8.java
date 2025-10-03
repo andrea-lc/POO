@@ -11,7 +11,7 @@ package com.mycompany.semana8;
 public class Semana8 {
 
     public static void main(String[] args) {
-        System.out.println("🐱 === PRUEBA HERENCIA MÚLTIPLE === 🐱\n");
+        System.out.println("🐱 === PRUEBA HERENCIA MULTIPLE === 🐱\n");
         
         // Crear gatos
         Gatos gato1 = new Gatos(1, "Luna", 2, "Siamés", "en adopción", "ninguno");
@@ -20,15 +20,15 @@ public class Semana8 {
         System.out.println("=== GATO 1 ===");
         System.out.println(gato1);
         
-        // Usar métodos de ICuidados
+        // Usar mEtodos de ICuidados
         System.out.println("\n--- CUIDADOS ---");
-        System.out.println("¿Necesita vacunas? " + (gato1.necesitaVacunas() ? "SÍ" : "NO"));
+        System.out.println("Necesita vacunas? " + (gato1.necesitaVacunas() ? "SI" : "NO"));
         gato1.aplicarVacunas();
         System.out.println("Estado salud: " + gato1.getEstadoSalud());
         
-        // Usar métodos de IAdopcion
-        System.out.println("\n--- ADOPCIÓN ---");
-        System.out.println("¿Es adoptable? " + (gato1.esAdoptable() ? "SÍ" : "NO"));
+        // Usar mEtodos de IAdopcion
+        System.out.println("\n--- ADOPCION ---");
+        System.out.println("Es adoptable? " + (gato1.esAdoptable() ? "SI" : "NO"));
         System.out.println(gato1.getInformacionAdopcion());
         
         if (gato1.esAdoptable()) {
@@ -42,13 +42,13 @@ public class Semana8 {
         
         // Usar métodos de ICuidados
         System.out.println("\n--- CUIDADOS ---");
-        System.out.println("¿Necesita vacunas? " + (gato2.necesitaVacunas() ? "SÍ" : "NO"));
+        System.out.println("Necesita vacunas? " + (gato2.necesitaVacunas() ? "SI" : "NO"));
         gato2.aplicarTratamiento("control mensual");
         System.out.println("Estado salud: " + gato2.getEstadoSalud());
         
         // Usar métodos de IAdopcion
-        System.out.println("\n--- ADOPCIÓN ---");
-        System.out.println("¿Es adoptable? " + (gato2.esAdoptable() ? "SÍ" : "NO"));
+        System.out.println("\n--- ADOPCION ---");
+        System.out.println("Es adoptable? " + (gato2.esAdoptable() ? "SI" : "NO"));
         System.out.println(gato2.getInformacionAdopcion());
         
         // Probar polimorfismo
