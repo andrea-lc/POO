@@ -27,6 +27,7 @@ public class Gatos implements ICuidados, IAdopcion, Identificador{
         this.cuidado_requerido = cuidado_requerido;
         this.vacunasAlDia = false; // Por defecto
     }
+    // aqui el metodo se sobreescribira ya que no se usara el predeterminado
     @Override
     public void mostrarIdentificador (){
         System.out.println(this.id);

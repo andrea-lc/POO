@@ -11,7 +11,7 @@ package com.mycompany.semana8;
 public class Adoptante implements Identificador {
     private String nombre;
     private int edad;
-
+    // El metodo default no se sobreescribe ya que se usara el que ya esta predeterminado
     public Adoptante(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
