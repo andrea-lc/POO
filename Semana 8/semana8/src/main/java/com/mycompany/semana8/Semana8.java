@@ -11,16 +11,27 @@ package com.mycompany.semana8;
 public class Semana8 {
 
     public static void main(String[] args) {
-        System.out.println("🐱 === PRUEBA HERENCIA MULTIPLE === 🐱\n");
+        System.out.println("=== PRUEBA HERENCIA MULTIPLE ===\n");
         
         // Crear gatos
-        Gatos gato1 = new Gatos(1, "Luna", 2, "Siamés", "en adopción", "ninguno");
-        Gatos gato2 = new Gatos(2, "Simón", 5, "Persa", "en recuperación", "dieta especial");
+        Gatos gato1 = new Gatos(1, "Luna", 2, "Siames", "en adopcion", "ninguno");
+        Gatos gato2 = new Gatos(2, "Simon", 5, "Persa", "en recuperacion", "dieta especial");
+        Adoptante adoptante = new Adoptante ("Andrea", 19);
         
+             
+        System.out.println("=== ADOPTANTE 1 ===");
+        // aqui usara el metodo default de Identificador para mostrar su numero de identidad
+        System.out.print("\nN° de identificacion: ");
+        adoptante.mostrarIdentificador();
+                
+                
         System.out.println("=== GATO 1 ===");
+        // aqui mostrara el id del gato ya escrito en la instancia ya que el metodo mostrarIdentificacion esta sobreescrito
+        System.out.print("\nN° de identificacion: ");
+        gato1.mostrarIdentificador();
         System.out.println(gato1);
         
-        // Usar mEtodos de ICuidados
+        // Usar mRtodos de ICuidados
         System.out.println("\n--- CUIDADOS ---");
         System.out.println("Necesita vacunas? " + (gato1.necesitaVacunas() ? "SI" : "NO"));
         gato1.aplicarVacunas();
@@ -46,7 +57,7 @@ public class Semana8 {
         gato2.aplicarTratamiento("control mensual");
         System.out.println("Estado salud: " + gato2.getEstadoSalud());
         
-        // Usar métodos de IAdopcion
+        // Usar metodos de IAdopcion
         System.out.println("\n--- ADOPCION ---");
         System.out.println("Es adoptable? " + (gato2.esAdoptable() ? "SI" : "NO"));
         System.out.println(gato2.getInformacionAdopcion());

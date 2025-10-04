@@ -8,8 +8,13 @@ package com.mycompany.semana8;
  *
  * @author admin
  */
-public interface IAdopcion {
-    boolean esAdoptable();
-    void marcarComoAdoptado();
-    String getInformacionAdopcion();
+public class Adoptante implements Identificador {
+    private String nombre;
+    private int edad;
+
+    public Adoptante(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    
 }

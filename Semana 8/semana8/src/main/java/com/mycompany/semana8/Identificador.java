@@ -8,8 +8,8 @@ package com.mycompany.semana8;
  *
  * @author admin
  */
-public interface IAdopcion {
-    boolean esAdoptable();
-    void marcarComoAdoptado();
-    String getInformacionAdopcion();
+public interface Identificador {
+    public default void mostrarIdentificador (){
+        System.out.println(hashCode());
+    }
 }

@@ -8,7 +8,7 @@ package com.mycompany.semana8;
  *
  * @author admin
  */
-public class Gatos implements ICuidados, IAdopcion{
+public class Gatos implements ICuidados, IAdopcion, Identificador{
     private int id;
     private String nombre;
     private int edad;
@@ -27,7 +27,12 @@ public class Gatos implements ICuidados, IAdopcion{
         this.cuidado_requerido = cuidado_requerido;
         this.vacunasAlDia = false; // Por defecto
     }
-
+    @Override
+    public void mostrarIdentificador (){
+        System.out.println(this.id);
+    }
+        
+        
     @Override
     public void aplicarTratamiento(String tratamiento) {
         this.cuidado_requerido = tratamiento;
@@ -46,7 +51,7 @@ public class Gatos implements ICuidados, IAdopcion{
 
     @Override
     public boolean esAdoptable() {
-        // Solo es adoptable si está sano y no necesita cuidados especiales
+        // Solo es adoptable si está}a sano y no necesita cuidados especiales
         return estado_gato.equalsIgnoreCase("en adopcion") && 
                cuidado_requerido.equalsIgnoreCase("ninguno");
     }
@@ -64,9 +69,7 @@ public class Gatos implements ICuidados, IAdopcion{
         return "Gato: " + nombre + " | Adoptable: " + (esAdoptable() ? "SI" : "NO");
     }
 
-    // ========================
-    // MÉTODOS ADICIONALES
-    // ========================
+ 
     public void aplicarVacunas() {
         this.vacunasAlDia = true;
         System.out.println(" Vacunas aplicadas a " + nombre);
