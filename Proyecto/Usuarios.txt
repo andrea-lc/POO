@@ -7,8 +7,4 @@ diego.rojas@hotmail.com,Diego,4567
 valeria.soto@gmail.com,Valeria,miClave01
 ricardo.fernandez@yahoo.com,Ricardo,zxcvb
 fernanda.ramirez@gmail.com,Fernanda,clave2025
-alejandro.torres@hotmail.com,Alejandro,123abc
-helena@gmail.com,Helena,1234
-helena@,poto,1234
-ff,ddd,ff
-ss,sss,s
+alejandro.torres@hotmail.com,Alejandro,123abc1234,60783550,Andrea,946414822,Avenida 456,andreadelr.lc@gmail.com

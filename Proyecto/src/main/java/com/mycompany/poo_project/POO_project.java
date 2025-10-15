@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.poo_project;
+import Entidades.Persona;
 import Menus.Menu;
 import Gestores.*;
 import Scanner.Lector;
@@ -20,7 +21,6 @@ public class POO_project {
         Menu menu = new Menu();
         int opcion;
        
-
         do {
             System.out.println("\n========== Cat Haven ==========");
             System.out.println("1) Iniciar sesion");
@@ -58,13 +58,23 @@ public class POO_project {
                     String correo = lector.LeerString();
                     
                     System.out.print("Nombre de Usuario: ");
-                    String user_name1 = lector.LeerString();
+                    String nombre = lector.LeerString();
+                    
+                    System.out.print("Dni: ");
+                    int dni= lector.LeerEntero();
+                    
+                    System.out.print("Telefono: ");
+                    int telefono= lector.LeerEntero();
+                    
+                    System.out.print("Direccion: ");
+                    String direccion= lector.LeerString();
 
                     System.out.print("Cree una contraseña: ");
-                    String contraseña1 = lector.LeerString();
-
+                    String contraseña = lector.LeerString();
+                    
+                    Persona persona=new Persona (contraseña,dni,nombre,telefono,direccion,correo);
                     // Llamar al metodo del gestor para registrar un nuevo usuario
-                    gu.registrar_usuario(correo,user_name1, contraseña1);
+                    gu.registrar_usuario(persona);
                     break;
                 }
                 case 3: { System.out.println("Saliendo...");

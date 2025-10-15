@@ -4,27 +4,25 @@
  */
 package Entidades;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author admin
  */
 public class Adoptantes extends Persona {
-    LocalDate fecha;
+    String fecha;
     String observaciones;
 
-    public Adoptantes(LocalDate fecha, String observaciones, int id_persona, String nombre, int telefono, String direccion, String correo) {
-        super(id_persona, nombre, telefono, direccion, correo);
+    public Adoptantes(Persona persona, String fecha, String observaciones) {
+        super (persona);
         this.fecha = fecha;
         this.observaciones = observaciones;
     }
 
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

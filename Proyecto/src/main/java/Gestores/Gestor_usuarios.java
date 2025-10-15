@@ -4,6 +4,7 @@
  */
 package Gestores;
 
+import Entidades.Persona;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -17,13 +18,14 @@ import java.util.Map;
  * @author admin
  */
 // Clase Gestor_usuarios
-public abstract class Gestor_usuarios {
-private static final String Ruta_archivo = "usuarios.txt";
-    private static Map<String, String []> usuarios = new HashMap<>();
+public class Gestor_usuarios {
+    private static final String Ruta_archivo = "usuarios.txt";
+    private static Map<String, Persona> usuarios = new HashMap<>();
     
     
     //problema: no leia el txt ya que el hashmap estaba vacio 
-    // solucion: crear constructor para llamar al metodo y cada vez que se instancie, el map se inicializara  con los datos llenos
+    // solucion: crear constructor para llamar al metodo y cada 
+    // vez que se instancie, el map se inicializara  con los datos llenos
     public Gestor_usuarios() {
         cargarUsuarios(); // <---(ejecuta el metodo cargarUsuarios para que los datos de txt llenen el map
     }
@@ -34,8 +36,16 @@ private static final String Ruta_archivo = "usuarios.txt";
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 3) {
-                    usuarios.put(datos[0], new String[]{datos[1], datos[2]});
+                if (datos.length == 6) { 
+                    String contraseña = datos[0].trim();
+                    int dni = Integer.parseInt(datos[1]);
+                    String nombre = datos[2];
+                    int telefono = Integer.parseInt(datos[3]);
+                    String direccion = datos[4];
+                    String correo = datos[5];
+                    Persona persona=new Persona (contraseña,dni,nombre,telefono,direccion,correo);
+                    
+                    usuarios.put(persona.getCorreo(), persona);
                 }
             }
         } catch (IOException e) {
@@ -44,18 +54,27 @@ private static final String Ruta_archivo = "usuarios.txt";
     }
 
 
-    public void registrar_usuario(String correo, String usuario, String contraseña) {
-        if (usuarios.containsKey(correo)) {   //verifica si el map contiene la clave
+    public void registrar_usuario(Persona persona) {
+        if (usuarios.containsKey(persona.getCorreo())) {   //verifica si el map contiene la clave
             System.out.println("Ese correo ya está registrado.");
             return;
         }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
-            bw.write(correo + "," + usuario + "," + contraseña);
-            bw.newLine();
-            System.out.println("Usuario agregado correctamente.");
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
+        // Escribir los datos de la persona en el formato correcto
+        String linea = String.format("%s,%d,%s,%d,%s,%s",
+            persona.getContraseña(),
+            persona.getId_persona(),
+            persona.getNombre(),
+            persona.getTelefono(),
+            persona.getDireccion(),
+            persona.getCorreo());
+        
+        bw.write(linea);
+        bw.newLine();
+        System.out.println("Usuario agregado correctamente.");
 
-            // También se guarda en el hashmap
-            usuarios.put(correo, new String[]{usuario, contraseña});
+        // Guardar en el HashMap (usando el correo como clave y la Persona como valor)
+        usuarios.put(persona.getCorreo(), persona);
 
         } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
@@ -68,15 +87,13 @@ private static final String Ruta_archivo = "usuarios.txt";
             return false; // correo (usuario) no encontrado
             
         }
-        String valor []= usuarios.get(correo); // devolvera el valor asociado a la clave "correo"
+        Persona valor = usuarios.get(correo); // devolvera el valor asociado a la clave "correo"
         
-        if (valor != null && valor[1].equals(contraseña)) {
-            System.out.println("Bienvenido "+ valor[0]);
+        if (valor != null && valor.getContraseña().equals(contraseña)) {
+            System.out.println("Bienvenido "+ valor.getNombre());
             return true;  // login correcto
         } else {
             return false; // contraseña incorrecta
         }
-    }
+    }     
 }
-
-
