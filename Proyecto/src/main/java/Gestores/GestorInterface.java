@@ -11,7 +11,7 @@ package Gestores;
  */
 public interface GestorInterface <t> {
     void cargarDatos();
-    void guardarDatos();
+    void guardarDatos(t elemento);
     boolean registrar(t elemento);
     boolean existe(String identificador);
 }

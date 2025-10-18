@@ -19,7 +19,7 @@ public class Gatos {
     private int edad;
     // Raza del gato (ejemplo: Persa, Siamés, Mestizo)
     private String raza;
-    // Estado en el qe se encuentra el gato (En adopción, Adoptado, En cuidado, En recuperación)
+    // Estado en el qe se encuentra el gato (En adopcion, Adoptado, En cuidado, En recuperación)
     private String estado_gato;
     // Cuidados que necesita el gato por si requiere alguna atencion medica
     private String cuidado_requerido;
@@ -27,7 +27,7 @@ public class Gatos {
     // ========================
     // CONSTRUCTOR
     // ========================
-    // Constructor paramétrico que recibe todos los datos del gato.
+    // Constructor parametrico que recibe todos los datos del gato.
     // Permite crear un objeto Gatos con valores específicos desde el inicio.
     public Gatos(int id, String nombre, int edad, String raza, String estado_gato, String cuidado_requerido) {
         this.id = id;

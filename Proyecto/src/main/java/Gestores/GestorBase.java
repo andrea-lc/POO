@@ -21,11 +21,6 @@ public abstract class GestorBase <t> implements GestorInterface<t> {
         cargarDatos();
     }
     
-    @Override
-    public boolean existe(String identificador) {
-        return elementos.containsKey(identificador);
-    }
-    
     protected Map<String, t> getElementos() {
         return elementos;
     }

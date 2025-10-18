@@ -10,29 +10,21 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
  * @author admin
  */
 // Clase Gestor_usuarios
-public class Gestor_usuarios {
-    private static final String Ruta_archivo = "usuarios.txt";
-    private static Map<String, Persona> usuarios = new HashMap<>();
-    
-    
-    //problema: no leia el txt ya que el hashmap estaba vacio 
-    // solucion: crear constructor para llamar al metodo y cada 
-    // vez que se instancie, el map se inicializara  con los datos llenos
+public class Gestor_usuarios extends GestorBase <Persona>{
+
     public Gestor_usuarios() {
-        cargarUsuarios(); // <---(ejecuta el metodo cargarUsuarios para que los datos de txt llenen el map
+        super("usuarios.txt");
     }
     
-    
-    private void cargarUsuarios() {
-        try (BufferedReader br = new BufferedReader(new FileReader(Ruta_archivo))) {
+    @Override
+    public void cargarDatos() {
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -45,7 +37,7 @@ public class Gestor_usuarios {
                     String correo = datos[5];
                     Persona persona=new Persona (contraseña,dni,nombre,telefono,direccion,correo);
                     
-                    usuarios.put(persona.getCorreo(), persona);
+                    getElementos().put(persona.getCorreo(), persona);
                 }
             }
         } catch (IOException e) {
@@ -54,12 +46,13 @@ public class Gestor_usuarios {
     }
 
 
-    public void registrar_usuario(Persona persona) {
-        if (usuarios.containsKey(persona.getCorreo())) {   //verifica si el map contiene la clave
+    @Override
+    public boolean registrar(Persona persona) {
+        if (getElementos().containsKey(persona.getCorreo())) {   //verifica si el map contiene la clave
             System.out.println("Ese correo ya está registrado.");
-            return;
+            return true;
         }
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
         // Escribir los datos de la persona en el formato correcto
         String linea = String.format("%s,%d,%s,%d,%s,%s",
             persona.getContraseña(),
@@ -67,27 +60,25 @@ public class Gestor_usuarios {
             persona.getNombre(),
             persona.getTelefono(),
             persona.getDireccion(),
-            persona.getCorreo());
-        
+            persona.getCorreo());     
         bw.write(linea);
         bw.newLine();
         System.out.println("Usuario agregado correctamente.");
 
         // Guardar en el HashMap (usando el correo como clave y la Persona como valor)
-        usuarios.put(persona.getCorreo(), persona);
-
+        getElementos().put(persona.getCorreo(), persona);
         } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
         }
+        return true;
     }
-    
-    // Recibe usuario y contraseña como parámetros.
+
     public boolean login(String correo, String contraseña) {
-        if (!usuarios.containsKey(correo)) {   
+        if (!getElementos().containsKey(correo)) {   
             return false; // correo (usuario) no encontrado
             
         }
-        Persona valor = usuarios.get(correo); // devolvera el valor asociado a la clave "correo"
+        Persona valor = getElementos().get(correo); // devolvera el valor asociado a la clave "correo"
         
         if (valor != null && valor.getContraseña().equals(contraseña)) {
             System.out.println("Bienvenido "+ valor.getNombre());
@@ -95,5 +86,16 @@ public class Gestor_usuarios {
         } else {
             return false; // contraseña incorrecta
         }
-    }     
+    }
+
+    @Override
+    public void guardarDatos(Persona persona) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean existe(String identificador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

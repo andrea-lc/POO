@@ -17,7 +17,7 @@ public class POO_project {
     public static void main(String[] args) {
         Lector lector=new Lector();
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
-        Gestor_usuarios gu = new Gestor_usuarios() {};
+        Gestor_usuarios usuarios= new Gestor_usuarios();
         Menu menu = new Menu();
         int opcion;
        
@@ -37,8 +37,7 @@ public class POO_project {
                         String correo = lector.LeerString();
                         System.out.print("Contraseña: ");
                         String contraseña = lector.LeerString();
-
-                        if (gu.login(correo, contraseña)) {
+                        if (usuarios.login(correo, contraseña)) {
                             menu.mostrar();
                             break;
                         }
@@ -74,7 +73,7 @@ public class POO_project {
                     
                     Persona persona=new Persona (contraseña,dni,nombre,telefono,direccion,correo);
                     // Llamar al metodo del gestor para registrar un nuevo usuario
-                    gu.registrar_usuario(persona);
+                    usuarios.registrar(persona);
                     break;
                 }
                 case 3: { System.out.println("Saliendo...");
