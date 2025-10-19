@@ -24,6 +24,8 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         super("gatos.txt");
     }
     
+    
+    // subir datos
     @Override
     public void cargarDatos() {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
