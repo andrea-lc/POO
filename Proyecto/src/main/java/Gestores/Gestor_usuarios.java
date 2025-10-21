@@ -70,7 +70,7 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
         }
-        return true;
+    return true;
     }
 
     public boolean login(String correo, String contraseña) {

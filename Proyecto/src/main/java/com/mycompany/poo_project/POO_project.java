@@ -38,7 +38,7 @@ public class POO_project {
                         System.out.print("Contraseña: ");
                         String contraseña = lector.LeerString();
                         if (usuarios.login(correo, contraseña)) {
-                            menu.mostrar();
+                            menu.MainMenu();
                             break;
                         }
 
@@ -83,7 +83,7 @@ public class POO_project {
                     // No se hace nada, el bucle terminará porque opcion = 3
                 
                 default:
-                    // Manejo de entrada inválida
+                    // Manejo de entrada invalida
                     System.out.println("Ingrese una opcion valida");
             }
         } while (opcion != 3); // Condición de salida: si elige "3", termina el programa

@@ -1,3 +1,4 @@
+Menus\Menu_Acciones.class
 Entidades\Persona.class
 Menus\Menu.class
 Scanner\Lector.class
@@ -5,7 +6,7 @@ Entidades\Adoptantes.class
 Gestores\GestorInterface.class
 Gestores\Gestor_usuarios.class
 com\mycompany\poo_project\POO_project.class
+Menus\Acciones_gatos.class
 Entidades\Gatos.class
 Gestores\Gestor_Gatos.class
 Gestores\GestorBase.class
-Menus\Menu$1.class

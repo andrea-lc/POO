@@ -21,7 +21,7 @@ public abstract class GestorBase <t> implements GestorInterface<t> {
         cargarDatos();
     }
     
-    protected Map<String, t> getElementos() {
+    public Map<String, t> getElementos() {
         return elementos;
     }
 }

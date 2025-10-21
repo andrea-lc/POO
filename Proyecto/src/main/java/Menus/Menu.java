@@ -4,29 +4,28 @@
  */
 package Menus;
 
-import Gestores.Gestor_Gatos;
 import Scanner.Lector;
 
 /**
  *
  * @author admin
  */
-public class Menu extends Gestor_Gatos {
+public class Menu {
         
     Lector lector=new Lector ();
 
     // Se encarga de mostrar el menú principal en consola
-    public void mostrar() {    
+    public void MainMenu() {    
         int opcion;
         do {
             System.out.println("\n========== Cat Haven ==========");
-            System.out.println("1) Gestión de gatos");
-            System.out.println("2) Gestión de adopciones");
+            System.out.println("1) Gestion de gatos");
+            System.out.println("2) Gestion de adopciones");
             System.out.println("3) Adopciones");
             System.out.println("4) Reportes");
-            System.out.println("0) Cerrar sesión");
+            System.out.println("0) Cerrar sesion");
             System.out.println("================================");
-            System.out.print("Elige una opción: ");
+            System.out.print("Elige una opcion: ");
             
             // Leer opción ingresada por el usuario
             opcion = lector.LeerEntero();
@@ -67,9 +66,8 @@ public class Menu extends Gestor_Gatos {
     
     // Muestra el submenú sobre gatos y maneja las opciones.
     public void mostrarMenuGatos() {
-        Gestor_Gatos gestor_gatos = new Gestor_Gatos() {};
-
         int opcion;
+        Acciones_gatos acciones= new Acciones_gatos();
         do {
             System.out.println("\n=== Gestión de Gatos ===");
             System.out.println("1) Registrar nuevo gato");
@@ -82,27 +80,26 @@ public class Menu extends Gestor_Gatos {
             
             // Leer la opcion elegida
             opcion = lector.LeerEntero();
-
             // Manejar la opción seleccionada
             switch (opcion) {
                 case 1: {
                     // Registrar un nuevo gato
-                    gestor_gatos.registrarGato();
+                    acciones.registrar();                   
                     break;
                 }
                 case 2: {
                     // Listar todos los gatos
-                    gestor_gatos.listarGatos();
+                    acciones.Listar();
                     break;
                 }
                 case 3: {
                     // Buscar un gato por su ID
-                    gestor_gatos.buscarGato();
+                    acciones.Buscar();
                     break;
                 }
                 case 4: 
                     // Modificar algun dato
-                    gestor_gatos.modificar();
+                    acciones.modificar();
                     
                 case 0: {
                     // Volver al menú principal
