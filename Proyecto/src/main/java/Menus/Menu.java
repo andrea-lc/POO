@@ -93,21 +93,21 @@ public class Menu {
                     break;
                 }
                 case 3: {
-                    // Buscar un gato por su ID
+                    // Buscar ung ato
                     acciones.Buscar();
                     break;
                 }
                 case 4: 
                     // Modificar algun dato
                     acciones.modificar();
-                    
+                    break;
                 case 0: {
                     // Volver al menú principal
                     System.out.println("Volviendo al menú principal...");
                     break;
                 }
                 default: {
-                    // Manejo de opción inválida
+                    // Manejo de opción invalida
                     System.out.println("Opción inválida.");
                 }
             }

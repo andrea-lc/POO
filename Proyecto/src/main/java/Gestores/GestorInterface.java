@@ -4,6 +4,8 @@
  */
 package Gestores;
 
+import java.util.List;
+
 /**
  *
  * @author admin
@@ -11,7 +13,9 @@ package Gestores;
  */
 public interface GestorInterface <t> {
     void cargarDatos();
-    void guardarDatos(t elemento);
     boolean registrar(t elemento);
     boolean existe(String identificador);
+    void mostrar ();
+    void modificar (String datoModificar, int opcion);
+    List<t> ordenar();
 }
