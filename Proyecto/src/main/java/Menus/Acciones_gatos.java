@@ -26,11 +26,18 @@ public class Acciones_gatos implements Menu_Acciones  {
         int edad = lector.LeerEntero();
         System.out.print("Raza: ");
         String raza = lector.LeerString();
-        System.out.println("Estado del gato: (En adopción, Adoptado, En cuidado, En recuperación)");
+        System.out.print("Peso: ");
+        double peso = lector.LeerDouble();
+        System.out.println("Genero: ");
+        String genero= lector.LeerString();
+        System.out.print("Estilizacion: ");
+        boolean esterilizacion= lector.LeerBoolean();
+        System.out.print("Estado del gato: (En adopción, Adoptado, En cuidado, En recuperación)");
         String estado_gato= lector.LeerString();
-        System.out.println("Cuidado requerido:");
+        System.out.print("Cuidado requerido:");
         String cuidado_requerido=lector.LeerString();
-        gestor.registrar(new Gatos(id,nombre,edad,raza,estado_gato,cuidado_requerido));
+        
+        gestor.registrar(new Gatos(id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido));
     }
     //muestra la lista :)
     @Override
@@ -61,6 +68,8 @@ public class Acciones_gatos implements Menu_Acciones  {
             System.out.println("1) Nombre: ");
             System.out.println("2) Edad: ");
             System.out.println("3) Raza: ");
+            System.out.println("4) Peso: ");
+            System.out.println("5) Esterilizacion: ");
             System.out.println("4) Estado del gato: ");
             System.out.println("5) Cuidados requeridos: ");
             opcion=lector.LeerEntero();

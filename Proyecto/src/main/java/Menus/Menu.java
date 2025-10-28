@@ -19,10 +19,11 @@ public class Menu {
         int opcion;
         do {
             System.out.println("\n========== Cat Haven ==========");
-            System.out.println("1) Gestion de gatos");
-            System.out.println("2) Gestion de adopciones");
+            System.out.println("1) Gestion de Gatos");
+            System.out.println("2) Historia");
             System.out.println("3) Adopciones");
-            System.out.println("4) Reportes");
+            System.out.println("4) Voluntariado");
+            System.out.println("5) Donaciones");
             System.out.println("0) Cerrar sesion");
             System.out.println("================================");
             System.out.print("Elige una opcion: ");
