@@ -196,8 +196,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 j--;
             }
             listaGatos.set(j + 1, gatoActual);
-        }
-        
+        }      
         return listaGatos;
     }   
 }

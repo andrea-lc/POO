@@ -10,12 +10,12 @@ import java.util.List;
 /**
  *
  * @author admin
- * @param <t>
+ * @param <T>
  */
-public abstract class Lista <t> {
-    protected List<t> elementos= new ArrayList<>();
+public abstract class Lista <T> {
+    protected List<T> elementos= new ArrayList<>();
     
-    public List<t> getElementos (){
+    public List<T> getElementos (){
         return elementos;
     }
 }

@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author admin
  */
-public class Acciones {
+public class Acciones{
     Scanner scanner= new Scanner (System.in);
     protected List<Persona> elementos= new ArrayList<>();
     
