@@ -18,4 +18,5 @@ public interface GestorInterface <t> {
     void mostrar ();
     void modificar (String datoModificar, int opcion);
     List<t> ordenar();
+    void buscar (String identificador);
 }

@@ -31,7 +31,7 @@ public class Acciones_gatos implements Menu_Acciones  {
         System.out.println("Genero: ");
         String genero= lector.LeerString();
         System.out.print("Estilizacion: ");
-        boolean esterilizacion= lector.LeerBoolean();
+        String esterilizacion= lector.LeerString();
         System.out.print("Estado del gato: (En adopción, Adoptado, En cuidado, En recuperación)");
         String estado_gato= lector.LeerString();
         System.out.print("Cuidado requerido:");
@@ -47,10 +47,10 @@ public class Acciones_gatos implements Menu_Acciones  {
 
     @Override
     public void Buscar() {
-        System.out.print("Ingrese el nombre del gato que desea buscar: ");
-        String nombreBuscado= lector.LeerString();
-        if (gestor.existe(nombreBuscado)==true){
-            
+        System.out.print("Ingrese el nombre  o Id del gato que desea buscar: ");
+        String gatoBuscado= lector.LeerString();
+        if (gestor.existe(gatoBuscado)==true){
+            gestor.buscar(gatoBuscado);
             }else {
             System.out.println("Gatito no encontra");
         }      

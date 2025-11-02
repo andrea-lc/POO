@@ -15,12 +15,12 @@ public class Gatos {
     private String raza;
     private double peso;
     private String genero;
-    private boolean estirilizacion;
+    private String  estirilizacion;
     private String estado_gato;// Estado en el qe se encuentra el gato (En adopcion, Adoptado, En cuidado, En recuperación)
     private String cuidado_requerido;
     
     public Gatos(int id, String nombre, int edad, String raza, double peso, String genero,
-            boolean esterilizacion, String estado_gato, String cuidado_requerido) {
+            String esterilizacion, String estado_gato, String cuidado_requerido) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
@@ -79,10 +79,10 @@ public class Gatos {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    public boolean getEstirilizacion() {
+    public String getEstirilizacion() {
         return estirilizacion;
     }
-    public void setEstirilizacion(boolean estirilizacion) {
+    public void setEstirilizacion(String estirilizacion) {
         this.estirilizacion = estirilizacion;
     }
     public String getEstado_gato() {
@@ -103,7 +103,7 @@ public class Gatos {
     @Override
     public String toString() {
         return "ID: " + id + ", Nombre: " + nombre + ", Edad: " + edad + " años" + ", Raza: " + raza +  ", Peso: " + peso + " kg" +
-           ", Género: " + genero + ", Esterilizado: " + (estirilizacion ? "Sí" : "No") +
+           ", Género: " + genero + ", Esterilizado: "+
            ", Estado: " + estado_gato + ", Cuidado requerido: " + cuidado_requerido;
 }
 }

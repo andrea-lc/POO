@@ -30,16 +30,16 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 7) { 
+                if (datos.length == 9) { 
                     int id = Integer.parseInt(datos[0]);
                     String nombre = datos[1];
                     int edad = Integer.parseInt(datos[2]);
                     String raza = datos[3];
                     double peso= Double.parseDouble(datos[4]);
                     String genero=datos [5];
-                    boolean esterilizacion= Boolean.parseBoolean(datos[6]);
-                    String estado_gato = datos [6];
-                    String cuidado_requerido = datos[7];
+                    String esterilizacion= datos[6];
+                    String estado_gato = datos [7];
+                    String cuidado_requerido = datos[8];
                     Gatos gato=new Gatos (id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido);
                     
                     getElementos().put(String.valueOf(gato.getId()), gato);
@@ -79,12 +79,11 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     return true;
     }
 
-    
     @Override
-    // verificara si un gato existe >:( y si no piña
-    public boolean existe(String identificador) {
-            for (Gatos gato : getElementos().values()) {
-            if (gato.getNombre().equalsIgnoreCase(identificador)){
+    public void buscar(String identificador) {
+         for (Gatos gato : getElementos().values()) {
+            if (identificador.equalsIgnoreCase(String.valueOf(gato.getId())) ||
+                        (identificador.equalsIgnoreCase(gato.getNombre()))){
                 System.out.println("\n======= GATOS ENCONTRADO =======");
                 System.out.println("Gato #" + gato.getNombre());
                 System.out.println("  ID: " + gato.getId());
@@ -96,9 +95,19 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 System.out.println("  Estado: " + gato.getEstado_gato());
                 System.out.println("  Cuidados requeridos: " + gato.getCuidado_requerido());
                 System.out.println("----------------------------------");               
-            }
+                }                  
         }
-            return true;
+    }
+    
+    @Override
+    // verificara si un gato existe >:( y si no piña
+    public boolean existe(String identificador) {
+        boolean resultado=true;
+            for (Gatos gato : getElementos().values()) {
+                resultado= (identificador.equals(String.valueOf(gato.getId()))) ||
+                        (identificador.equalsIgnoreCase(gato.getNombre()));
+                    }
+            return resultado;
     }
 
     @Override
@@ -159,7 +168,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                     break;
                 case 5: 
                     System.out.print("¿Está esterilizado? (si/no): ");
-                    boolean nuevaEsterilizacion = lector.LeerBoolean();
+                    String nuevaEsterilizacion = lector.LeerString();
                     gato.setEstirilizacion(nuevaEsterilizacion);
                     break;
                 case 6: 
@@ -199,4 +208,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }      
         return listaGatos;
     }   
+
+
 }

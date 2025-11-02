@@ -1,12 +1,12 @@
-1,Toulouse,4,mestizo,4.2,Macho,true,adoptado,requiere control de vacunas
-2,Luna,2,siames,3.1,Hembra,false,en adopción,requiere desparasitación
-3,Simón,5,persa,5.8,Macho,true,adoptado,requiere dieta especial
-4,Michi,1,mestizo,2.5,Macho,false,en recuperación,requiere tratamiento para resfriado
-5,Nala,4,angora,3.9,Hembra,true,en cuidado,requiere control post-quirúrgico
-6,Tom,7,mestizo,6.1,Macho,true,adoptado,no requiere cuidados especiales
-7,Bella,3,siames,3.3,Hembra,false,en adopción,requiere esterilización
-8,Rocky,6,maine coon,7.2,Macho,true,en recuperación,requiere fisioterapia
-9,Olivia,2,bengalí,3.8,Hembra,false,en adopción,requiere control de vacunas
-10,Chispa,8,mestizo,5.5,Hembra,true,en cuidado,requiere atención dental
-11,Zoe,1,siames,2.1,Hembra,false,adoptado,requiere revisión pediátrica
-12,Tereza,11,mestiza,4.9,Hembra,true,en cuidado,no requiere cuidados especiales
+1,Toulouse,4,mestizo,4.2,Macho,si,adoptado,requiere control de vacunas
+2,Luna,2,siames,3.1,Hembra,no,en adopción,requiere desparasitación
+3,Simón,5,persa,5.8,Macho,si,adoptado,requiere dieta especial
+4,Michi,1,mestizo,2.5,Macho,no,en recuperación,requiere tratamiento para resfriado
+5,Nala,4,angora,3.9,Hembra,si,en cuidado,requiere control post-quirúrgico
+6,Tom,7,mestizo,6.1,Macho,no,adoptado,no requiere cuidados especiales
+7,Bella,3,siames,3.3,Hembra,no,en adopción,requiere esterilización
+8,Rocky,6,maine coon,7.2,Macho,si,en recuperación,requiere fisioterapia
+9,Olivia,2,bengalí,3.8,Hembra,no,en adopción,requiere control de vacunas
+10,Chispa,8,mestizo,5.5,Hembra,si,en cuidado,requiere atención dental
+11,Zoe,1,siames,2.1,Hembra,no,adoptado,requiere revisión pediátrica
+12,Tereza,11,mestiza,4.9,Hembra,si,en cuidado,no requiere cuidados especiales
