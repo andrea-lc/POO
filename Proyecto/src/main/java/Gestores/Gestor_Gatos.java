@@ -40,7 +40,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                     String esterilizacion= datos[6];
                     String estado_gato = datos [7];
                     String cuidado_requerido = datos[8];
-                    Gatos gato=new Gatos (id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido);
+                    Gatos gato=new Gatos (id,nombre,edad,raza,peso,genero,esterilizacion,estado_gato,cuidado_requerido);
                     
                     getElementos().put(String.valueOf(gato.getId()), gato);
                 }
@@ -49,11 +49,33 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             System.out.println("No se pudo cargar usuarios (puede que el archivo esté vacio).");
         }
     }
+    @Override
+    public void guardarCambios() { // despues de realizar una medificacion no se guardaga los datos en la lista 
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
+        for (Gatos gato : getElementos().values()) {
+            String linea = String.format("%d,%s,%d,%s,%.2f,%s,%s,%s,%s",
+                gato.getId(),
+                gato.getNombre(),
+                gato.getEdad(),
+                gato.getRaza(),
+                gato.getPeso(),
+                gato.getGenero(),
+                gato.getEstirilizacion(),
+                gato.getEstado_gato(),
+                gato.getCuidado_requerido());
+            bw.write(linea);
+            bw.newLine();
+        }
+    } catch (IOException ex) {
+        System.out.println("Error al guardar cambios en el archivo.");
+        }
+    }
+
 
     @Override
     public boolean registrar(Gatos gatos) {
         if (getElementos().containsKey(String.valueOf(gatos.getId()))) {   //verifica si el map contiene la clave
-            System.out.println("Ese correo ya está registrado.");
+            System.out.println("ID duplicada! ingrese otro");
             return true;
         }
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
@@ -72,7 +94,8 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         bw.newLine();
         System.out.println("Usuario agregado correctamente.");
 
-        getElementos().put(String.valueOf(gatos.getId()), gatos);        
+        getElementos().put(String.valueOf(gatos.getId()), gatos);  
+        guardarCambios();
             } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
         }
@@ -81,9 +104,21 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
 
     @Override
     public void buscar(String identificador) {
-         for (Gatos gato : getElementos().values()) {
-            if (identificador.equalsIgnoreCase(String.valueOf(gato.getId())) ||
-                        (identificador.equalsIgnoreCase(gato.getNombre()))){
+        Gatos gato = null;
+
+        // Buscar por ID (clave del HashMap)
+        if (getElementos().containsKey(identificador)) {
+            gato = getElementos().get(identificador);
+        } else {
+            // Buscar por nombre
+            for (Gatos g : getElementos().values()) {
+                if (identificador.equalsIgnoreCase(g.getNombre())) {
+                    gato = g;
+                    break;
+                }
+            }
+        }
+            if (gato!=null){
                 System.out.println("\n======= GATOS ENCONTRADO =======");
                 System.out.println("Gato #" + gato.getNombre());
                 System.out.println("  ID: " + gato.getId());
@@ -94,19 +129,24 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 System.out.println("  Esterilazacion: " + gato.getEstirilizacion());
                 System.out.println("  Estado: " + gato.getEstado_gato());
                 System.out.println("  Cuidados requeridos: " + gato.getCuidado_requerido());
-                System.out.println("----------------------------------");               
-                }                  
-        }
-    }
+                System.out.println("----------------------------------"); 
+            }
+        }                         
+    
     
     @Override
     // verificara si un gato existe >:( y si no piña
     public boolean existe(String identificador) {
-        boolean resultado=true;
-            for (Gatos gato : getElementos().values()) {
-                resultado= (identificador.equals(String.valueOf(gato.getId()))) ||
-                        (identificador.equalsIgnoreCase(gato.getNombre()));
-                    }
+        boolean resultado=false;
+            if (getElementos().containsKey(identificador)){
+                resultado= true;
+            }else{  
+                for (Gatos gato : getElementos().values()) {
+                if (identificador.equalsIgnoreCase(gato.getNombre())){
+                    resultado= true;
+                    }               
+                }
+            }
             return resultado;
     }
 
@@ -141,11 +181,22 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     // no aumenta uno y es la indicada ya que esta sera una opcion para SOLO modificar
     // no put() porque si no existe la clave no aumenta nada  (sirve como info pero no para esta parte :()ERROR :(
     @Override
-    public void modificar(String gatoModificar, int opcion) { 
-            for (Gatos gato : getElementos().values()) {
-                if( gato.getNombre().equalsIgnoreCase(gatoModificar) || 
-                        gato.getId()==(Integer.parseInt(gatoModificar))){
-                    switch (opcion) {
+    public void modificar(String gatoModificar, int opcion) {
+        Gatos gato = null;
+        // Buscar por ID (clave del HashMap)
+        if (getElementos().containsKey(gatoModificar)) {
+            gato = getElementos().get(gatoModificar);
+        } else {
+            // Buscar por nombre
+            for (Gatos g : getElementos().values()) {
+                if (gatoModificar.equalsIgnoreCase(g.getNombre())) {
+                    gato = g;
+                    break;
+                }
+            }
+        }
+        if (gato != null){
+                switch (opcion) {
                 case 1: 
                     System.out.print("Nuevo nombre: ");
                     String nuevoNombre = lector.LeerString();
@@ -187,8 +238,8 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             }
             // Como se esta modificando el objeto directamente, el Map se actualiza automaticamente
             // porque hay una referencia al mismo objeto
-            }
-        }              
+        }
+        guardarCambios();
     }
     @Override
     public List<Gatos> ordenar() {
@@ -208,6 +259,5 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }      
         return listaGatos;
     }   
-
 
 }

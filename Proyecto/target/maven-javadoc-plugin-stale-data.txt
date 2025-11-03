@@ -1,0 +1,49 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-encoding
+'UTF-8'
+-protected
+--release
+8
+-sourcepath
+'C:/Documents/NetBeansProjects/POO_project/Proyecto/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Documents/NetBeansProjects/POO_project/Proyecto/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'POO_project 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Documents/NetBeansProjects/POO_project/Proyecto/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'POO_project 1.0-SNAPSHOT API'
+com.mycompany.poo_project
+Entidades
+Gestores
+Menus
+Scanner
+C:\Documents\NetBeansProjects\POO_project\Proyecto\src\main\java = 1761079265104
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\allclasses-index.html = 1762096175042
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\allpackages-index.html = 1762096175045
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\element-list = 1762096174307
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\help-doc.html = 1762096175229
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\index-all.html = 1762096175178
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\index.html = 1762096174957
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\member-search-index.js = 1762096175104
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\module-search-index.js = 1762096175078
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\overview-summary.html = 1762096175194
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\overview-tree.html = 1762096174951
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\package-search-index.js = 1762096175100
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\search.html = 1762096175181
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\tag-search-index.js = 1762096175106
+C:\Documents\NetBeansProjects\POO_project\Proyecto\target\reports\apidocs\type-search-index.js = 1762096175101

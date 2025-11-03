@@ -50,7 +50,7 @@ public class Gestor_usuarios extends GestorBase <Persona>{
     @Override
     public boolean registrar(Persona persona) {
         if (getElementos().containsKey(persona.getCorreo())) {   //verifica si el map contiene la clave
-            System.out.println("Ese correo ya está registrado.");
+            System.out.println("Ese correo ya esta registrado.");
             return true;
         }
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
@@ -111,6 +111,11 @@ public class Gestor_usuarios extends GestorBase <Persona>{
 
     @Override
     public void buscar(String identificador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void guardarCambios() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

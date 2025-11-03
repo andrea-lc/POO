@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface GestorInterface <t> {
     void cargarDatos();
+    void guardarCambios();
     boolean registrar(t elemento);
     boolean existe(String identificador);
     void mostrar ();
