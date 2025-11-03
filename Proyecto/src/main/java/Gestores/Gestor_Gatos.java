@@ -103,7 +103,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     }
 
     @Override
-    public void buscar(String identificador) {
+    public Gatos buscar(String identificador) {
         Gatos gato = null;
 
         // Buscar por ID (clave del HashMap)
@@ -131,6 +131,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 System.out.println("  Cuidados requeridos: " + gato.getCuidado_requerido());
                 System.out.println("----------------------------------"); 
             }
+        return gato;
         }                         
     
     

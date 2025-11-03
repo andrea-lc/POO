@@ -59,7 +59,7 @@ public class Acciones_gatos implements Menu_Acciones  {
     @Override
     public void modificar() {
         System.out.println("\n======= MODIFICAR DATOS =======");
-        System.out.println("Ingrese el nombre o ID del gato que desea modificar");
+        System.out.print("Ingrese el nombre o ID del gato que desea modificar: ");
         String gatoModificar= lector.LeerString();
         int opcion;
         if (gestor.existe(gatoModificar)== true){
@@ -73,6 +73,7 @@ public class Acciones_gatos implements Menu_Acciones  {
                 System.out.println("5) Esterilizacion: ");
                 System.out.println("6) Estado del gato: ");
                 System.out.println("7) Cuidados requeridos: ");
+                System.out.print("Ingrese una opcion: ");
                 opcion=lector.LeerEntero();
                 gestor.modificar(gatoModificar, opcion);
                 System.out.print("Desea modificar otro dato?: (si/no)");

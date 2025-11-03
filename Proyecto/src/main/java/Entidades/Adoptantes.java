@@ -9,21 +9,21 @@ package Entidades;
  * @author admin
  */
 public class Adoptantes extends Persona {
-    String fecha;
+    String fecha_adopcion;
     String observaciones;
 
-    public Adoptantes(Persona persona, String fecha, String observaciones) {
+    public Adoptantes(Persona persona, String fecha_adopcion, String observaciones) {
         super (persona);
-        this.fecha = fecha;
+        this.fecha_adopcion = fecha_adopcion;
         this.observaciones = observaciones;
     }
 
     public String getFecha() {
-        return fecha;
+        return fecha_adopcion;
     }
 
     public void setFecha(String fecha) {
-        this.fecha = fecha;
+        this.fecha_adopcion = fecha;
     }
 
     public String getObservaciones() {

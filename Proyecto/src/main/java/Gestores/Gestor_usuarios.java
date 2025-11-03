@@ -109,9 +109,11 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    // voy a reutilizar este metodo para obtener los datos de la persona para completar el constructor de 
+    // adoptantes y voluntarios :) 
     @Override
-    public void buscar(String identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Persona buscar(String identificador) {
+        return getElementos().get(identificador);
     }
 
     @Override

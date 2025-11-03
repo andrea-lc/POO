@@ -9,15 +9,15 @@ import java.util.List;
 /**
  *
  * @author admin
- * @param <t>
+ * @param <T>
  */
-public interface GestorInterface <t> {
+public interface GestorInterface <T> {
     void cargarDatos();
     void guardarCambios();
-    boolean registrar(t elemento);
+    boolean registrar(T elemento);
     boolean existe(String identificador);
     void mostrar ();
     void modificar (String datoModificar, int opcion);
-    List<t> ordenar();
-    void buscar (String identificador);
+    List<T> ordenar();
+    T buscar (String identificador);
 }
