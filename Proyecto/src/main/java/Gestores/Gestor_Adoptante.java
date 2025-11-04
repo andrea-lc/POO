@@ -22,6 +22,8 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     }
     Gestor_usuarios gestor= new Gestor_usuarios();
 
+    
+    
     @Override
     public void cargarDatos() {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -46,7 +48,6 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
 
     @Override
     public void guardarCambios() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

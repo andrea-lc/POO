@@ -22,6 +22,8 @@ public class Gestor_usuarios extends GestorBase <Persona>{
     public Gestor_usuarios() {
         super("usuarios.txt");
     }
+   
+    
     
     @Override
     public void cargarDatos() {

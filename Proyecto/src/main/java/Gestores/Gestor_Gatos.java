@@ -135,6 +135,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }                         
     
     
+    
     @Override
     // verificara si un gato existe >:( y si no piña
     public boolean existe(String identificador) {

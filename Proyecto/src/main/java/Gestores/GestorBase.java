@@ -16,6 +16,8 @@ public abstract class GestorBase <t> implements GestorInterface<t> {
     protected Map<String, t> elementos = new HashMap<>();
     protected final String rutaArchivo;
     
+    
+    
     public GestorBase(String rutaArchivo) {
         this.rutaArchivo = rutaArchivo;
         cargarDatos();
