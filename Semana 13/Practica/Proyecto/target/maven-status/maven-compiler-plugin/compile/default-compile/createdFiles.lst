@@ -1,0 +1,13 @@
+Menus\Menu_Acciones.class
+Entidades\Persona.class
+Menus\Menu.class
+Entidades\Adoptantes.class
+com\mycompany\poo_project\POO_project.class
+Entidades\Gatos.class
+Gestores\Gestor_Adoptante.class
+Scanner\Lector.class
+Gestores\GestorInterface.class
+Gestores\Gestor_usuarios.class
+Menus\Acciones_gatos.class
+Gestores\Gestor_Gatos.class
+Gestores\GestorBase.class
