@@ -11,8 +11,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 /**
  *
  * @author admin
@@ -161,20 +160,11 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     }  
         System.out.println("\n=== LISTA DE GATOS REGISTRADOS ===");
         System.out.println("Total de gatos: " + getElementos().size());
-        System.out.println("-----------------------------------");
+        System.out.println("-----------------------------------");     
+        getElementos_lista().sort((g1,g2)->Integer.compare(g1.getId(), g2.getId()));
         
-        for (Gatos gato : ordenar()) {
-        System.out.println("Gato #" + gato.getNombre());
-        System.out.println("  ID: " + gato.getId());
-        System.out.println("  Edad: " + gato.getEdad() + " años");
-        System.out.println("  Raza: " + gato.getRaza());
-        System.out.println("  Peso: " + gato.getPeso());
-        System.out.println("  Genero: " + gato.getGenero());
-        System.out.println("  Esterilazacion: " + gato.getEstirilizacion());
-        System.out.println("  Estado: " + gato.getEstado_gato());
-        System.out.println("  Cuidados requeridos: " + gato.getCuidado_requerido());
-        System.out.println("-----------------------------------");
-        }
+        getElementos_lista().forEach(System.out::println);
+        System.out.println("-----------------------------------");        
     }
 
     
@@ -243,23 +233,4 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }
         guardarCambios();
     }
-    @Override
-    public List<Gatos> ordenar() {
-        List<Gatos> listaGatos = new ArrayList<>(getElementos().values()); //llena la lista con los valores del Map :0
-        
-        // Insertion Sort
-        for (int i = 1; i < listaGatos.size(); i++) {
-            Gatos gatoActual = listaGatos.get(i);
-            int j = i - 1;
-            
-            // Mover elementos mayores hacia la derecha
-            while (j >= 0 && listaGatos.get(j).getId() > gatoActual.getId()) {
-                listaGatos.set(j + 1, listaGatos.get(j));
-                j--;
-            }
-            listaGatos.set(j + 1, gatoActual);
-        }      
-        return listaGatos;
-    }   
-
 }
