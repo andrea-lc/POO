@@ -4,8 +4,6 @@
  */
 package Gestores;
 
-import java.util.List;
-
 /**
  *
  * @author admin
@@ -18,6 +16,5 @@ public interface GestorInterface <T> {
     boolean existe(String identificador);
     void mostrar ();
     void modificar (String datoModificar, int opcion);
-    List<T> ordenar();
     T buscar (String identificador);
 }

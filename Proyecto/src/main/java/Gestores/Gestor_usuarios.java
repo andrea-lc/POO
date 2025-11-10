@@ -10,7 +10,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 /**
  *
@@ -22,9 +21,7 @@ public class Gestor_usuarios extends GestorBase <Persona>{
     public Gestor_usuarios() {
         super("usuarios.txt");
     }
-   
-    
-    
+      
     @Override
     public void cargarDatos() {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -35,10 +32,10 @@ public class Gestor_usuarios extends GestorBase <Persona>{
                     String contraseña = datos[0].trim();
                     int dni = Integer.parseInt(datos[1]);
                     String nombre = datos[2];
-                    int telefono = Integer.parseInt(datos[3]);
-                    String direccion = datos[4];
+                    int edad = Integer.parseInt(datos[3]);
+                    int telefono = Integer.parseInt(datos[4]);
                     String correo = datos[5];
-                    Persona persona=new Persona (contraseña,dni,nombre,telefono,direccion,correo);
+                    Persona persona=new Persona (contraseña,dni,nombre,edad,telefono,correo);
                     
                     getElementos().put(persona.getCorreo(), persona);
                 }
@@ -48,7 +45,6 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         }
     }
 
-
     @Override
     public boolean registrar(Persona persona) {
         if (getElementos().containsKey(persona.getCorreo())) {   //verifica si el map contiene la clave
@@ -57,12 +53,12 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         }
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
         // Escribir los datos de la persona en el formato correcto
-        String linea = String.format("%s,%d,%s,%d,%s,%s",
+        String linea = String.format("%s,%d,%s,%d,%d,%s",
             persona.getContraseña(),
             persona.getId_persona(),
             persona.getNombre(),
+            persona.getEdad(),
             persona.getTelefono(),
-            persona.getDireccion(),
             persona.getCorreo());     
         bw.write(linea);
         bw.newLine();
@@ -75,6 +71,11 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         }
     return true;
     }
+        @Override
+    public void guardarCambios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 
     public boolean login(String correo, String contraseña) {
         if (!getElementos().containsKey(correo)) {   
@@ -106,21 +107,12 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public List<Persona> ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     // voy a reutilizar este metodo para obtener los datos de la persona para completar el constructor de 
     // adoptantes y voluntarios :) 
     @Override
     public Persona buscar(String identificador) {
         return getElementos().get(identificador);
-    }
-
-    @Override
-    public void guardarCambios() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

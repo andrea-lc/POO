@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 /**
  *
@@ -42,6 +43,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                     Gatos gato=new Gatos (id,nombre,edad,raza,peso,genero,esterilizacion,estado_gato,cuidado_requerido);
                     
                     getElementos().put(String.valueOf(gato.getId()), gato);
+                    getElementos_lista().add(gato);
                 }
             }
         } catch (IOException e) {
@@ -59,11 +61,13 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 gato.getRaza(),
                 gato.getPeso(),
                 gato.getGenero(),
-                gato.getEstirilizacion(),
+                gato.getEsterilizacion(),
                 gato.getEstado_gato(),
                 gato.getCuidado_requerido());
             bw.write(linea);
             bw.newLine();
+            getElementos_lista().add(gato);
+
         }
     } catch (IOException ex) {
         System.out.println("Error al guardar cambios en el archivo.");
@@ -79,22 +83,23 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
         // Escribir los datos de la persona en el formato correcto
-            String linea = String.format("%d,%s,%d,%s,%s,%s,%s,%s,%s",
+            String linea = String.format("%d,%s,%d,%s,%.2f,%s,%s,%s,%s",
             gatos.getId(),
             gatos.getNombre(),
             gatos.getEdad(),
             gatos.getRaza(),
             gatos.getPeso(),
             gatos.getGenero(),
-            gatos.getEstirilizacion(),
+            gatos.getEsterilizacion(),
             gatos.getEstado_gato(),
             gatos.getCuidado_requerido());     
         bw.write(linea);
         bw.newLine();
         System.out.println("Usuario agregado correctamente.");
 
-        getElementos().put(String.valueOf(gatos.getId()), gatos);  
-        guardarCambios();
+        getElementos().put(String.valueOf(gatos.getId()), gatos);
+        getElementos_lista().add(gatos);
+
             } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
         }
@@ -118,22 +123,11 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             }
         }
             if (gato!=null){
-                System.out.println("\n======= GATOS ENCONTRADO =======");
-                System.out.println("Gato #" + gato.getNombre());
-                System.out.println("  ID: " + gato.getId());
-                System.out.println("  Edad: " + gato.getEdad() + " años");
-                System.out.println("  Raza: " + gato.getRaza());
-                System.out.println("  Peso: " + gato.getPeso());
-                System.out.println("  Genero: " + gato.getGenero());
-                System.out.println("  Esterilazacion: " + gato.getEstirilizacion());
-                System.out.println("  Estado: " + gato.getEstado_gato());
-                System.out.println("  Cuidados requeridos: " + gato.getCuidado_requerido());
-                System.out.println("----------------------------------"); 
+                System.out.println(gato);
             }
         return gato;
         }                         
-    
-    
+     
     
     @Override
     // verificara si un gato existe >:( y si no piña
@@ -187,50 +181,26 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 }
             }
         }
+        Consumer <Gatos> [] modificador= new Consumer[7];
         if (gato != null){
-                switch (opcion) {
-                case 1: 
-                    System.out.print("Nuevo nombre: ");
-                    String nuevoNombre = lector.LeerString();
-                    gato.setNombre(nuevoNombre);
-                    break;
-                case 2:
-                    System.out.print("Nueva edad: ");
-                    int nuevaEdad = lector.LeerEntero();
-                    gato.setEdad(nuevaEdad);
-                    break;
-                case 3:
-                    System.out.print("Nueva raza: ");
-                    String nuevaRaza = lector.LeerString();
-                    gato.setRaza(nuevaRaza);
-                    break;
-                case 4: 
-                    System.out.print("Nuevo peso: ");
-                    double nuevoPeso = lector.LeerDouble();
-                    gato.setPeso(nuevoPeso);
-                    break;
-                case 5: 
-                    System.out.print("¿Está esterilizado? (si/no): ");
-                    String nuevaEsterilizacion = lector.LeerString();
-                    gato.setEstirilizacion(nuevaEsterilizacion);
-                    break;
-                case 6: 
-                    System.out.print("Nuevo estado: ");
-                    String nuevoEstado = lector.LeerString();
-                    gato.setEstado_gato(nuevoEstado);
-                    break;
-                case 7: 
-                    System.out.print("Nuevo cuidado requerido: ");
-                    String nuevoCuidado = lector.LeerString();
-                    gato.setCuidado_requerido(nuevoCuidado);
-                    break;
-                default: 
-                    System.out.println("Opción inválida");                    
-                    break;
-            }
+            modificador[1]= g -> { System.out.print("Nuevo nombre: ");
+                                        g.setNombre(lector.LeerString()); };
+            modificador[2]= g -> { System.out.print("Nueva edad: ");
+                                         g.setEdad(lector.LeerEntero());};                                      
+            modificador[3]= g -> { System.out.print("Nueva raza: ");
+                                         g.setRaza(lector.LeerString());};
+            modificador[4]= g -> {System.out.print("Nuevo peso: ");                   
+                                         g.setPeso(lector.LeerDouble());};
+            modificador [5]= g-> {System.out.print("Esta esterilizado? (si/no): ");
+                                         g.setEsterilizacion(lector.LeerString());};
+            modificador[6]= g-> {System.out.print("Nuevo estado: ");                 
+                                         g.setEstado_gato(lector.LeerString());};
+            modificador [7]= g-> {System.out.print("Nuevo cuidado requerido: ");
+                                         g.setCuidado_requerido(lector.LeerString());};
             // Como se esta modificando el objeto directamente, el Map se actualiza automaticamente
             // porque hay una referencia al mismo objeto
         }
+        modificador[opcion].accept(gato);
         guardarCambios();
     }
 }

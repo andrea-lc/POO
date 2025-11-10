@@ -30,7 +30,7 @@ public class Acciones_gatos implements Menu_Acciones  {
         double peso = lector.LeerDouble();
         System.out.print("Genero: ");
         String genero= lector.LeerString();
-        System.out.print("Estilizacion: ");
+        System.out.print("Estilizacion (si/no): ");
         String esterilizacion= lector.LeerString();
         System.out.print("Estado del gato: (En adopción, Adoptado, En cuidado, En recuperación)");
         String estado_gato= lector.LeerString();
@@ -70,7 +70,7 @@ public class Acciones_gatos implements Menu_Acciones  {
                 System.out.println("2) Edad: ");
                 System.out.println("3) Raza: ");
                 System.out.println("4) Peso: ");
-                System.out.println("5) Esterilizacion: ");
+                System.out.println("5) Esterilizacion (si/no): ");
                 System.out.println("6) Estado del gato: ");
                 System.out.println("7) Cuidados requeridos: ");
                 System.out.print("Ingrese una opcion: ");

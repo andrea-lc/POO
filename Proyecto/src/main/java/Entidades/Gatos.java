@@ -9,13 +9,13 @@ package Entidades;
  * @author admin
  */
 public class Gatos {
-    public int id;
+    private int id;
     private String nombre;
     private int edad;
     private String raza;
     private double peso;
     private String genero;
-    private String  estirilizacion;
+    private String  esterilizacion;
     private String estado_gato;// Estado en el qe se encuentra el gato (En adopcion, Adoptado, En cuidado, En recuperación)
     private String cuidado_requerido;
     
@@ -27,7 +27,7 @@ public class Gatos {
         this.raza = raza;
         this.peso = peso;
         this.genero = genero;
-        this.estirilizacion= esterilizacion;
+        this.esterilizacion= esterilizacion;
         this.estado_gato= estado_gato;
         this.cuidado_requerido= cuidado_requerido;                
     }
@@ -39,13 +39,14 @@ public class Gatos {
         this.raza = gato.raza;
         this.peso = gato.peso;
         this.genero = gato.genero;
-        this.estirilizacion= gato.estirilizacion;
+        this.esterilizacion= gato.esterilizacion;
         this.estado_gato= gato.estado_gato;
         this.cuidado_requerido= gato.cuidado_requerido; 
     }
     public int getId() {
         return id;
     }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -79,11 +80,11 @@ public class Gatos {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    public String getEstirilizacion() {
-        return estirilizacion;
+    public String getEsterilizacion() {
+        return esterilizacion;
     }
-    public void setEstirilizacion(String estirilizacion) {
-        this.estirilizacion = estirilizacion;
+    public void setEsterilizacion(String esterilizacion) {
+        this.esterilizacion = esterilizacion;
     }
     public String getEstado_gato() {
         return estado_gato;
@@ -102,8 +103,14 @@ public class Gatos {
     // Permite mostrar la informacion del gato en formato legible al imprimir el objeto.
     @Override
     public String toString() {
-        return "ID: " + id + ", Nombre: " + nombre + ", Edad: " + edad + " años" + ", Raza: " + raza +  ", Peso: " + peso + " kg" +
-           ", Género: " + genero + ", Esterilizado: "+
-           ", Estado: " + estado_gato + ", Cuidado requerido: " + cuidado_requerido;
-}
+        return  "Gato #" + nombre + "\n" +
+           "  ID: " + id + "\n" +
+           "  Edad: " + edad + " años\n" +
+           "  Raza: " + raza + "\n" +
+           "  Peso: " + peso + " kg\n" +
+           "  Genero: " + genero + "\n" +
+           "  Esterilizacion: " + esterilizacion + "\n" +
+           "  Estado: " + estado_gato + "\n" +
+           "  Cuidados requeridos: " + cuidado_requerido + "\n";
+    }
 }

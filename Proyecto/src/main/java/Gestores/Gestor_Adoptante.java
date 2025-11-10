@@ -5,11 +5,11 @@
 package Gestores;
 
 import Entidades.Adoptantes;
+import Entidades.Gatos;
 import Entidades.Persona;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 /**
  *
@@ -21,24 +21,22 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         super("Adoptantes.txt");
     }
     Gestor_usuarios gestor= new Gestor_usuarios();
-
-    
-    
+ 
     @Override
     public void cargarDatos() {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length == 8) { 
-                    String nombre= datos[2];
-                    String fecha_adopciones= datos[6];
-                    String observaciones=datos [7];
-                    String correo= datos[5];
+                String[] datos = linea.split(",");              
+                if (datos.length == 8) {
+                    String correo = datos[0].trim();
+                    int idGato = Integer.parseInt(datos[6]);
+                    String estado_Adopcion=datos [7];
                     
                     Persona persona= gestor.buscar(correo);
                     
-                    getElementos().put(nombre, new Adoptantes(persona,fecha_adopciones,observaciones));
+                    
+                    getElementos().put(persona.getNombre(), new Adoptantes(persona,idGato,estado_Adopcion));
                 }
             }
         } catch (IOException e) {
@@ -70,10 +68,6 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public List<Adoptantes> ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public Adoptantes buscar(String identificador) {
