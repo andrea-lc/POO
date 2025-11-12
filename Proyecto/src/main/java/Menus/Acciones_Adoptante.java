@@ -4,6 +4,10 @@
  */
 package Menus;
 
+import Entidades.Adoptantes;
+import Entidades.Persona;
+import Gestores.Gestor_Adoptante;
+import Gestores.Gestor_Gatos;
 import Scanner.Lector;
 
 /**
@@ -12,34 +16,69 @@ import Scanner.Lector;
  */
 public class Acciones_Adoptante implements Menu_Acciones{
     Lector lector=new Lector ();
+    Gestor_Adoptante gestor_adoptante= new Gestor_Adoptante();
+    Gestor_Gatos gestor_gatos= new Gestor_Gatos();
 
     @Override
-    public void registrar() { // registrara elproceso para adoptar
+    public void registrar() { // registrara el proceso para adoptar
         System.out.println("\n========== REGISTRO ==========");
-        System.out.println("Nombre: ");
+        System.out.print("Dni: ");
+        int dni= lector.LeerEntero();
+        System.out.print("Nombre: ");
         String nombre= lector.LeerString();
-        System.out.println("Escoja un gato disponible: ");
-        Listar();
-        String nombre_gatos= lector.LeerString();
-        System.out.println("Cargando proceso...");
-        System.out.println("Estado del proceso: "+ get.estado_proceso);
+        System.out.println("Correo: ");
+        String correo= lector.LeerString();
+        System.out.println("Telefono: ");
+        int telefono = lector.LeerEntero();
+        System.out.print("Gatos en adopcion disponibles: ");
+        gestor_gatos.mostrarGatos(); // muestra gatos en adopcion :0
+        int gato_Adoptado=(gestor_gatos.conseguirID(lector.LeerString()));
+        gestor_gatos.cambiarEstadoGato(gato_Adoptado);
         
-        
-
+        gestor_adoptante.registrar(new Adoptantes(new Persona(dni,nombre,telefono,correo),gato_Adoptado));
+        System.out.print("Registro realizado exitosamente!");
     }
 
     @Override
-    public void Listar() { // mostar la lista de gatos para adoptar 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void Listar() {
+        gestor_adoptante.mostrar();
     }
 
     @Override
     public void Buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        System.out.print("Ingrese el nombre  o dni del adoptante que desea buscar: ");
+        String adoptanteBuscado= lector.LeerString();
+        if (gestor_adoptante.existe(adoptanteBuscado)==true){
+            gestor_adoptante.buscar(adoptanteBuscado);
+            }else {
+            System.out.println("Adoptante no encontrado");
+            }      
+        }
+
 
     @Override
-    public void modificar() {// aqui se modificara el proceso a rechzado o aceptado
+    public void modificar() { // aqui se modificara el proceso a rechzado o aceptado
+        System.out.println("\n======= MODIFICAR DATOS =======");
+        System.out.print("Ingrese el nombre o ID del adoptante que desea modificar: ");
+        String adoptanteModificar= lector.LeerString();
+        int opcion;
+        if (gestor_adoptante.existe(adoptanteModificar)== true){
+            boolean seguir; //va a iniciar como si se quisiera continuar modificando
+            do{                     
+                System.out.println("Que dato desea modificar: ");
+                System.out.println("1) Telefono: ");
+                System.out.println("2) Correo: ");
+                System.out.print("Ingrese una opcion: ");
+                opcion=lector.LeerEntero();
+                gestor_adoptante.modificar(adoptanteModificar, opcion);
+                System.out.print("Desea modificar otro dato?: (si/no)");
+                String respuesta=lector.LeerString();
+                seguir= respuesta.equalsIgnoreCase("si"); //? true:false
+            }while (seguir);
+            System.out.println("Datos modificados exitosamente! ");
+        } else {
+            System.out.println("Adoptante no encontrado");
+            }
     }
     
 }

@@ -10,12 +10,10 @@ package Entidades;
  */
 public class Adoptantes extends Persona {
     private int gato_Adoptado;
-    private String estado_Adopcion;
     
-    public Adoptantes(Persona persona, int gato_Adoptado, String estado_Adopcion) {
+    public Adoptantes(Persona persona, int gato_Adoptado) {
         super (persona);
         this.gato_Adoptado = gato_Adoptado;
-        this.estado_Adopcion = estado_Adopcion;
     }
 
     public int getGato_Adoptado() {
@@ -26,18 +24,9 @@ public class Adoptantes extends Persona {
         this.gato_Adoptado = gato_Adoptado;
     }
 
-    public String getEstado_Adopcion() {
-        return estado_Adopcion;
-    }
-
-    public void setEstado_Adopcion(String estado_Adopcion) {
-        this.estado_Adopcion = estado_Adopcion;
-    }
- 
     @Override
     public String toString() {
-        return super.toString()+ "Gato_Adoptado: "+ gato_Adoptado  + "\n"
-                               + "Estado de la Adopcion: "+ estado_Adopcion;
+        return super.toString()+ "Gato_Adoptado: "+ gato_Adoptado  + "\n" ;
     }
     
 }

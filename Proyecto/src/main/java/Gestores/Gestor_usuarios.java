@@ -28,14 +28,13 @@ public class Gestor_usuarios extends GestorBase <Persona>{
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 6) { 
+                if (datos.length == 5) { 
                     String contraseña = datos[0].trim();
                     int dni = Integer.parseInt(datos[1]);
                     String nombre = datos[2];
-                    int edad = Integer.parseInt(datos[3]);
-                    int telefono = Integer.parseInt(datos[4]);
-                    String correo = datos[5];
-                    Persona persona=new Persona (contraseña,dni,nombre,edad,telefono,correo);
+                    int telefono = Integer.parseInt(datos[3]);
+                    String correo = datos[4];
+                    Persona persona=new Persona (contraseña,dni,nombre,telefono,correo);
                     
                     getElementos().put(persona.getCorreo(), persona);
                 }
@@ -53,11 +52,10 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         }
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
         // Escribir los datos de la persona en el formato correcto
-        String linea = String.format("%s,%d,%s,%d,%d,%s",
+        String linea = String.format("%s,%d,%s,%d,%s",
             persona.getContraseña(),
             persona.getId_persona(),
             persona.getNombre(),
-            persona.getEdad(),
             persona.getTelefono(),
             persona.getCorreo());     
         bw.write(linea);
@@ -107,12 +105,9 @@ public class Gestor_usuarios extends GestorBase <Persona>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-
-    // voy a reutilizar este metodo para obtener los datos de la persona para completar el constructor de 
-    // adoptantes y voluntarios :) 
     @Override
     public Persona buscar(String identificador) {
-        return getElementos().get(identificador);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
 }

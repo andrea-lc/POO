@@ -12,43 +12,42 @@ package Entidades;
 public class Persona{
     protected int dni_persona;
     protected String nombre; 
-    protected int edad;
     protected int telefono;
     protected String correo;
     protected String contraseña;
 
     // Constructor original
-    public Persona(String contraseña, int dni_persona, String nombre,int edad, int telefono, String correo) {
+    public Persona(String contraseña, int dni_persona, String nombre, int telefono, String correo) {
         this.contraseña= contraseña;
         this.dni_persona = dni_persona;
         this.nombre = nombre;
-        this.edad = edad;
         this.telefono = telefono;
         this.correo = correo;
     }
-
+    // constructor para personas  como adoptantes y voluntarios
+    public Persona(int dni_persona, String nombre, int telefono, String correo) {
+        this.dni_persona = dni_persona;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+    
     // Constructor de copia
     public Persona(Persona otraPersona) {
-        this.contraseña= otraPersona.contraseña;
         this.dni_persona = otraPersona.dni_persona;
         this.nombre = otraPersona.nombre;
-        this.edad = otraPersona.edad;
         this.telefono = otraPersona.telefono;
         this.correo = otraPersona.correo;
     }
-    
-
+       
     @Override
     public String toString() {
         return "DNI #" + dni_persona + "\n" +
            "  Nombre: " + nombre + "\n" +
-           "  Edad: " + edad + " años\n" +
            "  Telefono: " + telefono + "\n" +
            "  Correo: " + correo + " \n";
     }
     
-
-
     public String getContraseña() { 
         return contraseña; 
     }
@@ -66,12 +65,6 @@ public class Persona{
     }
     public void setNombre(String nombre) { 
         this.nombre = nombre; 
-    }
-    public int getEdad() {
-        return edad;
-    }
-    public void setEdad(int edad){
-        this.edad = edad;
     }
     public int getTelefono() { 
         return telefono; 

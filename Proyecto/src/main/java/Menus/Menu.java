@@ -44,7 +44,7 @@ public class Menu {
                 }
                 case 3: {
                     // Caso 3: Módulo de adopciones (a implementar)
-                    System.out.println("Aquí irá el módulo de adopciones...");
+                    mostrarMenuAdoptantes();
                     break;
                 }
                 case 4: {
@@ -113,5 +113,53 @@ public class Menu {
                 }
             }
         } while (opcion != 0); // Se repite hasta que el usuario decida salir
+    }
+    public void mostrarMenuAdoptantes (){
+        int opcion;
+        Acciones_Adoptante acciones= new Acciones_Adoptante();
+        do {
+            System.out.println("\n=== Gestion de Adoptantes ===");
+            System.out.println("1) Registrar nueva Adopcion");
+            System.out.println("2) Listar adoptantes");
+            System.out.println("3) Buscar Adoptante");
+            System.out.println("4) Modificar algun dato");
+            System.out.println("0) Volver");
+            System.out.println("========================");
+            System.out.print("Elige una opción: ");
+            
+            // Leer la opcion elegida
+            opcion = lector.LeerEntero();
+            // Manejar la opción seleccionada
+            switch (opcion) {
+                case 1: {
+                    // Registrar un nuevo gato
+                    acciones.registrar();                   
+                    break;
+                }
+                case 2: {
+                    // Listar todos los gatos
+                    acciones.Listar();
+                    break;
+                }
+                case 3: {
+                    // Buscar un adoptante
+                    acciones.Buscar();
+                    break;
+                }
+                case 4: 
+                    // Modificar algun dato
+                    acciones.modificar();
+                    break;
+                case 0: {
+                    // Volver al menu principal
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                }
+                default: {
+                    // Manejo de opción invalida
+                    System.out.println("Opción invalida.");
+                }
+            }
+        } while (opcion != 0); 
     }
 }

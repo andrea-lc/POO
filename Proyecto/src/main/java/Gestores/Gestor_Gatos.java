@@ -11,6 +11,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -183,19 +185,19 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }
         Consumer <Gatos> [] modificador= new Consumer[7];
         if (gato != null){
-            modificador[1]= g -> { System.out.print("Nuevo nombre: ");
+            modificador[0]= g -> { System.out.print("Nuevo nombre: ");
                                         g.setNombre(lector.LeerString()); };
-            modificador[2]= g -> { System.out.print("Nueva edad: ");
+            modificador[1]= g -> { System.out.print("Nueva edad: ");
                                          g.setEdad(lector.LeerEntero());};                                      
-            modificador[3]= g -> { System.out.print("Nueva raza: ");
+            modificador[2]= g -> { System.out.print("Nueva raza: ");
                                          g.setRaza(lector.LeerString());};
-            modificador[4]= g -> {System.out.print("Nuevo peso: ");                   
+            modificador[3]= g -> {System.out.print("Nuevo peso: ");                   
                                          g.setPeso(lector.LeerDouble());};
-            modificador [5]= g-> {System.out.print("Esta esterilizado? (si/no): ");
+            modificador [4]= g-> {System.out.print("Esta esterilizado? (si/no): ");
                                          g.setEsterilizacion(lector.LeerString());};
-            modificador[6]= g-> {System.out.print("Nuevo estado: ");                 
+            modificador[5]= g-> {System.out.print("Nuevo estado: ");                 
                                          g.setEstado_gato(lector.LeerString());};
-            modificador [7]= g-> {System.out.print("Nuevo cuidado requerido: ");
+            modificador [6]= g-> {System.out.print("Nuevo cuidado requerido: ");
                                          g.setCuidado_requerido(lector.LeerString());};
             // Como se esta modificando el objeto directamente, el Map se actualiza automaticamente
             // porque hay una referencia al mismo objeto
@@ -203,4 +205,40 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         modificador[opcion].accept(gato);
         guardarCambios();
     }
+    //METODOS PARA LA CLASE ACCION ADOPTANTES 
+    // esta clase es para mostrar los gatos en adopcion, para usarla en acciones_adoptantes 
+        public void mostrarGatos() {
+            if (getElementos().isEmpty()) {
+            System.out.println("No hay gatos registrados en el sistema.");
+            return;            
+        }  
+            List<Gatos> Gatos_enAdopcion= new ArrayList<>();  
+            for (Gatos gato: getElementos_lista()){
+                if (gato.getEstado_gato().equalsIgnoreCase("en adopcion"))
+                    Gatos_enAdopcion.add(gato);
+            }
+
+            System.out.println("\n=== LISTA DE GATOS REGISTRADOS ===");
+            System.out.println("Total de gatos en adopcion: " + Gatos_enAdopcion.size());
+            System.out.println("-----------------------------------");
+
+            Gatos_enAdopcion.sort((g1,g2) -> Integer.compare(g1.getId(), g2.getId()));
+            Gatos_enAdopcion.forEach(gato -> System.out.println("Id: "+ gato.getId()+"  Nombre: "+ gato.getNombre()));       
+            System.out.println("-----------------------------------");        
+        }
+        
+        public int conseguirID (String nombre){
+            Gatos gatoAdoptado= buscar(nombre);
+            int id= gatoAdoptado.getId();
+            return id;           
+        }
+        public void cambiarEstadoGato(int id){
+            Gatos cambioEstado= null;
+        
+            if (getElementos().containsKey(String.valueOf(id))) {
+            cambioEstado = getElementos().get(String.valueOf(id));          
+            }
+            Consumer <Gatos> realizarCambio = a -> { a.setEstado_gato("Adoptado");};
+            realizarCambio.accept(cambioEstado);
+        }
 }

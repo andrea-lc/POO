@@ -59,9 +59,6 @@ public class POO_project {
                     System.out.print("Nombre de Usuario: ");
                     String nombre = lector.LeerString();
                     
-                    System.out.print("Edad: ");
-                    int edad =lector.LeerEntero();
-                    
                     System.out.print("Dni: ");
                     int dni= lector.LeerEntero();
                     
@@ -71,7 +68,7 @@ public class POO_project {
                     System.out.print("Cree una contraseña: ");
                     String contraseña = lector.LeerString();
                     
-                    Persona persona=new Persona (contraseña,dni,nombre,edad,telefono,correo);
+                    Persona persona=new Persona (contraseña,dni,nombre,telefono,correo);
                     // Llamar al metodo del gestor para registrar un nuevo usuario
                     usuarios.registrar(persona);
                     break;
