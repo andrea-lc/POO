@@ -37,11 +37,10 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                     int telefono = Integer.parseInt(datos[2]);
                     String correo = datos[3];
                     int gato_Adoptado = Integer.parseInt(datos[4]);
+                    Adoptantes adoptante= new Adoptantes(new Persona(dni,nombre,telefono,correo),gato_Adoptado);
                     
-                    Persona persona= new Persona(dni,nombre,telefono,correo);
-                    
-                    getElementos().put(String.valueOf(dni), 
-                            new Adoptantes(persona, gato_Adoptado));
+                    getElementos().put((String.valueOf(dni)),adoptante);
+                    getElementos_lista().add(adoptante);
                 }
             }
         } catch (IOException e) {
@@ -119,10 +118,10 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         
         System.out.println("\n=== LISTA DE ADOPTANTES REGISTRADOS ===");
         System.out.println("Total de adoptantes: " + getElementos().size());
-        System.out.println("----------------------------------------");
-        
+        System.out.println("----------------------------------------");     
         getElementos_lista().sort((a1, a2) -> Integer.compare(a1.getId_persona(), a2.getId_persona()));
-        getElementos_lista().forEach(System.out::println);
+        
+        getElementos_lista().forEach(System.out::println);      
         System.out.println("----------------------------------------");        
 
     }

@@ -40,7 +40,7 @@ public class Gestor_usuarios extends GestorBase <Persona>{
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar usuarios (puede que el archivo esté vacio).");
+            System.out.println("No se pudo cargar usuarios (puede que el archivo este vacio).");
         }
     }
 

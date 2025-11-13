@@ -214,7 +214,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }  
             List<Gatos> Gatos_enAdopcion= new ArrayList<>();  
             for (Gatos gato: getElementos_lista()){
-                if (gato.getEstado_gato().equalsIgnoreCase("en adopcion"))
+                if (gato.getEstado_gato().equalsIgnoreCase("En adopcion"))
                     Gatos_enAdopcion.add(gato);
             }
 
@@ -240,5 +240,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             }
             Consumer <Gatos> realizarCambio = a -> { a.setEstado_gato("Adoptado");};
             realizarCambio.accept(cambioEstado);
+            guardarCambios();
         }
 }

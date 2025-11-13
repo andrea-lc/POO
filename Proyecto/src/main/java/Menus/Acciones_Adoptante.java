@@ -26,17 +26,17 @@ public class Acciones_Adoptante implements Menu_Acciones{
         int dni= lector.LeerEntero();
         System.out.print("Nombre: ");
         String nombre= lector.LeerString();
-        System.out.println("Correo: ");
+        System.out.print("Correo: ");
         String correo= lector.LeerString();
-        System.out.println("Telefono: ");
+        System.out.print("Telefono: ");
         int telefono = lector.LeerEntero();
         System.out.print("Gatos en adopcion disponibles: ");
         gestor_gatos.mostrarGatos(); // muestra gatos en adopcion :0
+        System.out.print("Ingrese el id de un Gato: ");
         int gato_Adoptado=(gestor_gatos.conseguirID(lector.LeerString()));
         gestor_gatos.cambiarEstadoGato(gato_Adoptado);
-        
+        System.out.println("===============================");
         gestor_adoptante.registrar(new Adoptantes(new Persona(dni,nombre,telefono,correo),gato_Adoptado));
-        System.out.print("Registro realizado exitosamente!");
     }
 
     @Override
@@ -66,14 +66,15 @@ public class Acciones_Adoptante implements Menu_Acciones{
             boolean seguir; //va a iniciar como si se quisiera continuar modificando
             do{                     
                 System.out.println("Que dato desea modificar: ");
-                System.out.println("1) Telefono: ");
-                System.out.println("2) Correo: ");
+                System.out.print("1) Telefono: ");
+                System.out.print("2) Correo: ");
                 System.out.print("Ingrese una opcion: ");
                 opcion=lector.LeerEntero();
                 gestor_adoptante.modificar(adoptanteModificar, opcion);
                 System.out.print("Desea modificar otro dato?: (si/no)");
                 String respuesta=lector.LeerString();
                 seguir= respuesta.equalsIgnoreCase("si"); //? true:false
+                System.out.println("==========================");
             }while (seguir);
             System.out.println("Datos modificados exitosamente! ");
         } else {
