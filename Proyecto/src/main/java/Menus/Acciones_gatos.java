@@ -15,7 +15,9 @@ import Scanner.Lector;
 public class Acciones_gatos implements Menu_Acciones  {
     Lector lector=new Lector ();
     Gestor_Gatos gestor= new Gestor_Gatos();
+    
     @Override
+    
     public void registrar() {
         System.out.println("\n========== REGISTRO ==========");
         System.out.print("ID: ");
@@ -39,6 +41,7 @@ public class Acciones_gatos implements Menu_Acciones  {
         
         gestor.registrar(new Gatos(id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido));
     }
+
     //muestra la lista :)
     @Override
     public void Listar() {

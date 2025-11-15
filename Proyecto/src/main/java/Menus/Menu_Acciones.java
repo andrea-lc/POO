@@ -9,8 +9,8 @@ package Menus;
  * @author admin
  */
 public interface Menu_Acciones {
-    public void registrar ();
-    public void Listar ();
-    public void Buscar();
-    public void modificar ();
+    void registrar ();
+    void Listar ();
+    void Buscar();
+    void modificar ();
 }

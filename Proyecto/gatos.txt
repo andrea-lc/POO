@@ -1,4 +1,4 @@
-11,Zoe,1,siames,2.10,Hembra,no,en adopcion,requiere revisión pediátrica
+11,Zoe,1,siames,2.10,Hembra,no,Adoptado,requiere revisión pediátrica
 12,Tereza,11,mestiza,4.90,Hembra,si,en cuidado,no requiere cuidados especiales
 13,Haru,4,mixta,2.00,femenino,si,en adopcion,ninguno
 14,Camilito,2,siames,12.00,macho,si,Adoptado,ninguno

@@ -205,9 +205,11 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         modificador[opcion].accept(gato);
         guardarCambios();
     }
+    
     //METODOS PARA LA CLASE ACCION ADOPTANTES 
     // esta clase es para mostrar los gatos en adopcion, para usarla en acciones_adoptantes 
         public void mostrarGatos() {
+            
             if (getElementos().isEmpty()) {
             System.out.println("No hay gatos registrados en el sistema.");
             return;            
@@ -227,19 +229,27 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             System.out.println("-----------------------------------");        
         }
         
+        //antes tenia una clase que cambia el estado del gato pero s
+        //pero es mejor hacerlo defrente al conseguir el id
+        //porque al adoptar un gato, se sabe automaticamente que su estado debe cambiar
         public int conseguirID (String nombre){
-            Gatos gatoAdoptado= buscar(nombre);
-            int id= gatoAdoptado.getId();
-            return id;           
-        }
-        public void cambiarEstadoGato(int id){
-            Gatos cambioEstado= null;
-        
-            if (getElementos().containsKey(String.valueOf(id))) {
-            cambioEstado = getElementos().get(String.valueOf(id));          
-            }
+            Gatos gato = null;   
+            try{ 
+            
+         // Buscar por nombre
+            for (Gatos g : getElementos().values()) {
+                if (nombre.equalsIgnoreCase(g.getNombre())) {
+                    gato = g;
+                    break;
+                }
+            } 
             Consumer <Gatos> realizarCambio = a -> { a.setEstado_gato("Adoptado");};
-            realizarCambio.accept(cambioEstado);
-            guardarCambios();
-        }
+                realizarCambio.accept(gato); 
+                guardarCambios();
+                        }catch (NullPointerException e){
+                System.out.println("Gatito1"
+                        + " no registrado como en adopcion ");
+            } 
+        return gato.getId();  
+    }
 }

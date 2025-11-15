@@ -15,11 +15,15 @@ import Scanner.Lector;
  * @author admin
  */
 public class Acciones_Adoptante implements Menu_Acciones{
+
     Lector lector=new Lector ();
     Gestor_Adoptante gestor_adoptante= new Gestor_Adoptante();
     Gestor_Gatos gestor_gatos= new Gestor_Gatos();
 
     @Override
+    // aca ocurre un error, que pasa si se ingresa un gato pero este no esta en 
+    // la lista de los adoptables, ocurre un error, por eso puse un try porque
+    // si no se cerraba el programa abrutamente :(
     public void registrar() { // registrara el proceso para adoptar
         System.out.println("\n========== REGISTRO ==========");
         System.out.print("Dni: ");
@@ -32,12 +36,12 @@ public class Acciones_Adoptante implements Menu_Acciones{
         int telefono = lector.LeerEntero();
         System.out.print("Gatos en adopcion disponibles: ");
         gestor_gatos.mostrarGatos(); // muestra gatos en adopcion :0
-        System.out.print("Ingrese el id de un Gato: ");
+        System.out.print("Ingrese el nombre de un Gato: ");
         int gato_Adoptado=(gestor_gatos.conseguirID(lector.LeerString()));
-        gestor_gatos.cambiarEstadoGato(gato_Adoptado);
         System.out.println("===============================");
         gestor_adoptante.registrar(new Adoptantes(new Persona(dni,nombre,telefono,correo),gato_Adoptado));
-    }
+        }   
+        
 
     @Override
     public void Listar() {

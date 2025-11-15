@@ -11,9 +11,13 @@ import Scanner.Lector;
  * @author admin
  */
 public class Menu {
-        
+    private Menu_Acciones acciones;  
     Lector lector=new Lector ();
-
+    
+    private void setAcciones(Menu_Acciones nuevasAcciones) {
+        this.acciones = nuevasAcciones;
+    }
+       
     // Se encarga de mostrar el menú principal en consola
     public void MainMenu() {    
         int opcion;
@@ -65,10 +69,10 @@ public class Menu {
         } while (opcion != 0); // Repite hasta que el usuario elija salir
     }
     
-    // Muestra el submenú sobre gatos y maneja las opciones.
+    // Muestra el submenu sobre gatos y maneja las opciones.
     public void mostrarMenuGatos() {
         int opcion;
-        Acciones_gatos acciones= new Acciones_gatos();
+        setAcciones(new Acciones_gatos());
         do {
             System.out.println("\n=== Gestión de Gatos ===");
             System.out.println("1) Registrar nuevo gato");
@@ -116,7 +120,7 @@ public class Menu {
     }
     public void mostrarMenuAdoptantes (){
         int opcion;
-        Acciones_Adoptante acciones= new Acciones_Adoptante();
+        setAcciones(new Acciones_Adoptante());
         do {
             System.out.println("\n=== Gestion de Adoptantes ===");
             System.out.println("1) Registrar nueva Adopcion");
