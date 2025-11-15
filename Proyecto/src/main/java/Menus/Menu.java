@@ -10,10 +10,17 @@ import Scanner.Lector;
  *
  * @author admin
  */
+/* ACA IMPLEMENTO PATRON SINGLETON: menu sera el cliente, osea el que utiliza el algoritmo (menu acciones)
+* menu acciones es una interfaz con metodos abstractos que luego es implementada por las clases
+* acciones adoptante-gatos, cada una de estas clases implementa la interfaz de forma diferente 
+* quiere decir que su algoritmo varia segun sus necesidades
+*/
 public class Menu {
     private Menu_Acciones acciones;  
     Lector lector=new Lector ();
     
+    // Menu_acciones puede tene multiples comportamientos, asi que segun 
+    // la situacion, deberia poder variar, por eso este metodo
     private void setAcciones(Menu_Acciones nuevasAcciones) {
         this.acciones = nuevasAcciones;
     }
@@ -24,10 +31,8 @@ public class Menu {
         do {
             System.out.println("\n========== Cat Haven ==========");
             System.out.println("1) Gestion de Gatos");
-            System.out.println("2) Historia");
-            System.out.println("3) Adopciones");
-            System.out.println("4) Voluntariado");
-            System.out.println("5) Donaciones");
+            System.out.println("2) Adopciones");
+            System.out.println("3) Voluntariado");
             System.out.println("0) Cerrar sesion");
             System.out.println("================================");
             System.out.print("Elige una opcion: ");
@@ -42,18 +47,13 @@ public class Menu {
                     break;
                 }
                 case 2: {
-                    // Caso 2: Módulo de clientes (a implementar)
+                    // Caso 2: Módulo de adoptantes
                     System.out.println("Aquí irá el módulo de clientes...");
                     break;
                 }
                 case 3: {
-                    // Caso 3: Módulo de adopciones (a implementar)
+                    // Caso 3: modulo de voluntarios
                     mostrarMenuAdoptantes();
-                    break;
-                }
-                case 4: {
-                    // Caso 4: Módulo de reportes (a implementar)
-                    System.out.println("Aquí irá el módulo de reportes...");
                     break;
                 }
                 case 0: {
@@ -81,7 +81,7 @@ public class Menu {
             System.out.println("4) Modificar algun dato");
             System.out.println("0) Volver");
             System.out.println("========================");
-            System.out.print("Elige una opción: ");
+            System.out.print("Elige una opcion: ");
             
             // Leer la opcion elegida
             opcion = lector.LeerEntero();

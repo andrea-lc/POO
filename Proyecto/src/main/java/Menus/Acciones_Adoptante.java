@@ -18,7 +18,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
 
     Lector lector=new Lector ();
     Gestor_Adoptante gestor_adoptante= new Gestor_Adoptante();
-    Gestor_Gatos gestor_gatos= new Gestor_Gatos();
+    Gestor_Gatos gestor_gatos= Gestor_Gatos.getInstancia();
 
     @Override
     // aca ocurre un error, que pasa si se ingresa un gato pero este no esta en 

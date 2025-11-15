@@ -19,11 +19,28 @@ import java.util.function.Consumer;
  *
  * @author admin
  */
+/* esta clase tiene muchas intancias en acciones_adoptantes/gatos 
+* en cada instancia el constructor vuelve a cargar la clase cargar datos (que llena el map y la lista)
+* que hace que se lea el mismo archivo muchas veces haciendolo ineficiente 
+* para eso aplico singleton, para tener solo una instancia 
+*/
 public class Gestor_Gatos extends GestorBase<Gatos> {
     Lector lector=new Lector ();
-
+    private static Gestor_Gatos instancia;
+    
     public Gestor_Gatos() {
         super("gatos.txt");
+    }
+    
+    // este sera elmetodo para obtener la instancia
+    // una clase lo llama y este inicia como vacio (null)
+    // entonces crea la instancia, pero si vuelvo a llamar el metodo, isntancia ya esta lleno
+    // entonces vuelve a retornar la misma instancia 
+    public static Gestor_Gatos getInstancia() {
+        if (instancia == null) {
+            instancia = new Gestor_Gatos();
+        }
+        return instancia;
     }
 
     @Override

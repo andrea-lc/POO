@@ -14,7 +14,7 @@ import Scanner.Lector;
  */
 public class Acciones_gatos implements Menu_Acciones  {
     Lector lector=new Lector ();
-    Gestor_Gatos gestor= new Gestor_Gatos();
+    Gestor_Gatos gestor= Gestor_Gatos.getInstancia();
     
     @Override
     
