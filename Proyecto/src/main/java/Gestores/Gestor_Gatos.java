@@ -36,7 +36,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     // una clase lo llama y este inicia como vacio (null)
     // entonces crea la instancia, pero si vuelvo a llamar el metodo, isntancia ya esta lleno
     // entonces vuelve a retornar la misma instancia 
-    public static Gestor_Gatos getInstancia() {
+    public static Gestor_Gatos getInstanciaGatos() {
         if (instancia == null) {
             instancia = new Gestor_Gatos();
         }
@@ -59,14 +59,16 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                     String esterilizacion= datos[6];
                     String estado_gato = datos [7];
                     String cuidado_requerido = datos[8];
-                    Gatos gato=new Gatos (id,nombre,edad,raza,peso,genero,esterilizacion,estado_gato,cuidado_requerido);
+                    Gatos gato=new Gatos (id,nombre,edad,raza,peso
+                            ,genero,esterilizacion,estado_gato,cuidado_requerido);
+                    
                     
                     getElementos().put(String.valueOf(gato.getId()), gato);
                     getElementos_lista().add(gato);
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar usuarios (puede que el archivo esté vacio).");
+            System.out.println("No se pudo cargar los gatos (puede que el archivo este vacio).");
         }
     }
     @Override
@@ -85,8 +87,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 gato.getCuidado_requerido());
             bw.write(linea);
             bw.newLine();
-            getElementos_lista().add(gato);
-
         }
     } catch (IOException ex) {
         System.out.println("Error al guardar cambios en el archivo.");
@@ -100,29 +100,12 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             System.out.println("ID duplicada! ingrese otro");
             return true;
         }
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
-        // Escribir los datos de la persona en el formato correcto
-            String linea = String.format("%d,%s,%d,%s,%.2f,%s,%s,%s,%s",
-            gatos.getId(),
-            gatos.getNombre(),
-            gatos.getEdad(),
-            gatos.getRaza(),
-            gatos.getPeso(),
-            gatos.getGenero(),
-            gatos.getEsterilizacion(),
-            gatos.getEstado_gato(),
-            gatos.getCuidado_requerido());     
-        bw.write(linea);
-        bw.newLine();
-        System.out.println("Usuario agregado correctamente.");
-
+       
         getElementos().put(String.valueOf(gatos.getId()), gatos);
         getElementos_lista().add(gatos);
-
-            } catch (IOException ex) {
-            System.out.println("Error al guardar en usuarios.txt");
-        }
-    return true;
+        guardarCambios();
+        System.out.println("Gatito agregado correctamente.");
+        return true;
     }
 
     @Override
@@ -175,7 +158,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         System.out.println("Total de gatos: " + getElementos().size());
         System.out.println("-----------------------------------");     
         getElementos_lista().sort((g1,g2)->Integer.compare(g1.getId(), g2.getId()));
-        
         getElementos_lista().forEach(System.out::println);
         System.out.println("-----------------------------------");        
     }
@@ -200,21 +182,21 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                 }
             }
         }
-        Consumer <Gatos> [] modificador= new Consumer[7];
+        Consumer <Gatos> [] modificador= new Consumer[8];
         if (gato != null){
-            modificador[0]= g -> { System.out.print("Nuevo nombre: ");
+            modificador[1]= g -> { System.out.print("Nuevo nombre: ");
                                         g.setNombre(lector.LeerString()); };
-            modificador[1]= g -> { System.out.print("Nueva edad: ");
+            modificador[2]= g -> { System.out.print("Nueva edad: ");
                                          g.setEdad(lector.LeerEntero());};                                      
-            modificador[2]= g -> { System.out.print("Nueva raza: ");
+            modificador[3]= g -> { System.out.print("Nueva raza: ");
                                          g.setRaza(lector.LeerString());};
-            modificador[3]= g -> {System.out.print("Nuevo peso: ");                   
+            modificador[4]= g -> {System.out.print("Nuevo peso: ");                   
                                          g.setPeso(lector.LeerDouble());};
-            modificador [4]= g-> {System.out.print("Esta esterilizado? (si/no): ");
+            modificador [5]= g-> {System.out.print("Esta esterilizado? (si/no): ");
                                          g.setEsterilizacion(lector.LeerString());};
-            modificador[5]= g-> {System.out.print("Nuevo estado: ");                 
+            modificador[6]= g-> {System.out.print("Nuevo estado: ");                 
                                          g.setEstado_gato(lector.LeerString());};
-            modificador [6]= g-> {System.out.print("Nuevo cuidado requerido: ");
+            modificador [7]= g-> {System.out.print("Nuevo cuidado requerido: ");
                                          g.setCuidado_requerido(lector.LeerString());};
             // Como se esta modificando el objeto directamente, el Map se actualiza automaticamente
             // porque hay una referencia al mismo objeto
@@ -250,7 +232,8 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         //pero es mejor hacerlo defrente al conseguir el id
         //porque al adoptar un gato, se sabe automaticamente que su estado debe cambiar
         public int conseguirID (String nombre){
-            Gatos gato = null;   
+            Gatos gato = null; 
+            int id;
             try{ 
             
          // Buscar por nombre
@@ -263,10 +246,11 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             Consumer <Gatos> realizarCambio = a -> { a.setEstado_gato("Adoptado");};
                 realizarCambio.accept(gato); 
                 guardarCambios();
-                        }catch (NullPointerException e){
-                System.out.println("Gatito1"
-                        + " no registrado como en adopcion ");
+                id= gato.getId();
+            }catch (NullPointerException e){ // capturar el error para evitar que se cierre el programa si se quiere obtener el id de un gato que no esta en adopccion
+                System.out.println("Gatito no registrado como en adopcion ");
             } 
-        return gato.getId();  
+        int id;
+        return id;  
     }
 }

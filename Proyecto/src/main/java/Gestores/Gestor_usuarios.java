@@ -4,6 +4,7 @@
  */
 package Gestores;
 
+import Entidades.Administradores;
 import Entidades.Persona;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,12 +17,21 @@ import java.io.IOException;
  * @author admin
  */
 // Clase Gestor_usuarios
-public class Gestor_usuarios extends GestorBase <Persona>{
+public class Gestor_usuarios extends GestorBase <Administradores>{
 
+    private static Gestor_usuarios instancia;
+    
     public Gestor_usuarios() {
-        super("usuarios.txt");
+        super("Administradores.txt");
     }
-      
+    
+    public static Gestor_usuarios getInstanciaUsuario() {
+        if (instancia==null){
+            instancia= new Gestor_usuarios();
+        }  
+        return instancia; 
+    }         
+     
     @Override
     public void cargarDatos() {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -34,9 +44,9 @@ public class Gestor_usuarios extends GestorBase <Persona>{
                     String nombre = datos[2];
                     int telefono = Integer.parseInt(datos[3]);
                     String correo = datos[4];
-                    Persona persona=new Persona (contraseña,dni,nombre,telefono,correo);
+                    Administradores administrador =new Administradores(new Persona(dni,nombre,telefono,correo), contraseña);
                     
-                    getElementos().put(persona.getCorreo(), persona);
+                    getElementos().put(administrador.getCorreo(), administrador);
                 }
             }
         } catch (IOException e) {
@@ -45,25 +55,25 @@ public class Gestor_usuarios extends GestorBase <Persona>{
     }
 
     @Override
-    public boolean registrar(Persona persona) {
-        if (getElementos().containsKey(persona.getCorreo())) {   //verifica si el map contiene la clave
+    public boolean registrar(Administradores administrador) {
+        if (getElementos().containsKey(administrador.getCorreo())) {   //verifica si el map contiene la clave
             System.out.println("Ese correo ya esta registrado.");
             return true;
         }
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
         // Escribir los datos de la persona en el formato correcto
         String linea = String.format("%s,%d,%s,%d,%s",
-            persona.getContraseña(),
-            persona.getId_persona(),
-            persona.getNombre(),
-            persona.getTelefono(),
-            persona.getCorreo());     
+            administrador.getContraseña(),
+            administrador.getId_persona(),
+            administrador.getNombre(),
+            administrador.getTelefono(),
+            administrador.getCorreo());     
         bw.write(linea);
         bw.newLine();
         System.out.println("Usuario agregado correctamente.");
 
         // Guardar en el HashMap (usando el correo como clave y la Persona como valor)
-        getElementos().put(persona.getCorreo(), persona);
+        getElementos().put(administrador.getCorreo(), administrador);
         } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
         }
@@ -80,10 +90,10 @@ public class Gestor_usuarios extends GestorBase <Persona>{
             return false; // correo (usuario) no encontrado
             
         }
-        Persona valor = getElementos().get(correo); // devolvera el valor asociado a la clave "correo"
+        Administradores valor = getElementos().get(correo); // devolvera el valor asociado a la clave "correo"
         
         if (valor != null && valor.getContraseña().equals(contraseña)) {
-            System.out.println("Bienvenido "+ valor.getNombre());
+            System.out.println("Bienvenid@ "+ valor.getNombre());
             return true;  // login correcto
         } else {
             return false; // contraseña incorrecta
@@ -106,7 +116,7 @@ public class Gestor_usuarios extends GestorBase <Persona>{
     }
 
     @Override
-    public Persona buscar(String identificador) {
+    public Administradores buscar(String identificador) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

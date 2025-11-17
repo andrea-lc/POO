@@ -24,10 +24,10 @@ public class  Lector {
     public double LeerDouble() {
         while (true) {
             try {
-                String salida = scanner.nextLine().trim();               
+                String salida = scanner.nextLine().trim().toLowerCase();               
                 return Double.parseDouble(salida);               
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número decimal válido: ");
+                System.out.println("Ingrese un numero decimal valido: ");
             }
         }
     }
@@ -41,18 +41,5 @@ public class  Lector {
             }
         }
     }
-    public boolean LeerBoolean() {
-        while (true) {
-            String salida = scanner.nextLine().trim().toLowerCase();
-            if (salida.equals("si") || salida.equals("sí") || salida.equals("true") || 
-                salida.equals("verdadero")) {
-                return true;
-            } else if (salida.equals("no") || salida.equals("false") || 
-                       salida.equals("falso")) {
-                return false;
-            } else {
-                System.out.println("Ingrese 'si' o 'no': ");
-            }
-        }
-    }
+ 
 }

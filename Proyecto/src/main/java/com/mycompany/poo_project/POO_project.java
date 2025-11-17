@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.poo_project;
+import Entidades.Administradores;
 import Entidades.Persona;
 import Menus.Menu;
 import Gestores.*;
@@ -17,7 +18,7 @@ public class POO_project {
     public static void main(String[] args) {
         Lector lector=new Lector();
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
-        Gestor_usuarios usuarios= new Gestor_usuarios();
+        Gestor_usuarios usuarios= Gestor_usuarios.getInstanciaUsuario();
         Menu menu = new Menu();
         int opcion;
        
@@ -42,8 +43,8 @@ public class POO_project {
                             break;
                         }
 
-                        System.out.println("Credenciales incorrectas.");
-                        System.out.print("¿Reintentar? (si/no): ");
+                        System.out.println("Credenciales incorrectas");
+                        System.out.print("Reintentar? (si/no): ");
                         if (lector.LeerString().equalsIgnoreCase("no")) {
                             break;
                         }
@@ -68,9 +69,9 @@ public class POO_project {
                     System.out.print("Cree una contraseña: ");
                     String contraseña = lector.LeerString();
                     
-                    Persona persona=new Persona (contraseña,dni,nombre,telefono,correo);
+                    Administradores admin=new Administradores (new Persona(dni,nombre,telefono,correo),contraseña);
                     // Llamar al metodo del gestor para registrar un nuevo usuario
-                    usuarios.registrar(persona);
+                    usuarios.registrar(admin);
                     break;
                 }
                 case 3: { System.out.println("Saliendo...");
@@ -83,6 +84,6 @@ public class POO_project {
                     // Manejo de entrada invalida
                     System.out.println("Ingrese una opcion valida");
             }
-        } while (opcion != 3); // Condición de salida: si elige "3", termina el programa
+        } while (opcion != 3); // Condicion de salida: si elige "3", termina el programa
     }
 }

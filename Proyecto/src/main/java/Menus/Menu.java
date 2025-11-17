@@ -10,7 +10,7 @@ import Scanner.Lector;
  *
  * @author admin
  */
-/* ACA IMPLEMENTO PATRON SINGLETON: menu sera el cliente, osea el que utiliza el algoritmo (menu acciones)
+/* ACA IMPLEMENTO ESE PATRON SINGLETON >:(: menu sera el cliente, osea el que utiliza el algoritmo (menu acciones)
 * menu acciones es una interfaz con metodos abstractos que luego es implementada por las clases
 * acciones adoptante-gatos, cada una de estas clases implementa la interfaz de forma diferente 
 * quiere decir que su algoritmo varia segun sus necesidades
@@ -42,39 +42,38 @@ public class Menu {
 
             switch (opcion) {
                 case 1: {
-                    // Caso 1: Llama al módulo de gestión de gatos
+                    // Caso 1: Llama al modulo de gestión de gatos
                     mostrarMenuGatos();
                     break;
                 }
                 case 2: {
-                    // Caso 2: Módulo de adoptantes
-                    System.out.println("Aquí irá el módulo de clientes...");
+                    // Caso 2: nodulo de adoptantes
+                    mostrarMenuAdoptantes();
                     break;
                 }
                 case 3: {
                     // Caso 3: modulo de voluntarios
-                    mostrarMenuAdoptantes();
+                    mostrarMenuVoluntarios();
                     break;
                 }
                 case 0: {
                     // Caso 0: Salir del sistema
-                    System.out.println("Cerrando sesión...");
+                    System.out.println("Cerrando sesion...");
                     break;
                 }
                 default: {
-                    // Opción inválida: mensaje de error
-                    System.out.println("Opción inválida.");
+                    // Opción inválida: mensaje de errror
+                    System.out.println("Opcion invalida.");
                 }
             }
         } while (opcion != 0); // Repite hasta que el usuario elija salir
     }
     
-    // Muestra el submenu sobre gatos y maneja las opciones.
-    public void mostrarMenuGatos() {
+    private void mostrarMenuGatos() {
         int opcion;
         setAcciones(new Acciones_gatos());
         do {
-            System.out.println("\n=== Gestión de Gatos ===");
+            System.out.println("\n=== Gestion de Gatos ===");
             System.out.println("1) Registrar nuevo gato");
             System.out.println("2) Listar gatos");
             System.out.println("3) Buscar gato por nombre");
@@ -108,17 +107,17 @@ public class Menu {
                     break;
                 case 0: {
                     // Volver al menú principal
-                    System.out.println("Volviendo al menú principal...");
+                    System.out.println("Volviendo al menu principal...");
                     break;
                 }
                 default: {
                     // Manejo de opción invalida
-                    System.out.println("Opción inválida.");
+                    System.out.println("Opción invalida.");
                 }
             }
         } while (opcion != 0); // Se repite hasta que el usuario decida salir
     }
-    public void mostrarMenuAdoptantes (){
+    private void mostrarMenuAdoptantes (){
         int opcion;
         setAcciones(new Acciones_Adoptante());
         do {
@@ -129,7 +128,7 @@ public class Menu {
             System.out.println("4) Modificar algun dato");
             System.out.println("0) Volver");
             System.out.println("========================");
-            System.out.print("Elige una opción: ");
+            System.out.print("Elige una opcion: ");
             
             // Leer la opcion elegida
             opcion = lector.LeerEntero();
@@ -161,9 +160,54 @@ public class Menu {
                 }
                 default: {
                     // Manejo de opción invalida
-                    System.out.println("Opción invalida.");
+                    System.out.println("Opcion invalida.");
                 }
             }
         } while (opcion != 0); 
     }
+    
+    
+    private void mostrarMenuVoluntarios(){
+        int opcion;
+        setAcciones(new Acciones_Voluntario());
+        do {
+            System.out.println("\n=== Gestion de Adoptantes ===");
+            System.out.println("1) Registrar nuevo Voluntario");
+            System.out.println("2) Listar volutarios");
+            System.out.println("3) Buscar voluntario");
+            System.out.println("4) Modificar algun dato");
+            System.out.println("0) Volver");
+            System.out.println("========================");
+            System.out.print("Elige una opcion: ");
+            
+            // Leer la opcion elegida
+            opcion = lector.LeerEntero();
+            // Manejar la opción seleccionada
+            switch (opcion) {
+                case 1: {
+                    acciones.registrar();                   
+                    break;
+                }
+                case 2: {
+                    acciones.Listar();
+                    break;
+                }
+                case 3: {
+                    acciones.Buscar();
+                    break;
+                }
+                case 4: 
+                    acciones.modificar();
+                    break;
+                case 0: {
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                }
+                default: {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        } while (opcion != 0); 
+    }
+            
 }

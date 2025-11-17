@@ -14,16 +14,7 @@ public class Persona{
     protected String nombre; 
     protected int telefono;
     protected String correo;
-    protected String contraseña;
 
-    // Constructor original
-    public Persona(String contraseña, int dni_persona, String nombre, int telefono, String correo) {
-        this.contraseña= contraseña;
-        this.dni_persona = dni_persona;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.correo = correo;
-    }
     // constructor para personas  como adoptantes y voluntarios
     public Persona(int dni_persona, String nombre, int telefono, String correo) {
         this.dni_persona = dni_persona;
@@ -48,12 +39,7 @@ public class Persona{
            "  Correo: " + correo + " \n";
     }
     
-    public String getContraseña() { 
-        return contraseña; 
-    }
-    public void setConstraseña(String contraseña) { 
-        this.contraseña = contraseña; 
-    }
+  
     public int getId_persona() { 
         return dni_persona; 
     }

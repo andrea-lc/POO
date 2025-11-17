@@ -20,9 +20,17 @@ import java.util.function.Consumer;
  */
 public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     Lector lector=new Lector ();
+    private static Gestor_Adoptante instancia; 
 
     public Gestor_Adoptante() {
         super("Adoptantes.txt");
+    }
+      
+    public static Gestor_Adoptante getInstanciaAdoptantes() {
+        if (instancia== null){
+            instancia= new Gestor_Adoptante();
+        }
+        return instancia;
     }
  
     @Override
@@ -44,7 +52,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar usuarios (puede que el archivo esté vacio).");
+            System.out.println("No se pudo cargar adoptantes (puede que el archivo este vacio).");
         }
     }
 
@@ -67,29 +75,20 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     }
 
     @Override
-    public boolean registrar(Adoptantes adoptante) {        
+    public boolean registrar(Adoptantes adoptante) { 
+        try{
         if (getElementos().containsKey(String.valueOf(adoptante.getId_persona()))) {
             System.out.println("Este DNI ya esta registrado como adoptante.");
             return false;
-        }
-        
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
-            String linea = String.format("%d,%s,%d,%s,%d",
-                adoptante.getId_persona(), 
-                adoptante.getNombre(),
-                adoptante.getTelefono(),
-                adoptante.getCorreo(),
-                adoptante.getGato_Adoptado());                  
-            bw.write(linea);
-            bw.newLine();
-            
-            getElementos().put((String.valueOf(adoptante.getId_persona())), adoptante);
-            getElementos_lista().add(adoptante);
-            
-            System.out.println("Adoptante registrado correctamente.");
-            return true;
-        } catch (IOException ex) {
-            System.out.println("Error al guardar en Adoptantes.txt");
+        }  
+
+        getElementos().put((String.valueOf(adoptante.getId_persona())), adoptante);
+        getElementos_lista().add(adoptante);
+        guardarCambios();
+        System.out.println("Adoptante registrado correctamente.");
+        return true;     
+        }catch ( e){
+            System.out.println("No hay gato disponibles");
             return false;
         }
     }
@@ -141,7 +140,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                 }
             }
         }
-        Consumer <Adoptantes> [] modificador= new Consumer[4];
+        Consumer <Adoptantes> [] modificador= new Consumer[3];
         if (adoptante != null){
             modificador[1]= (a) ->{ System.out.print("Nuevo telefono: "); 
                                     a.setTelefono(lector.LeerEntero());};

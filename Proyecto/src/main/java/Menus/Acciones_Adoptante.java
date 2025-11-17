@@ -17,8 +17,8 @@ import Scanner.Lector;
 public class Acciones_Adoptante implements Menu_Acciones{
 
     Lector lector=new Lector ();
-    Gestor_Adoptante gestor_adoptante= new Gestor_Adoptante();
-    Gestor_Gatos gestor_gatos= Gestor_Gatos.getInstancia();
+    Gestor_Adoptante gestor_adoptante= Gestor_Adoptante.getInstanciaAdoptantes();
+    Gestor_Gatos gestor_gatos= Gestor_Gatos.getInstanciaGatos();
 
     @Override
     // aca ocurre un error, que pasa si se ingresa un gato pero este no esta en 
@@ -50,7 +50,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
 
     @Override
     public void Buscar() {
-        System.out.print("Ingrese el nombre  o dni del adoptante que desea buscar: ");
+        System.out.print("Ingrese el nombre o dni del adoptante que desea buscar: ");
         String adoptanteBuscado= lector.LeerString();
         if (gestor_adoptante.existe(adoptanteBuscado)==true){
             gestor_adoptante.buscar(adoptanteBuscado);
@@ -75,7 +75,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
                 System.out.print("Ingrese una opcion: ");
                 opcion=lector.LeerEntero();
                 gestor_adoptante.modificar(adoptanteModificar, opcion);
-                System.out.print("Desea modificar otro dato?: (si/no)");
+                System.out.print("Desea modificar otro dato? (si/no): ");
                 String respuesta=lector.LeerString();
                 seguir= respuesta.equalsIgnoreCase("si"); //? true:false
                 System.out.println("==========================");

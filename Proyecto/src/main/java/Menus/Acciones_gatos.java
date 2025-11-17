@@ -14,10 +14,9 @@ import Scanner.Lector;
  */
 public class Acciones_gatos implements Menu_Acciones  {
     Lector lector=new Lector ();
-    Gestor_Gatos gestor= Gestor_Gatos.getInstancia();
+    Gestor_Gatos gestor= Gestor_Gatos.getInstanciaGatos();
     
-    @Override
-    
+    @Override  
     public void registrar() {
         System.out.println("\n========== REGISTRO ==========");
         System.out.print("ID: ");
@@ -34,7 +33,7 @@ public class Acciones_gatos implements Menu_Acciones  {
         String genero= lector.LeerString();
         System.out.print("Estilizacion (si/no): ");
         String esterilizacion= lector.LeerString();
-        System.out.print("Estado del gato: (En adopción, Adoptado, En cuidado, En recuperación)");
+        System.out.print("Estado del gato (En adopción, Adoptado: )");
         String estado_gato= lector.LeerString();
         System.out.print("Cuidado requerido:");
         String cuidado_requerido=lector.LeerString();
@@ -50,7 +49,7 @@ public class Acciones_gatos implements Menu_Acciones  {
 
     @Override
     public void Buscar() {
-        System.out.print("Ingrese el nombre  o Id del gato que desea buscar: ");
+        System.out.print("Ingrese el nombre o Id del gato que desea buscar: ");
         String gatoBuscado= lector.LeerString();
         if (gestor.existe(gatoBuscado)==true){
             gestor.buscar(gatoBuscado);

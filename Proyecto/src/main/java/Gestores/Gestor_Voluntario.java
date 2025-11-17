@@ -1,0 +1,173 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Gestores;
+
+import Entidades.Persona;
+import Entidades.Voluntarios;
+import Scanner.Lector;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.function.Consumer;
+
+/**
+ *
+ * @author admin
+ */
+public class Gestor_Voluntario extends GestorBase<Voluntarios> {
+    private static Gestor_Voluntario instancia;
+    Lector lector= new Lector();
+            
+    
+    public Gestor_Voluntario() {
+        super("Voluntarios.txt");
+    }
+    
+    public static Gestor_Voluntario getInstanciaAdoptante (){
+        if (instancia==null){
+            instancia=new Gestor_Voluntario();
+        }
+        return instancia;
+    }
+   
+    @Override
+    public void cargarDatos() {
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");              
+                if (datos.length == 5) {
+                    int dni = Integer.parseInt(datos[0]);
+                    String nombre = datos[1];
+                    int telefono = Integer.parseInt(datos[2]);
+                    String correo = datos[3];
+                    String horarios_disponibles = datos[4];
+                    Voluntarios voluntario= new Voluntarios(new Persona(dni,nombre,telefono,correo),horarios_disponibles);
+                    
+                    getElementos().put((String.valueOf(dni)),voluntario);
+                    getElementos_lista().add(voluntario);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No se pudo cargar voluntarios (puede que el archivo este vacio).");
+        }
+    }
+
+    @Override
+    public void guardarCambios() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            for (Voluntarios voluntario : getElementos().values()) {
+                String linea = String.format("%d,%s,%d,%s,%s",
+                    voluntario.getId_persona(),
+                    voluntario.getNombre(),
+                    voluntario.getTelefono(),
+                    voluntario.getCorreo(),
+                    voluntario.getHorarios_disponibles());
+                bw.write(linea);
+                bw.newLine();
+            }
+        } catch (IOException ex) {
+            System.out.println("Error al guardar cambios en el archivo de voluntario.");
+        }
+    }
+
+    @Override
+    public boolean registrar(Voluntarios voluntario) {
+        if (getElementos().containsKey(String.valueOf(voluntario.getId_persona()))) {
+            System.out.println("Este DNI ya esta registrado como voluntario.");
+            return false;
+        }
+        
+        getElementos().put((String.valueOf(voluntario.getId_persona())), voluntario);
+        getElementos_lista().add(voluntario);
+        guardarCambios();
+        System.out.println("Voluntario registrado correctamente.");
+        return true;
+    }
+
+    @Override
+    public boolean existe(String identificador) {
+        boolean resultado=false;
+            if (getElementos().containsKey(identificador)){
+                resultado= true;
+            }else{  
+                for (Voluntarios voluntario: getElementos().values()) {
+                if (identificador.equalsIgnoreCase(voluntario.getNombre())){
+                    resultado= true;
+                    }               
+                }
+            }
+            return resultado;
+    }
+
+    @Override
+    public void mostrar() {
+        if (getElementos().isEmpty()) {
+            System.out.println("No hay voluntarios registrados en el sistema.");
+            return;
+        }  
+        
+        System.out.println("\n=== LISTA DE VOLUNTARIOS REGISTRADOS ===");
+        System.out.println("Total de voluntarios: " + getElementos().size());
+        System.out.println("----------------------------------------");     
+        getElementos_lista().sort((v1, v2) -> Integer.compare(v1.getId_persona(), v2.getId_persona()));
+        
+        getElementos_lista().forEach(System.out::println);      
+        System.out.println("----------------------------------------");   
+    }
+
+    @Override
+    public void modificar(String datoModificar, int opcion) {
+        Voluntarios voluntario = null;
+        // Buscar por ID (clave del HashMap)
+        if (getElementos().containsKey(datoModificar)) {
+            voluntario = getElementos().get(datoModificar);
+        } else {
+            // Buscar por nombre
+            for (Voluntarios a : getElementos().values()) {
+                if (datoModificar.equalsIgnoreCase(a.getNombre())) {
+                    voluntario = a;
+                    break;
+                }
+            }
+        }
+        Consumer <Voluntarios> [] modificador= new Consumer[4];
+        if (voluntario != null){
+            modificador[1]= (v) ->{ System.out.print("Nuevo telefono: "); 
+                                    v.setTelefono(lector.LeerEntero());};
+            modificador[2]= (v)->{ System.out.print("Nuevo correo: ");
+                                    v.setCorreo(lector.LeerString());};      
+            modificador[3]= (v) ->{System.out.print("Nuevo horario: ");
+                                    v.setHorarios_disponibles(lector.LeerString());};
+        }
+        modificador[opcion].accept(voluntario);      
+        guardarCambios();
+    }
+
+    @Override
+    public Voluntarios buscar(String identificador) {
+        Voluntarios voluntario = null;
+
+        // Buscar por DNI (clave del HashMap)
+        if (getElementos().containsKey(identificador)) {
+            voluntario = getElementos().get(identificador);
+        } else {
+            // Buscar por nombre o correo
+            for (Voluntarios v : getElementos().values()) {
+                if (identificador.equalsIgnoreCase(v.getNombre()) || 
+                    identificador.equalsIgnoreCase(v.getCorreo())) {
+                    voluntario = v;
+                    break;
+                }
+            }
+        }
+        if (voluntario !=null){
+            System.out.println(voluntario);
+        }
+        return voluntario;
+    }   
+}
