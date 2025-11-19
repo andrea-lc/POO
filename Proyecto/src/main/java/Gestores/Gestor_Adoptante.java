@@ -39,13 +39,15 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");              
-                if (datos.length == 5) {
+                if (datos.length == 6) {
                     int dni = Integer.parseInt(datos[0]);
                     String nombre = datos[1];
-                    int telefono = Integer.parseInt(datos[2]);
-                    String correo = datos[3];
-                    int gato_Adoptado = Integer.parseInt(datos[4]);
-                    Adoptantes adoptante= new Adoptantes(new Persona(dni,nombre,telefono,correo),gato_Adoptado);
+                    String apellido= datos[2];
+                    int telefono = Integer.parseInt(datos[3]);
+                    String correo = datos[4];
+                    int gato_Adoptado = Integer.parseInt(datos[5]);
+                    Adoptantes adoptante= new Adoptantes(new Persona(dni,nombre,apellido,telefono,correo),
+                            gato_Adoptado);
                     
                     getElementos().put((String.valueOf(dni)),adoptante);
                     getElementos_lista().add(adoptante);
@@ -60,9 +62,10 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     public void guardarCambios() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (Adoptantes adoptante : getElementos().values()) {
-                String linea = String.format("%d,%s,%d,%s,%d",
-                    adoptante.getId_persona(),
+                String linea = String.format("%d,%s,%s,%d,%s,%d",
+                    adoptante.getDni_persona(),
                     adoptante.getNombre(),
+                    adoptante.getApellido(),
                     adoptante.getTelefono(),
                     adoptante.getCorreo(),
                     adoptante.getGato_Adoptado());
@@ -76,21 +79,16 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
 
     @Override
     public boolean registrar(Adoptantes adoptante) { 
-        try{
-        if (getElementos().containsKey(String.valueOf(adoptante.getId_persona()))) {
+        if (getElementos().containsKey(String.valueOf(adoptante.getDni_persona()))) {
             System.out.println("Este DNI ya esta registrado como adoptante.");
             return false;
         }  
 
-        getElementos().put((String.valueOf(adoptante.getId_persona())), adoptante);
+        getElementos().put((String.valueOf(adoptante.getDni_persona())), adoptante);
         getElementos_lista().add(adoptante);
         guardarCambios();
         System.out.println("Adoptante registrado correctamente.");
         return true;     
-        }catch ( e){
-            System.out.println("No hay gato disponibles");
-            return false;
-        }
     }
 
     @Override
@@ -118,7 +116,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         System.out.println("\n=== LISTA DE ADOPTANTES REGISTRADOS ===");
         System.out.println("Total de adoptantes: " + getElementos().size());
         System.out.println("----------------------------------------");     
-        getElementos_lista().sort((a1, a2) -> Integer.compare(a1.getId_persona(), a2.getId_persona()));
+        getElementos_lista().sort((a1, a2) -> a1.getNombre().compareTo(a2.getNombre()));
         
         getElementos_lista().forEach(System.out::println);      
         System.out.println("----------------------------------------");        

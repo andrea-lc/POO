@@ -30,6 +30,8 @@ public class Acciones_Adoptante implements Menu_Acciones{
         int dni= lector.LeerEntero();
         System.out.print("Nombre: ");
         String nombre= lector.LeerString();
+        System.out.print("Apellido: ");  
+        String apellido = lector.LeerString();
         System.out.print("Correo: ");
         String correo= lector.LeerString();
         System.out.print("Telefono: ");
@@ -39,7 +41,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
         System.out.print("Ingrese el nombre de un Gato: ");
         int gato_Adoptado=(gestor_gatos.conseguirID(lector.LeerString()));
         System.out.println("===============================");
-        gestor_adoptante.registrar(new Adoptantes(new Persona(dni,nombre,telefono,correo),gato_Adoptado));
+        gestor_adoptante.registrar(new Adoptantes(new Persona(dni,nombre,apellido,telefono,correo),gato_Adoptado));
         }   
         
 

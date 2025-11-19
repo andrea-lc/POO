@@ -1,5 +1,7 @@
-60783559,Helena,999999999,helena@gmail.com,14
-607994,andre,94934993,and@gmail.com,2
-69492939,Gabrielsa,94543444,gabriela@gmail.com,11
-49494,Bryan,94647499,@gamil.com,7
-60749493,fiorella,945373394,fio@gmail.com,13
+12345606,Sebastian,null,976543210,sebastian.torres@gmail.com,18
+12345605,Andrea,null,945612378,andrea.mendoza@gmail.com,15
+12345602,Jorge,null,912345678,jorge.vargas@gmail.com,6
+12345601,Carla,null,946414833,carla.ramirez@gmail.com,3
+12345604,Pedro,null,956781234,pedro.lopez@gmail.com,11
+12345603,Lucia,null,934567812,lucia.fernandez@gmail.com,8
+

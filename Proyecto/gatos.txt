@@ -1,10 +1,20 @@
-1,Toulouse,13,mixto,12.00,Macho,si,en adoptado,requiere control de vacunas
-2,Luna,2,siames,3.10,Hembra,no,Adoptado,requiere desparasitación
-3,Simón,5,persa,5.80,Macho,si,adoptado,requiere dieta especial
-4,Michi,1,mestizo,2.50,Macho,no,en recuperacion,requiere tratamiento para resfriado
-5,Nala,4,angora,3.90,Hembra,si,en cuidado,requiere control post-quirúrgico
-6,Tom,7,mestizo,6.10,Macho,no,adoptado,no requiere cuidados especiales
-7,Bella,3,siames,3.30,Hembra,no,Adoptado,requiere esterilización
-8,Rocky,6,maine coon,7.20,Macho,si,en recuperacion,requiere fisioterapia
-9,Olivia,2,bengalí,3.80,Hembra,no,en adopción,requiere control de vacunas
-10,Chispa,8,mestizo,5.50,Hembra,si,en cuidado,requiere atención dental
+11,Mimi,2,Siames,3.10,Hembra,Si,adoptado,Bajo
+12,Salem,4,Bombay,4.40,Macho,Si,en adopcion,Medio
+13,Kira,3,Angora,3.60,Hembra,No,en adopcion,Bajo
+14,Titan,1,Criollo,3.00,Macho,No,en adopcion,Bajo
+15,Perla,2,Persa,4.20,Hembra,Si,adoptado,Alto
+16,Rocky,3,Criollo,3.80,Macho,Si,en adopcion,Medio
+17,Chispa,1,Siames,2.70,Hembra,No,en adopcion,Bajo
+18,Zeus,5,Bengala,5.90,Macho,Si,adoptado,Alto
+19,Blanca,2,Angora,3.30,Hembra,Sí,en adopcion,Medio
+1,Michi,2,Siames,3.40,Hembra,Si,Adoptado,Bajo
+2,Tom,1,Criollo,2.80,Macho,No,en adopcion,Medio
+3,Luna,3,Persa,4.10,Hembra,Si,adoptado,Bajo
+4,Simba,2,Bengala,3.90,Macho,Si,en adopcion,Medio
+5,Nala,1,Angora,3.00,Hembra,No,en adopcion,Bajo
+6,Coco,4,Criollo,4.50,Macho,Si,adoptado,Alto
+7,Mora,2,Siames,3.20,Hembra,Si,en adopcion,Medio
+8,Leo,5,Maine Coon,6.20,Macho,Si,adoptado,Alto
+9,Kiara,1,Criollo,2.90,Hembra,No,en adopcion,Bajo
+20,Rolo,4,Criollo,4.10,Macho,Si,en adopcion,Bajo
+10,Felix,3,Bombay,4.00,Macho,Si,en adopcion,Medio

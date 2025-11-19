@@ -38,13 +38,15 @@ public class Gestor_usuarios extends GestorBase <Administradores>{
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 5) { 
-                    String contraseña = datos[0].trim();
-                    int dni = Integer.parseInt(datos[1]);
-                    String nombre = datos[2];
+                if (datos.length == 6) { 
+                    int dni = Integer.parseInt(datos[0]);
+                    String nombre = datos[1];
+                    String apellido= datos[2];
                     int telefono = Integer.parseInt(datos[3]);
                     String correo = datos[4];
-                    Administradores administrador =new Administradores(new Persona(dni,nombre,telefono,correo), contraseña);
+                    String contraseña = datos[5];
+                    Administradores administrador =new Administradores(new Persona(dni,nombre,apellido,telefono,correo), 
+                            contraseña);
                     
                     getElementos().put(administrador.getCorreo(), administrador);
                 }
@@ -62,12 +64,13 @@ public class Gestor_usuarios extends GestorBase <Administradores>{
         }
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
         // Escribir los datos de la persona en el formato correcto
-        String linea = String.format("%s,%d,%s,%d,%s",
-            administrador.getContraseña(),
-            administrador.getId_persona(),
+        String linea = String.format("%d,%s,%s,%d,%s,%s",          
+            administrador.getDni_persona(),           
             administrador.getNombre(),
+            administrador.getApellido(),
             administrador.getTelefono(),
-            administrador.getCorreo());     
+            administrador.getCorreo(),  
+            administrador.getContraseña());
         bw.write(linea);
         bw.newLine();
         System.out.println("Usuario agregado correctamente.");

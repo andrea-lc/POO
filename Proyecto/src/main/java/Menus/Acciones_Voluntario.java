@@ -24,14 +24,18 @@ public class Acciones_Voluntario implements Menu_Acciones{
         int dni= lector.LeerEntero();
         System.out.print("Nombre: ");
         String nombre= lector.LeerString();
+        System.out.print("Apellido: ");  
+        String apellido = lector.LeerString();
         System.out.print("Correo: ");
         String correo= lector.LeerString();
         System.out.print("Telefono: ");
         int telefono = lector.LeerEntero();
         System.out.print("Horarios Disponibles: ");
-        String Horarios_disponibles= lector.LeerString();
+        horariosDisponibles();
+        String Horarios_disponibles= gestor_voluntario.gestionHorario(lector.LeerEntero());
         
-        gestor_voluntario.registrar(new Voluntarios(new Persona(dni,nombre,telefono,correo),Horarios_disponibles));
+        gestor_voluntario.registrar(new Voluntarios(new Persona(dni,nombre,apellido, telefono,correo),
+                Horarios_disponibles));
         }   
 
     @Override
@@ -76,5 +80,20 @@ public class Acciones_Voluntario implements Menu_Acciones{
             System.out.println("Voluntario no encontrado");
             }
     }   
+    
+    private void horariosDisponibles() {
+        String [] horarios={"Lunes (Diurno): 9:00 - 11:00", 
+                            "Miércoles (Diurno): 10:00 - 12:00",
+                            "Viernes (Diurno): 11:00 - 13:00",
+                            "Martes (Tarde): 14:00 - 16:00",
+                            "Jueves (Tarde): 15:00 - 17:00", 
+                            "Sábado (Tarde): 16:00 - 18:00" };
+            
+        System.out.println("\n===== HORARIOS DISPONIBLES =====");      
+        for (int i=0; i<horarios.length ;i++){
+            System.out.println((i+1)+") "+horarios[i]);
+        }
+        
+    }
 
 }

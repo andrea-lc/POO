@@ -17,7 +17,7 @@ public class  Lector {
                 String salida=scanner.nextLine().trim();               
                 return Integer.parseInt(salida);               
             }catch (NumberFormatException e){
-                System.out.println("Ingrese un numero valido: ");
+                System.out.print("Ingrese un numero valido: ");
             }
         }
     }
@@ -27,7 +27,7 @@ public class  Lector {
                 String salida = scanner.nextLine().trim().toLowerCase();               
                 return Double.parseDouble(salida);               
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un numero decimal valido: ");
+                System.out.print("Ingrese un numero decimal valido: ");
             }
         }
     }
@@ -37,7 +37,7 @@ public class  Lector {
             if (!salida.isEmpty()){
               return salida;
             } else {
-                System.out.println("Ingrese un dato valido: ");
+                System.out.print("Ingrese un dato valido: ");
             }
         }
     }

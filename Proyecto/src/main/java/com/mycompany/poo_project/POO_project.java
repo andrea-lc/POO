@@ -52,24 +52,21 @@ public class POO_project {
                     break; 
                 }
                 case 2: {
-                    // Caso 2: Registrar un nuevo usuario
-                    
+                    // Caso 2: Registrar un nuevo usuario       
                     System.out.print("Correo: ");
-                    String correo = lector.LeerString();
-                    
+                    String correo = lector.LeerString();             
                     System.out.print("Nombre de Usuario: ");
                     String nombre = lector.LeerString();
-                    
+                    System.out.print("Apellido: ");  
+                    String apellido = lector.LeerString();                    
                     System.out.print("Dni: ");
-                    int dni= lector.LeerEntero();
-                    
+                    int dni= lector.LeerEntero();                 
                     System.out.print("Telefono: ");
                     int telefono= lector.LeerEntero();                
-
                     System.out.print("Cree una contraseña: ");
-                    String contraseña = lector.LeerString();
-                    
-                    Administradores admin=new Administradores (new Persona(dni,nombre,telefono,correo),contraseña);
+                    String contraseña = lector.LeerString();                  
+                    Administradores admin=new Administradores (new Persona(dni,nombre,apellido,telefono,correo)
+                            ,contraseña);
                     // Llamar al metodo del gestor para registrar un nuevo usuario
                     usuarios.registrar(admin);
                     break;

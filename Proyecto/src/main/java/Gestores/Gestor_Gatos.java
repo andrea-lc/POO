@@ -231,26 +231,30 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         //antes tenia una clase que cambia el estado del gato pero s
         //pero es mejor hacerlo defrente al conseguir el id
         //porque al adoptar un gato, se sabe automaticamente que su estado debe cambiar
-        public int conseguirID (String nombre){
-            Gatos gato = null; 
-            int id;
-            try{ 
-            
-         // Buscar por nombre
+        public int conseguirID (String identificador){
+            Gatos gato = null;
+            int id = 0;
+        if (getElementos().containsKey(identificador)) {
+            gato = getElementos().get(identificador);
+        } else {
+            // Buscar por nombre
             for (Gatos g : getElementos().values()) {
-                if (nombre.equalsIgnoreCase(g.getNombre())) {
+                if (identificador.equalsIgnoreCase(g.getNombre())) {
                     gato = g;
                     break;
                 }
-            } 
+            }
+        }
+            if (gato!=null){
+                
             Consumer <Gatos> realizarCambio = a -> { a.setEstado_gato("Adoptado");};
                 realizarCambio.accept(gato); 
                 guardarCambios();
                 id= gato.getId();
-            }catch (NullPointerException e){ // capturar el error para evitar que se cierre el programa si se quiere obtener el id de un gato que no esta en adopccion
+            }else {
                 System.out.println("Gatito no registrado como en adopcion ");
             } 
-        int id;
+     
         return id;  
     }
 }

@@ -26,7 +26,7 @@ public class Adoptantes extends Persona {
 
     @Override
     public String toString() {
-        return super.toString()+ "Gato_Adoptado: "+ gato_Adoptado  + "\n" ;
+        return super.toString()+ "  Gato_Adoptado: "+ gato_Adoptado;
     }
     
 }

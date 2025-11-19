@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  *
@@ -40,13 +41,15 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");              
-                if (datos.length == 5) {
+                if (datos.length == 6) {
                     int dni = Integer.parseInt(datos[0]);
                     String nombre = datos[1];
-                    int telefono = Integer.parseInt(datos[2]);
-                    String correo = datos[3];
-                    String horarios_disponibles = datos[4];
-                    Voluntarios voluntario= new Voluntarios(new Persona(dni,nombre,telefono,correo),horarios_disponibles);
+                    String apellido= datos[2];
+                    int telefono = Integer.parseInt(datos[3]);
+                    String correo = datos[4];
+                    String horarios_disponibles = datos[5];
+                    Voluntarios voluntario= new Voluntarios(new Persona(dni,nombre,apellido,telefono,correo)
+                            ,horarios_disponibles);
                     
                     getElementos().put((String.valueOf(dni)),voluntario);
                     getElementos_lista().add(voluntario);
@@ -61,9 +64,10 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
     public void guardarCambios() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (Voluntarios voluntario : getElementos().values()) {
-                String linea = String.format("%d,%s,%d,%s,%s",
-                    voluntario.getId_persona(),
+                String linea = String.format("%d,%s,%s,%d,%s,%s",
+                    voluntario.getDni_persona(),
                     voluntario.getNombre(),
+                    voluntario.getApellido(),
                     voluntario.getTelefono(),
                     voluntario.getCorreo(),
                     voluntario.getHorarios_disponibles());
@@ -77,12 +81,12 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
 
     @Override
     public boolean registrar(Voluntarios voluntario) {
-        if (getElementos().containsKey(String.valueOf(voluntario.getId_persona()))) {
+        if (getElementos().containsKey(String.valueOf(voluntario.getDni_persona()))) {
             System.out.println("Este DNI ya esta registrado como voluntario.");
             return false;
         }
         
-        getElementos().put((String.valueOf(voluntario.getId_persona())), voluntario);
+        getElementos().put((String.valueOf(voluntario.getDni_persona())), voluntario);
         getElementos_lista().add(voluntario);
         guardarCambios();
         System.out.println("Voluntario registrado correctamente.");
@@ -114,7 +118,7 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
         System.out.println("\n=== LISTA DE VOLUNTARIOS REGISTRADOS ===");
         System.out.println("Total de voluntarios: " + getElementos().size());
         System.out.println("----------------------------------------");     
-        getElementos_lista().sort((v1, v2) -> Integer.compare(v1.getId_persona(), v2.getId_persona()));
+        getElementos_lista().sort((v1, v2) -> v1.getNombre().compareTo(v2.getNombre()));
         
         getElementos_lista().forEach(System.out::println);      
         System.out.println("----------------------------------------");   
@@ -169,5 +173,27 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
             System.out.println(voluntario);
         }
         return voluntario;
-    }   
+    } 
+    
+    public String gestionHorario(int opcion){  
+        String [] horarios={"lunes (diurno): 9:00 - 11:00", 
+                    "miercoles (diurno): 10:00 - 12:00",
+                    "viernes (diurno): 11:00 - 13:00",
+                    "martes (tarde): 14:00 - 16:00",
+                    "jueves (tarde): 15:00 - 17:00", 
+                    "miercoles (tarde): 15:00 - 17:00" };
+        Supplier<String>[] HorarioEscogido= new Supplier[6];  
+        HorarioEscogido[0]= ()->{return horarios[0];};
+        HorarioEscogido[1]= ()->{return horarios[1];};
+        HorarioEscogido[2]= ()->{return horarios[2];};
+        HorarioEscogido[3]= ()->{return horarios[3];};
+        HorarioEscogido[4]= ()->{return horarios[4];};
+        HorarioEscogido[5]= ()->{return horarios[5];};
+        
+        if (opcion < 1 || opcion > 6) {
+            return "Opcion no valida";
+        }
+        
+        return HorarioEscogido[opcion-1].get();
+    } 
 }

@@ -16,7 +16,7 @@ public class Gatos {
     private double peso;
     private String genero;
     private String  esterilizacion;
-    private String estado_gato;// Estado en el qe se encuentra el gato (En adopcion, Adoptado, En cuidado, En recuperación)
+    private String estado_gato;// Estado en el qe se encuentra el gato (En adopcion, Adoptado)
     private String cuidado_requerido;
     
     public Gatos(int id, String nombre, int edad, String raza, double peso, String genero,
@@ -103,7 +103,7 @@ public class Gatos {
     // Permite mostrar la informacion del gato en formato legible al imprimir el objeto.
     @Override
     public String toString() {
-        return  "Gato #" + nombre + "\n" +
+        return  "\nGato #" + nombre + "\n" +
            "  ID: " + id + "\n" +
            "  Edad: " + edad + " años\n" +
            "  Raza: " + raza + "\n" +
@@ -111,6 +111,6 @@ public class Gatos {
            "  Genero: " + genero + "\n" +
            "  Esterilizacion: " + esterilizacion + "\n" +
            "  Estado: " + estado_gato + "\n" +
-           "  Cuidados requeridos: " + cuidado_requerido + "\n";
+           "  Cuidados requeridos: " + cuidado_requerido;
     }
 }
