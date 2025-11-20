@@ -16,7 +16,7 @@ import Scanner.Lector;
  */
 public class Acciones_Adoptante implements Menu_Acciones{
 
-    Lector lector=new Lector ();
+    Lector lector=Lector.getInstanciaLector();
     Gestor_Adoptante gestor_adoptante= Gestor_Adoptante.getInstanciaAdoptantes();
     Gestor_Gatos gestor_gatos= Gestor_Gatos.getInstanciaGatos();
 
@@ -29,9 +29,9 @@ public class Acciones_Adoptante implements Menu_Acciones{
         System.out.print("Dni: ");
         int dni= lector.LeerEntero();
         System.out.print("Nombre: ");
-        String nombre= lector.LeerString();
+        String nombre= lector.LeerStringMayuscula();
         System.out.print("Apellido: ");  
-        String apellido = lector.LeerString();
+        String apellido = lector.LeerStringMayuscula();
         System.out.print("Correo: ");
         String correo= lector.LeerString();
         System.out.print("Telefono: ");
@@ -40,7 +40,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
         gestor_gatos.mostrarGatos(); // muestra gatos en adopcion :0
         System.out.print("Ingrese el nombre de un Gato: ");
         int gato_Adoptado=(gestor_gatos.conseguirID(lector.LeerString()));
-        System.out.println("===============================");
+        System.out.println("==================================");
         gestor_adoptante.registrar(new Adoptantes(new Persona(dni,nombre,apellido,telefono,correo),gato_Adoptado));
         }   
         
@@ -68,14 +68,22 @@ public class Acciones_Adoptante implements Menu_Acciones{
         System.out.print("Ingrese el nombre o ID del adoptante que desea modificar: ");
         String adoptanteModificar= lector.LeerString();
         int opcion;
+       
         if (gestor_adoptante.existe(adoptanteModificar)== true){
             boolean seguir; //va a iniciar como si se quisiera continuar modificando
             do{                     
                 System.out.println("Que dato desea modificar: ");
-                System.out.print("1) Telefono: ");
-                System.out.print("2) Correo: ");
-                System.out.print("Ingrese una opcion: ");
-                opcion=lector.LeerEntero();
+                System.out.println("1) Telefono: ");
+                System.out.println("2) Correo: ");
+                
+                while(true){
+                    System.out.print("Ingrese una opcion: ");
+                    opcion=lector.LeerEntero();
+                    if (opcion>2 || opcion<1){
+                        System.out.println("Opcion invalida");              
+                    }else { break;}
+                }
+                
                 gestor_adoptante.modificar(adoptanteModificar, opcion);
                 System.out.print("Desea modificar otro dato? (si/no): ");
                 String respuesta=lector.LeerString();

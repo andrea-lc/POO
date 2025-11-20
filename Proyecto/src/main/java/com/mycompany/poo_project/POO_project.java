@@ -16,7 +16,7 @@ import Scanner.Lector;
 // Clase principal del proyecto
 public class POO_project {
     public static void main(String[] args) {
-        Lector lector=new Lector();
+        Lector lector=Lector.getInstanciaLector();
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
         Gestor_usuarios usuarios= Gestor_usuarios.getInstanciaUsuario();
         Menu menu = new Menu();
@@ -56,9 +56,9 @@ public class POO_project {
                     System.out.print("Correo: ");
                     String correo = lector.LeerString();             
                     System.out.print("Nombre de Usuario: ");
-                    String nombre = lector.LeerString();
+                    String nombre = lector.LeerStringMayuscula();
                     System.out.print("Apellido: ");  
-                    String apellido = lector.LeerString();                    
+                    String apellido = lector.LeerStringMayuscula();                    
                     System.out.print("Dni: ");
                     int dni= lector.LeerEntero();                 
                     System.out.print("Telefono: ");

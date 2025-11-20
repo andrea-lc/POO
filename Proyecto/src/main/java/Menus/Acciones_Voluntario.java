@@ -14,7 +14,7 @@ import Scanner.Lector;
  * @author admin
  */
 public class Acciones_Voluntario implements Menu_Acciones{
-    Lector lector= new Lector();
+    Lector lector= Lector.getInstanciaLector();
     Gestor_Voluntario gestor_voluntario= Gestor_Voluntario.getInstanciaAdoptante();
     
     @Override
@@ -23,9 +23,9 @@ public class Acciones_Voluntario implements Menu_Acciones{
         System.out.print("Dni: ");
         int dni= lector.LeerEntero();
         System.out.print("Nombre: ");
-        String nombre= lector.LeerString();
+        String nombre= lector.LeerStringMayuscula();
         System.out.print("Apellido: ");  
-        String apellido = lector.LeerString();
+        String apellido = lector.LeerStringMayuscula();
         System.out.print("Correo: ");
         String correo= lector.LeerString();
         System.out.print("Telefono: ");
@@ -67,8 +67,13 @@ public class Acciones_Voluntario implements Menu_Acciones{
                 System.out.print("1) Telefono: ");
                 System.out.print("2) Correo: ");
                 System.out.print("3) Horario");
-                System.out.print("Ingrese una opcion: ");
-                opcion=lector.LeerEntero();
+                while(true){
+                    System.out.print("Ingrese una opcion: ");
+                    opcion=lector.LeerEntero();
+                    if (opcion>3 || opcion<1){
+                        System.out.println("Opcion invalida");              
+                    }else { break;}
+                }
                 gestor_voluntario.modificar(voluntarioModificar, opcion);
                 System.out.print("Desea modificar otro dato?(si/no):");
                 String respuesta=lector.LeerString();

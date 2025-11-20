@@ -4,13 +4,23 @@
  */
 package Scanner;
 
+import java.util.Scanner;
+
 /**
  *
  * @author admin
  */
 public class  Lector {
-    private final java.util.Scanner scanner = new java.util.Scanner(System.in);
+    private final Scanner scanner = new java.util.Scanner(System.in);
     
+    private static Lector instancia;
+    
+    public static Lector getInstanciaLector (){
+        if (instancia==null){
+            instancia=new Lector();
+        }
+        return instancia; 
+    }
     public int LeerEntero (){
         while (true){
             try {
@@ -33,7 +43,7 @@ public class  Lector {
     }
     public String LeerString () {
      while (true){
-         String salida=scanner.nextLine().trim();
+         String salida=scanner.nextLine().trim().toLowerCase();
             if (!salida.isEmpty()){
               return salida;
             } else {
@@ -41,5 +51,24 @@ public class  Lector {
             }
         }
     }
- 
+    public String LeerStringMayuscula() {
+     while (true){
+         String salida=scanner.nextLine().trim().toLowerCase();
+            if (!salida.isEmpty()){
+              return Mayuscula(salida);
+            } else {
+                System.out.print("Ingrese un dato valido: ");
+            }
+        }
+    }
+    
+    private String Mayuscula(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+        // mensaje pa no olvidarme: (x,y) indice x si muestra, y "y" no muestra
+        String textoMayuscula= texto.substring(0,1).toUpperCase();
+        
+        return textoMayuscula+texto.substring(1);
+    }
 }

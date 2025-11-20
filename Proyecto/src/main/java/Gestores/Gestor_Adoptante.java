@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * @author admin
  */
 public class Gestor_Adoptante extends GestorBase<Adoptantes>{
-    Lector lector=new Lector ();
+    Lector lector=Lector.getInstanciaLector();
     private static Gestor_Adoptante instancia; 
 
     public Gestor_Adoptante() {
@@ -119,7 +119,6 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         getElementos_lista().sort((a1, a2) -> a1.getNombre().compareTo(a2.getNombre()));
         
         getElementos_lista().forEach(System.out::println);      
-        System.out.println("----------------------------------------");        
 
     }
 

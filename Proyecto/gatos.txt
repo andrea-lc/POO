@@ -7,7 +7,7 @@
 17,Chispa,1,Siames,2.70,Hembra,No,en adopcion,Bajo
 18,Zeus,5,Bengala,5.90,Macho,Si,adoptado,Alto
 19,Blanca,2,Angora,3.30,Hembra,Sí,en adopcion,Medio
-1,Michi,2,Siames,3.40,Hembra,Si,Adoptado,Bajo
+1,Kitty,2,Siames,3.40,Hembra,Si,Adoptado,Bajo
 2,Tom,1,Criollo,2.80,Macho,No,en adopcion,Medio
 3,Luna,3,Persa,4.10,Hembra,Si,adoptado,Bajo
 4,Simba,2,Bengala,3.90,Macho,Si,en adopcion,Medio
@@ -16,5 +16,5 @@
 7,Mora,2,Siames,3.20,Hembra,Si,en adopcion,Medio
 8,Leo,5,Maine Coon,6.20,Macho,Si,adoptado,Alto
 9,Kiara,1,Criollo,2.90,Hembra,No,en adopcion,Bajo
-20,Rolo,4,Criollo,4.10,Macho,Si,en adopcion,Bajo
+20,Rolo,4,Criollo,4.10,Macho,Si,Adoptado,Bajo
 10,Felix,3,Bombay,4.00,Macho,Si,en adopcion,Medio

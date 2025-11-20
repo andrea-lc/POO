@@ -13,7 +13,7 @@ import Scanner.Lector;
  * @author admin
  */
 public class Acciones_gatos implements Menu_Acciones  {
-    Lector lector=new Lector ();
+    Lector lector=Lector.getInstanciaLector();
     Gestor_Gatos gestor= Gestor_Gatos.getInstanciaGatos();
     
     @Override  
@@ -22,21 +22,21 @@ public class Acciones_gatos implements Menu_Acciones  {
         System.out.print("ID: ");
         int id = lector.LeerEntero();
         System.out.print("Nombre: ");
-        String nombre = lector.LeerString();
+        String nombre = lector.LeerStringMayuscula();
         System.out.print("Edad: ");
         int edad = lector.LeerEntero();
         System.out.print("Raza: ");
-        String raza = lector.LeerString();
+        String raza = lector.LeerStringMayuscula();
         System.out.print("Peso: ");
         double peso = lector.LeerDouble();
         System.out.print("Genero: ");
-        String genero= lector.LeerString();
+        String genero= lector.LeerStringMayuscula();
         System.out.print("Estilizacion (si/no): ");
-        String esterilizacion= lector.LeerString();
-        System.out.print("Estado del gato (En adopción, Adoptado: )");
-        String estado_gato= lector.LeerString();
+        String esterilizacion= lector.LeerStringMayuscula();
+        System.out.print("Estado del gato (En adopción, Adoptado): ");
+        String estado_gato= lector.LeerStringMayuscula();
         System.out.print("Cuidado requerido:");
-        String cuidado_requerido=lector.LeerString();
+        String cuidado_requerido=lector.LeerStringMayuscula();
         
         gestor.registrar(new Gatos(id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido));
     }
@@ -75,8 +75,13 @@ public class Acciones_gatos implements Menu_Acciones  {
                 System.out.println("5) Esterilizacion (si/no): ");
                 System.out.println("6) Estado del gato: ");
                 System.out.println("7) Cuidados requeridos: ");
-                System.out.print("Ingrese una opcion: ");
-                opcion=lector.LeerEntero();
+                while(true){
+                    System.out.print("Ingrese una opcion: ");
+                    opcion=lector.LeerEntero();
+                    if (opcion>7 || opcion<1){
+                        System.out.println("Opcion invalida");              
+                    }else { break;}
+                }
                 gestor.modificar(gatoModificar, opcion);
                 System.out.print("Desea modificar otro dato?: (si/no)");
                 String respuesta=lector.LeerString();

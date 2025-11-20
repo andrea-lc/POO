@@ -17,7 +17,7 @@ import Scanner.Lector;
 */
 public class Menu {
     private Menu_Acciones acciones;  
-    Lector lector=new Lector ();
+    Lector lector=Lector.getInstanciaLector();
     
     // Menu_acciones puede tene multiples comportamientos, asi que segun 
     // la situacion, deberia poder variar, por eso este metodo

@@ -25,7 +25,7 @@ import java.util.function.Consumer;
 * para eso aplico singleton, para tener solo una instancia 
 */
 public class Gestor_Gatos extends GestorBase<Gatos> {
-    Lector lector=new Lector ();
+    Lector lector=Lector.getInstanciaLector();
     private static Gestor_Gatos instancia;
     
     public Gestor_Gatos() {
@@ -185,19 +185,19 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         Consumer <Gatos> [] modificador= new Consumer[8];
         if (gato != null){
             modificador[1]= g -> { System.out.print("Nuevo nombre: ");
-                                        g.setNombre(lector.LeerString()); };
+                                        g.setNombre(lector.LeerStringMayuscula()); };
             modificador[2]= g -> { System.out.print("Nueva edad: ");
                                          g.setEdad(lector.LeerEntero());};                                      
             modificador[3]= g -> { System.out.print("Nueva raza: ");
-                                         g.setRaza(lector.LeerString());};
+                                         g.setRaza(lector.LeerStringMayuscula());};
             modificador[4]= g -> {System.out.print("Nuevo peso: ");                   
                                          g.setPeso(lector.LeerDouble());};
             modificador [5]= g-> {System.out.print("Esta esterilizado? (si/no): ");
-                                         g.setEsterilizacion(lector.LeerString());};
+                                         g.setEsterilizacion(lector.LeerStringMayuscula());};
             modificador[6]= g-> {System.out.print("Nuevo estado: ");                 
-                                         g.setEstado_gato(lector.LeerString());};
+                                         g.setEstado_gato(lector.LeerStringMayuscula());};
             modificador [7]= g-> {System.out.print("Nuevo cuidado requerido: ");
-                                         g.setCuidado_requerido(lector.LeerString());};
+                                         g.setCuidado_requerido(lector.LeerStringMayuscula());};
             // Como se esta modificando el objeto directamente, el Map se actualiza automaticamente
             // porque hay una referencia al mismo objeto
         }

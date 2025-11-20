@@ -21,7 +21,7 @@ import java.util.function.Supplier;
  */
 public class Gestor_Voluntario extends GestorBase<Voluntarios> {
     private static Gestor_Voluntario instancia;
-    Lector lector= new Lector();
+    Lector lector=Lector.getInstanciaLector();
             
     
     public Gestor_Voluntario() {
@@ -146,7 +146,7 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
             modificador[2]= (v)->{ System.out.print("Nuevo correo: ");
                                     v.setCorreo(lector.LeerString());};      
             modificador[3]= (v) ->{System.out.print("Nuevo horario: ");
-                                    v.setHorarios_disponibles(lector.LeerString());};
+                                    v.setHorarios_disponibles(lector.LeerStringMayuscula());};
         }
         modificador[opcion].accept(voluntario);      
         guardarCambios();
