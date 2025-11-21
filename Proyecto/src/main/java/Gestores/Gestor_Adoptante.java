@@ -45,7 +45,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                     String apellido= datos[2];
                     int telefono = Integer.parseInt(datos[3]);
                     String correo = datos[4];
-                    int gato_Adoptado = Integer.parseInt(datos[5]);
+                    String gato_Adoptado = datos[5];
                     Adoptantes adoptante= new Adoptantes(new Persona(dni,nombre,apellido,telefono,correo),
                             gato_Adoptado);
                     
@@ -54,7 +54,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar adoptantes (puede que el archivo este vacio).");
+            System.out.println("No se pudo cargar adoptantes (puede que el archivo este vacio)");
         }
     }
 
@@ -62,7 +62,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     public void guardarCambios() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (Adoptantes adoptante : getElementos().values()) {
-                String linea = String.format("%d,%s,%s,%d,%s,%d",
+                String linea = String.format("%d,%s,%s,%d,%s,%s",
                     adoptante.getDni_persona(),
                     adoptante.getNombre(),
                     adoptante.getApellido(),
@@ -73,21 +73,21 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                 bw.newLine();
             }
         } catch (IOException ex) {
-            System.out.println("Error al guardar cambios en el archivo de adoptantes.");
+            System.out.println("Error al guardar cambios en el archivo de adoptantes");
         }
     }
 
     @Override
     public boolean registrar(Adoptantes adoptante) { 
         if (getElementos().containsKey(String.valueOf(adoptante.getDni_persona()))) {
-            System.out.println("Este DNI ya esta registrado como adoptante.");
+            System.out.println("Este DNI ya esta registrado como adoptante");
             return false;
         }  
 
         getElementos().put((String.valueOf(adoptante.getDni_persona())), adoptante);
         getElementos_lista().add(adoptante);
         guardarCambios();
-        System.out.println("Adoptante registrado correctamente.");
+        System.out.println("Adoptante registrado correctamente");
         return true;     
     }
 
@@ -109,7 +109,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     @Override
     public void mostrar() {
         if (getElementos().isEmpty()) {
-            System.out.println("No hay adoptantes registrados en el sistema.");
+            System.out.println("No hay adoptantes registrados en el sistema");
             return;
         }  
         

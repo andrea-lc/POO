@@ -219,7 +219,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                     Gatos_enAdopcion.add(gato);
             }
 
-            System.out.println("\n=== LISTA DE GATOS REGISTRADOS ===");
+            System.out.println("\n=== LISTA DE GATOS EN ADOPCION ===");
             System.out.println("Total de gatos en adopcion: " + Gatos_enAdopcion.size());
             System.out.println("-----------------------------------");
 
@@ -228,33 +228,30 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             System.out.println("-----------------------------------");        
         }
         
-        //antes tenia una clase que cambia el estado del gato pero s
-        //pero es mejor hacerlo defrente al conseguir el id
-        //porque al adoptar un gato, se sabe automaticamente que su estado debe cambiar
-        public int conseguirID (String identificador){
-            Gatos gato = null;
-            int id = 0;
-        if (getElementos().containsKey(identificador)) {
-            gato = getElementos().get(identificador);
-        } else {
-            // Buscar por nombre
+        
+    // este metodo verificara si el gato esta en adopcion, si es true entonces cambia su estado 
+    // a adoptado, y si no entonces no realiza nada
+    public boolean VerificadordeGatoEnAdopcion(String identificador){    
+        boolean resultado=false;
+            for (Gatos gato : getElementos().values()) {
+                if (identificador.equalsIgnoreCase(gato.getNombre())){
+                    if (gato.getEstado_gato().equalsIgnoreCase("en adopcion")){
+                        resultado=true;                  
+                    }
+                }
+            }
+        return resultado;
+    }   
+    
+    public void CambiarEstado (String datoModificar){
+        // Buscar por nombre
             for (Gatos g : getElementos().values()) {
-                if (identificador.equalsIgnoreCase(g.getNombre())) {
-                    gato = g;
+                if (datoModificar.equalsIgnoreCase(g.getNombre())) {
+                    g.setEstado_gato("Adoptado");
                     break;
                 }
             }
-        }
-            if (gato!=null){
-                
-            Consumer <Gatos> realizarCambio = a -> { a.setEstado_gato("Adoptado");};
-                realizarCambio.accept(gato); 
-                guardarCambios();
-                id= gato.getId();
-            }else {
-                System.out.println("Gatito no registrado como en adopcion ");
-            } 
-     
-        return id;  
-    }
+            
+            guardarCambios();
+        } 
 }

@@ -20,6 +20,7 @@ public class Persona{
     public Persona(int dni_persona, String nombre, String apellido, int telefono, String correo) {
         this.dni_persona = dni_persona;
         this.nombre = nombre;
+        this.apellido= apellido;
         this.telefono = telefono;
         this.correo = correo;
     }
@@ -36,7 +37,7 @@ public class Persona{
     @Override
     public String toString() {
         return "\nDNI #" + dni_persona + "\n" +
-           "  Nombre: " + nombre +" "+ apellido +"\n" +
+           "  Nombre y Apellido: " + nombre +" "+ apellido +"\n" +
            "  Telefono: " + telefono + "\n" +
            "  Correo: " + correo + " \n";
     }

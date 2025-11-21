@@ -30,10 +30,20 @@ public class Acciones_Voluntario implements Menu_Acciones{
         String correo= lector.LeerString();
         System.out.print("Telefono: ");
         int telefono = lector.LeerEntero();
-        System.out.print("Horarios Disponibles: ");
+        //aca muestra los horarios disponibles
         horariosDisponibles();
-        String Horarios_disponibles= gestor_voluntario.gestionHorario(lector.LeerEntero());
-        
+        System.out.print("Ingrese una opcion: ");
+        String Horarios_disponibles;
+        int opcion;
+        while (true){
+           opcion=lector.LeerEntero(); 
+            if(opcion<=6 || opcion >=1){
+               Horarios_disponibles= gestor_voluntario.gestionHorario(lector.LeerEntero());
+               break;                
+            }else {
+                System.out.print("Opcion invalida, ingrese otra: ");
+                }          
+        } 
         gestor_voluntario.registrar(new Voluntarios(new Persona(dni,nombre,apellido, telefono,correo),
                 Horarios_disponibles));
         }   
@@ -51,7 +61,8 @@ public class Acciones_Voluntario implements Menu_Acciones{
             gestor_voluntario.buscar(adoptanteBuscado);
             }else {
             System.out.println("Voluntario no encontrado");
-            }      
+            }  
+        System.out.println("==================================");
         }
 
     @Override

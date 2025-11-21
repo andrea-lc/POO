@@ -28,7 +28,7 @@ public class Voluntarios extends Persona{
 
     @Override
     public String toString() {
-        return super.toString()+ "  Horarios disponibles=" + Horarios_disponibles+ "\n";
+        return super.toString()+ "  Horarios:" + Horarios_disponibles+ "\n";
     }   
     
 }

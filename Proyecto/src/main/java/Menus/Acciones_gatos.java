@@ -39,7 +39,10 @@ public class Acciones_gatos implements Menu_Acciones  {
         String cuidado_requerido=lector.LeerStringMayuscula();
         
         gestor.registrar(new Gatos(id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido));
+        System.out.println("==================================");
+
     }
+    
 
     //muestra la lista :)
     @Override
@@ -54,8 +57,10 @@ public class Acciones_gatos implements Menu_Acciones  {
         if (gestor.existe(gatoBuscado)==true){
             gestor.buscar(gatoBuscado);
             }else {
-            System.out.println("Gatito no encontrado");
-        }      
+            System.out.println("Gatito no encontrado");          
+        }   
+        System.out.println("==================================");
+
     }
 
     @Override
@@ -86,6 +91,7 @@ public class Acciones_gatos implements Menu_Acciones  {
                 System.out.print("Desea modificar otro dato?: (si/no)");
                 String respuesta=lector.LeerString();
                 seguir= respuesta.equalsIgnoreCase("si"); //? true:false
+                System.out.println("==================================");
             }while (seguir);
             System.out.println("Datos modificados exitosamente! ");
         } else {
