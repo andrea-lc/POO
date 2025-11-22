@@ -31,8 +31,8 @@ public class Menu {
         do {
             System.out.println("\n========== Cat Haven ==========");
             System.out.println("1) Gestion de Gatos");
-            System.out.println("2) Adopciones");
-            System.out.println("3) Voluntariado");
+            System.out.println("2) Gestion Adopciones");
+            System.out.println("3) Gestion Voluntariado");
             System.out.println("0) Cerrar sesion");
             System.out.println("================================");
             System.out.print("Elige una opcion: ");
@@ -78,6 +78,7 @@ public class Menu {
             System.out.println("2) Listar gatos");
             System.out.println("3) Buscar gato por nombre");
             System.out.println("4) Modificar algun dato");
+            System.out.println("5) Eliminar algun dato");
             System.out.println("0) Volver");
             System.out.println("========================");
             System.out.print("Elige una opcion: ");
@@ -101,10 +102,14 @@ public class Menu {
                     acciones.Buscar();
                     break;
                 }
-                case 4: 
+                case 4: {
                     // Modificar algun dato
                     acciones.modificar();
                     break;
+                }
+                case 5: {
+                    acciones.eliminar();
+                }
                 case 0: {
                     // Volver al menú principal
                     System.out.println("Volviendo al menu principal...");
@@ -126,6 +131,7 @@ public class Menu {
             System.out.println("2) Listar adoptantes");
             System.out.println("3) Buscar Adoptante");
             System.out.println("4) Modificar algun dato");
+            System.out.println("5) Eliminar algun dato");
             System.out.println("0) Volver");
             System.out.println("========================");
             System.out.print("Elige una opcion: ");
@@ -134,34 +140,32 @@ public class Menu {
             opcion = lector.LeerEntero();
             // Manejar la opción seleccionada
             switch (opcion) {
-                case 1: {
+                case 1: 
                     // Registrar un nuevo gato
                     acciones.registrar();                   
-                    break;
-                }
-                case 2: {
+                    break;              
+                case 2: 
                     // Listar todos los gatos
                     acciones.Listar();
-                    break;
-                }
-                case 3: {
+                    break;              
+                case 3: 
                     // Buscar un adoptante
                     acciones.Buscar();
                     break;
-                }
                 case 4: 
                     // Modificar algun dato
                     acciones.modificar();
                     break;
-                case 0: {
+                case 5:
+                    // Eliminar algun dato
+                    acciones.eliminar();
+                case 0: 
                     // Volver al menu principal
                     System.out.println("Volviendo al menu principal...");
                     break;
-                }
-                default: {
+                default: 
                     // Manejo de opción invalida
-                    System.out.println("Opcion invalida.");
-                }
+                    System.out.println("Opcion invalida.");               
             }
         } while (opcion != 0); 
     }
@@ -171,11 +175,12 @@ public class Menu {
         int opcion;
         setAcciones(new Acciones_Voluntario());
         do {
-            System.out.println("\n=== Gestion de Adoptantes ===");
+            System.out.println("\n=== Gestion de Voluntarios ===");
             System.out.println("1) Registrar nuevo Voluntario");
             System.out.println("2) Listar volutarios");
             System.out.println("3) Buscar voluntario");
             System.out.println("4) Modificar algun dato");
+            System.out.println("5) Eliminar algun dato");
             System.out.println("0) Volver");
             System.out.println("========================");
             System.out.print("Elige una opcion: ");
@@ -198,6 +203,9 @@ public class Menu {
                 }
                 case 4: 
                     acciones.modificar();
+                    break;
+                case 5:
+                    acciones.eliminar();
                     break;
                 case 0: {
                     System.out.println("Volviendo al menu principal...");

@@ -4,6 +4,9 @@
  */
 package Gestores;
 
+import Entidades.Adoptantes;
+import Entidades.Gatos;
+import Entidades.Voluntarios;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,5 +34,29 @@ public abstract class GestorBase <T> implements GestorInterface<T> {
     
     public List<T> getElementos_lista() {
         return elementos_lista;
+    }
+    
+    public T retornarElemento(String identificador){
+        T objeto = null;
+        if(getElementos().containsKey(identificador)){
+            objeto=getElementos().get(identificador);
+        }else {
+            for (T o : getElementos().values()) {
+            String nombre = null;
+            //para verificar si objeto es una instancia de Gatos/Adoptantes/Voluntarios 
+            // (como examinar de que tipo sera objeto)
+                if (o instanceof Gatos){ 
+                    nombre= (((Gatos) o).getNombre()); // aqui hace cast, osea convertir un objeto a otro
+                } else if (o instanceof Adoptantes ){
+                    nombre= ((Adoptantes) o).getNombre();
+                } else if (o instanceof Voluntarios){
+                    nombre=((Voluntarios) o).getNombre();
+                }          
+                if (identificador.equalsIgnoreCase(nombre)){
+                    objeto=o;
+                }
+            }       
+        }
+        return objeto;
     }
 }

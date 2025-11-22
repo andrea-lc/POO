@@ -104,30 +104,26 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         getElementos().put(String.valueOf(gatos.getId()), gatos);
         getElementos_lista().add(gatos);
         guardarCambios();
-        System.out.println("Gatito agregado correctamente.");
         return true;
     }
 
     @Override
-    public Gatos buscar(String identificador) {
-        Gatos gato = null;
-
+    public void buscar(String identificador) {
+        List <Gatos> resultados= new ArrayList<>();
         // Buscar por ID (clave del HashMap)
         if (getElementos().containsKey(identificador)) {
-            gato = getElementos().get(identificador);
+            resultados.add(getElementos().get(identificador));
         } else {
             // Buscar por nombre
             for (Gatos g : getElementos().values()) {
                 if (identificador.equalsIgnoreCase(g.getNombre())) {
-                    gato = g;
-                    break;
+                    resultados.add(g);
                 }
             }
         }
-            if (gato!=null){
-                System.out.println(gato);
-            }
-        return gato;
+        System.out.println("Resultados: "+ resultados.size());
+        System.out.println("-----------------------------------");
+        resultados.forEach(System.out::println); 
         }                         
      
     
@@ -135,15 +131,10 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     // verificara si un gato existe >:( y si no piña
     public boolean existe(String identificador) {
         boolean resultado=false;
-            if (getElementos().containsKey(identificador)){
+        Gatos gatos= retornarElemento(identificador);
+            if (gatos!=null){
                 resultado= true;
-            }else{  
-                for (Gatos gato : getElementos().values()) {
-                if (identificador.equalsIgnoreCase(gato.getNombre())){
-                    resultado= true;
-                    }               
-                }
-            }
+                }         
             return resultado;
     }
 
@@ -156,10 +147,9 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     }  
         System.out.println("\n=== LISTA DE GATOS REGISTRADOS ===");
         System.out.println("Total de gatos: " + getElementos().size());
-        System.out.println("-----------------------------------");     
+        System.out.println("-----------------------------------");
         getElementos_lista().sort((g1,g2)->Integer.compare(g1.getId(), g2.getId()));
         getElementos_lista().forEach(System.out::println);
-        System.out.println("-----------------------------------");        
     }
 
     
@@ -169,19 +159,8 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
     // no put() porque si no existe la clave no aumenta nada  (sirve como info pero no para esta parte :()ERROR :(
     @Override
     public void modificar(String gatoModificar, int opcion) {
-        Gatos gato = null;
-        // Buscar por ID (clave del HashMap)
-        if (getElementos().containsKey(gatoModificar)) {
-            gato = getElementos().get(gatoModificar);
-        } else {
-            // Buscar por nombre
-            for (Gatos g : getElementos().values()) {
-                if (gatoModificar.equalsIgnoreCase(g.getNombre())) {
-                    gato = g;
-                    break;
-                }
-            }
-        }
+        Gatos gato = retornarElemento(gatoModificar);
+        
         Consumer <Gatos> [] modificador= new Consumer[8];
         if (gato != null){
             modificador[1]= g -> { System.out.print("Nuevo nombre: ");
@@ -205,6 +184,18 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         guardarCambios();
     }
     
+    @Override
+    public boolean eliminar(String identificador) {
+        Gatos gato= retornarElemento(identificador);
+        if (gato!=null){ 
+            getElementos().remove(String.valueOf(gato.getId()));
+            getElementos_lista().remove(gato);
+            guardarCambios();
+        }
+        return true;
+    }
+
+    
     //METODOS PARA LA CLASE ACCION ADOPTANTES 
     // esta clase es para mostrar los gatos en adopcion, para usarla en acciones_adoptantes 
         public void mostrarGatos() {
@@ -225,7 +216,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
 
             Gatos_enAdopcion.sort((g1,g2) -> Integer.compare(g1.getId(), g2.getId()));
             Gatos_enAdopcion.forEach(gato -> System.out.println("Id: "+ gato.getId()+"  Nombre: "+ gato.getNombre()));       
-            System.out.println("-----------------------------------");        
         }
         
         
@@ -243,15 +233,14 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         return resultado;
     }   
     
-    public void CambiarEstado (String datoModificar){
-        // Buscar por nombre
-            for (Gatos g : getElementos().values()) {
-                if (datoModificar.equalsIgnoreCase(g.getNombre())) {
-                    g.setEstado_gato("Adoptado");
-                    break;
-                }
-            }
-            
+    public void CambiarEstadoAdoptado (String datoModificar){
+        Gatos gato= retornarElemento(datoModificar);
+        gato.setEstado_gato("Adoptado");          
             guardarCambios();
         } 
+        public void CambiarEstadoAdopcion (String datoModificar){
+        Gatos gato= retornarElemento(datoModificar);
+        gato.setEstado_gato("En Adopcion");             
+            guardarCambios();
+        }
 }

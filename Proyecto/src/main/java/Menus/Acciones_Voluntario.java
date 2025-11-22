@@ -38,7 +38,7 @@ public class Acciones_Voluntario implements Menu_Acciones{
         while (true){
            opcion=lector.LeerEntero(); 
             if(opcion<=6 || opcion >=1){
-               Horarios_disponibles= gestor_voluntario.gestionHorario(lector.LeerEntero());
+               Horarios_disponibles= gestor_voluntario.gestionHorario(opcion);
                break;                
             }else {
                 System.out.print("Opcion invalida, ingrese otra: ");
@@ -46,6 +46,7 @@ public class Acciones_Voluntario implements Menu_Acciones{
         } 
         gestor_voluntario.registrar(new Voluntarios(new Persona(dni,nombre,apellido, telefono,correo),
                 Horarios_disponibles));
+        System.out.println("Voluntario registrado existosamente!");
         }   
 
     @Override
@@ -55,6 +56,7 @@ public class Acciones_Voluntario implements Menu_Acciones{
 
     @Override
     public void Buscar() {
+        System.out.println("\n======= BUSCAR VOLUNTARIOS =======");
         System.out.print("Ingrese el nombre dni del voluntario que desea buscar: ");
         String adoptanteBuscado= lector.LeerString();
         if (gestor_voluntario.existe(adoptanteBuscado)==true){
@@ -75,15 +77,20 @@ public class Acciones_Voluntario implements Menu_Acciones{
             boolean seguir; //va a iniciar como si se quisiera continuar modificando
             do{                     
                 System.out.println("Que dato desea modificar: ");
-                System.out.print("1) Telefono: ");
-                System.out.print("2) Correo: ");
-                System.out.print("3) Horario");
-                while(true){
+                System.out.println("1) Telefono: ");
+                System.out.println("2) Correo: ");
+                System.out.println("3) Horario");
+                while(true){                   
                     System.out.print("Ingrese una opcion: ");
                     opcion=lector.LeerEntero();
-                    if (opcion>3 || opcion<1){
-                        System.out.println("Opcion invalida");              
-                    }else { break;}
+                    if (opcion==3){
+                        horariosDisponibles();
+                        break;
+                    }else {if (opcion>3 || opcion<1){
+                        System.out.println("Opcion invalida");
+                        break;
+                    }
+                    }
                 }
                 gestor_voluntario.modificar(voluntarioModificar, opcion);
                 System.out.print("Desea modificar otro dato?(si/no):");
@@ -100,16 +107,28 @@ public class Acciones_Voluntario implements Menu_Acciones{
     private void horariosDisponibles() {
         String [] horarios={"Lunes (Diurno): 9:00 - 11:00", 
                             "Miércoles (Diurno): 10:00 - 12:00",
-                            "Viernes (Diurno): 11:00 - 13:00",
-                            "Martes (Tarde): 14:00 - 16:00",
+                            "Viernes (Diurno): 8:00 - 10:00",
+                            "Martes (Tarde): 13:00 - 15:00",
                             "Jueves (Tarde): 15:00 - 17:00", 
                             "Sábado (Tarde): 16:00 - 18:00" };
             
         System.out.println("\n===== HORARIOS DISPONIBLES =====");      
         for (int i=0; i<horarios.length ;i++){
             System.out.println((i+1)+") "+horarios[i]);
-        }
-        
+        }     
     }
 
+    @Override
+    public void eliminar() {
+        System.out.println("\n======= ELIMINAR DATOS =======");
+        System.out.print("Ingrese el nombre o ID del voluntario que desea eliminar: ");
+        String datoEliminar=lector.LeerString();
+        if (gestor_voluntario.existe(datoEliminar)){
+            gestor_voluntario.eliminar(datoEliminar);
+            System.out.println("==================================");
+            System.out.println("Voluntario eliminado exitosamente!");
+        }else {
+            System.out.println("Voluntario no encontrado");      
+        }
+    }
 }

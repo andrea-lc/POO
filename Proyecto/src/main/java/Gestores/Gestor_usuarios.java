@@ -119,7 +119,12 @@ public class Gestor_usuarios extends GestorBase <Administradores>{
     }
 
     @Override
-    public Administradores buscar(String identificador) {
+    public void buscar(String identificador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean eliminar(String identificador) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

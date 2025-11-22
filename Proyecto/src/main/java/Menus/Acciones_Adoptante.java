@@ -5,6 +5,7 @@
 package Menus;
 
 import Entidades.Adoptantes;
+import Entidades.Gatos;
 import Entidades.Persona;
 import Gestores.Gestor_Adoptante;
 import Gestores.Gestor_Gatos;
@@ -61,9 +62,9 @@ public class Acciones_Adoptante implements Menu_Acciones{
              gato_Adoptado
          );
 
-         // 4. Si el registro es exitoso, cambiar el estado del gato
+         //  Si el registro es exitoso, cambiar el estado del gato
          if (gestor_adoptante.registrar(nuevoAdoptante)) {
-             gestor_gatos.CambiarEstado(gato_Adoptado);
+             gestor_gatos.CambiarEstadoAdoptado(gato_Adoptado);
              System.out.println("Adopcion registrada exitosamente");
          }
         }   
@@ -76,6 +77,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
 
     @Override
     public void Buscar() {
+        System.out.println("\n======= BUSCAR ADOPTANTES =======");
         System.out.print("Ingrese el nombre o dni del adoptante que desea buscar: ");
         String adoptanteBuscado= lector.LeerString();
         if (gestor_adoptante.existe(adoptanteBuscado)==true){
@@ -113,12 +115,29 @@ public class Acciones_Adoptante implements Menu_Acciones{
                 System.out.print("Desea modificar otro dato? (si/no): ");
                 String respuesta=lector.LeerString();
                 seguir= respuesta.equalsIgnoreCase("si"); //? true:false
-                System.out.println("==========================");
+                System.out.println("===============================");
             }while (seguir);
             System.out.println("Datos modificados exitosamente! ");
         } else {
             System.out.println("Adoptante no encontrado");
             }
+    }
+
+    @Override
+    public void eliminar() {
+        System.out.println("\n======= ELIMINAR DATOS =======");
+        System.out.print("Ingrese el nombre o ID del adoptante que desea eliminar: ");
+        String datoEliminar=lector.LeerString();
+        if (gestor_adoptante.existe(datoEliminar)){
+            if (gestor_adoptante.eliminar(datoEliminar)){
+                Gatos gato=gestor_gatos.retornarElemento(datoEliminar);
+                gestor_gatos.CambiarEstadoAdopcion(gato.getNombre());
+            }
+            System.out.println("==================================");
+            System.out.println("Adoptante eliminado exitosamente!");
+        }else {
+            System.out.println("Adoptante no encontrado");
+        }
     }
     
 }

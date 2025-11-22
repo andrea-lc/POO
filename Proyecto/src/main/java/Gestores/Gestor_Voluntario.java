@@ -12,6 +12,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -84,28 +86,21 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
         if (getElementos().containsKey(String.valueOf(voluntario.getDni_persona()))) {
             System.out.println("Este DNI ya esta registrado como voluntario.");
             return false;
-        }
-        
+        }      
         getElementos().put((String.valueOf(voluntario.getDni_persona())), voluntario);
         getElementos_lista().add(voluntario);
         guardarCambios();
-        System.out.println("Voluntario registrado correctamente.");
         return true;
     }
 
     @Override
     public boolean existe(String identificador) {
         boolean resultado=false;
-            if (getElementos().containsKey(identificador)){
-                resultado= true;
-            }else{  
-                for (Voluntarios voluntario: getElementos().values()) {
-                if (identificador.equalsIgnoreCase(voluntario.getNombre())){
-                    resultado= true;
-                    }               
-                }
-            }
-            return resultado;
+        Voluntarios voluntario= retornarElemento(identificador);       
+            if (voluntario!=null){
+                resultado=true;
+            }     
+        return resultado;
     }
 
     @Override
@@ -121,67 +116,52 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
         getElementos_lista().sort((v1, v2) -> v1.getNombre().compareTo(v2.getNombre()));
         
         getElementos_lista().forEach(System.out::println);      
-        System.out.println("----------------------------------------");   
     }
 
     @Override
     public void modificar(String datoModificar, int opcion) {
-        Voluntarios voluntario = null;
-        // Buscar por ID (clave del HashMap)
-        if (getElementos().containsKey(datoModificar)) {
-            voluntario = getElementos().get(datoModificar);
-        } else {
-            // Buscar por nombre
-            for (Voluntarios a : getElementos().values()) {
-                if (datoModificar.equalsIgnoreCase(a.getNombre())) {
-                    voluntario = a;
-                    break;
-                }
-            }
-        }
+        Voluntarios voluntario = retornarElemento(datoModificar);
+
         Consumer <Voluntarios> [] modificador= new Consumer[4];
         if (voluntario != null){
             modificador[1]= (v) ->{ System.out.print("Nuevo telefono: "); 
                                     v.setTelefono(lector.LeerEntero());};
             modificador[2]= (v)->{ System.out.print("Nuevo correo: ");
                                     v.setCorreo(lector.LeerString());};      
-            modificador[3]= (v) ->{System.out.print("Nuevo horario: ");
-                                    v.setHorarios_disponibles(lector.LeerStringMayuscula());};
+            modificador[3]= (v) ->{System.out.print("Nuevo horario: ");                                    
+                                    v.setHorarios_disponibles(gestionHorario(lector.LeerEntero()));
+                                    };
         }
         modificador[opcion].accept(voluntario);      
         guardarCambios();
     }
 
     @Override
-    public Voluntarios buscar(String identificador) {
-        Voluntarios voluntario = null;
-
+    public void buscar(String identificador) {        
+        List<Voluntarios> resultados= new ArrayList <>();
         // Buscar por DNI (clave del HashMap)
         if (getElementos().containsKey(identificador)) {
-            voluntario = getElementos().get(identificador);
+            resultados.add(getElementos().get(identificador));
         } else {
             // Buscar por nombre o correo
             for (Voluntarios v : getElementos().values()) {
-                if (identificador.equalsIgnoreCase(v.getNombre()) || 
-                    identificador.equalsIgnoreCase(v.getCorreo())) {
-                    voluntario = v;
-                    break;
+                if (identificador.equalsIgnoreCase(v.getNombre())) {
+                    resultados.add(v);
                 }
             }
         }
-        if (voluntario !=null){
-            System.out.println(voluntario);
-        }
-        return voluntario;
+        System.out.println("Resultados: "+ resultados.size());
+        System.out.println("-----------------------------------");
+        resultados.forEach(System.out::println);      
     } 
     
     public String gestionHorario(int opcion){  
-        String [] horarios={"lunes (diurno): 9:00 - 11:00", 
-                    "miercoles (diurno): 10:00 - 12:00",
-                    "viernes (diurno): 11:00 - 13:00",
-                    "martes (tarde): 14:00 - 16:00",
-                    "jueves (tarde): 15:00 - 17:00", 
-                    "miercoles (tarde): 15:00 - 17:00" };
+        String [] horarios={"Lunes (Diurno): 9:00 - 11:00", 
+                            "Miércoles (Diurno): 10:00 - 12:00",
+                            "Viernes (Diurno): 8:00 - 10:00",
+                            "Martes (Tarde): 13:00 - 15:00",
+                            "Jueves (Tarde): 15:00 - 17:00", 
+                            "Sábado (Tarde): 16:00 - 18:00" };
         Supplier<String>[] HorarioEscogido= new Supplier[6];  
         HorarioEscogido[0]= ()->{return horarios[0];};
         HorarioEscogido[1]= ()->{return horarios[1];};
@@ -189,11 +169,18 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
         HorarioEscogido[3]= ()->{return horarios[3];};
         HorarioEscogido[4]= ()->{return horarios[4];};
         HorarioEscogido[5]= ()->{return horarios[5];};
-        
-        if (opcion < 1 || opcion > 6) {
-            return "Opcion no valida";
-        }
-        
+             
         return HorarioEscogido[opcion-1].get();
     } 
+
+    @Override
+    public boolean eliminar(String identificador) {
+        Voluntarios voluntario= retornarElemento(identificador);
+        if (voluntario!=null){
+            getElementos().remove(String.valueOf(voluntario.getDni_persona()));
+            getElementos_lista().remove(voluntario);
+            guardarCambios();
+        }
+        return true;
+    }
 }

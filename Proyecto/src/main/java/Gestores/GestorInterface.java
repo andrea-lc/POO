@@ -16,5 +16,6 @@ public interface GestorInterface <T> {
     boolean existe(String identificador);
     void mostrar ();
     void modificar (String datoModificar, int opcion);
-    T buscar (String identificador);
+    void buscar (String identificador);
+    boolean eliminar(String identificador);
 }

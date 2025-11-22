@@ -12,5 +12,6 @@ public interface Menu_Acciones {
     void registrar ();
     void Listar ();
     void Buscar();
-    void modificar ();
+    void modificar();
+    void eliminar();
 }

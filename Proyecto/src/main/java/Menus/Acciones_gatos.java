@@ -40,7 +40,7 @@ public class Acciones_gatos implements Menu_Acciones  {
         
         gestor.registrar(new Gatos(id,nombre,edad,raza,peso, genero,esterilizacion,estado_gato,cuidado_requerido));
         System.out.println("==================================");
-
+        System.out.println("Gatito agregado correctamente.");
     }
     
 
@@ -52,6 +52,7 @@ public class Acciones_gatos implements Menu_Acciones  {
 
     @Override
     public void Buscar() {
+        System.out.println("\n======= BUSCAR GATITOS =======");
         System.out.print("Ingrese el nombre o Id del gato que desea buscar: ");
         String gatoBuscado= lector.LeerString();
         if (gestor.existe(gatoBuscado)==true){
@@ -96,6 +97,19 @@ public class Acciones_gatos implements Menu_Acciones  {
             System.out.println("Datos modificados exitosamente! ");
         } else {
             System.out.println("Gatito no encontrado");
-        }
+        }        
+    }
+    
+    public void eliminar (){
+        System.out.println("\n======= ELIMINAR DATOS =======");
+        System.out.print("Ingrese el nombre o ID del gato que desea eliminar: ");
+        String datoEliminar=lector.LeerString();
+        if (gestor.existe(datoEliminar)){
+            gestor.eliminar(datoEliminar);
+            System.out.println("==================================");
+            System.out.println("Gato eliminado exitosamente!");
+        }else {
+            System.out.println("Gatito no encontrado");
+        }       
     }
 }

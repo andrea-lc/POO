@@ -12,6 +12,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -87,22 +89,16 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         getElementos().put((String.valueOf(adoptante.getDni_persona())), adoptante);
         getElementos_lista().add(adoptante);
         guardarCambios();
-        System.out.println("Adoptante registrado correctamente");
         return true;     
     }
 
     @Override
     public boolean existe(String identificador) {
         boolean resultado=false;
-            if (getElementos().containsKey(identificador)){
+        Adoptantes adoptante= retornarElemento(identificador);
+            if (adoptante!=null){
                 resultado= true;
-            }else{  
-                for (Adoptantes adoptante: getElementos().values()) {
-                if (identificador.equalsIgnoreCase(adoptante.getNombre())){
-                    resultado= true;
-                    }               
-                }
-            }
+            }                   
             return resultado;
     }
 
@@ -115,7 +111,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         
         System.out.println("\n=== LISTA DE ADOPTANTES REGISTRADOS ===");
         System.out.println("Total de adoptantes: " + getElementos().size());
-        System.out.println("----------------------------------------");     
+        System.out.println("-----------------------------------");
         getElementos_lista().sort((a1, a2) -> a1.getNombre().compareTo(a2.getNombre()));
         
         getElementos_lista().forEach(System.out::println);      
@@ -124,19 +120,7 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
 
     @Override
     public void modificar(String datoModificar, int opcion) {
-        Adoptantes adoptante = null;
-        // Buscar por ID (clave del HashMap)
-        if (getElementos().containsKey(datoModificar)) {
-            adoptante = getElementos().get(datoModificar);
-        } else {
-            // Buscar por nombre
-            for (Adoptantes a : getElementos().values()) {
-                if (datoModificar.equalsIgnoreCase(a.getNombre())) {
-                    adoptante = a;
-                    break;
-                }
-            }
-        }
+        Adoptantes adoptante = retornarElemento(datoModificar);
         Consumer <Adoptantes> [] modificador= new Consumer[3];
         if (adoptante != null){
             modificador[1]= (a) ->{ System.out.print("Nuevo telefono: "); 
@@ -149,25 +133,32 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
     } 
         
     @Override
-    public Adoptantes buscar(String identificador) {
-        Adoptantes adoptante = null;
-
+    public void buscar(String identificador) {
+        List<Adoptantes> resultados=new ArrayList<>();
         // Buscar por DNI (clave del HashMap)
         if (getElementos().containsKey(identificador)) {
-            adoptante = getElementos().get(identificador);
+            resultados.add(getElementos().get(identificador));
         } else {
             // Buscar por nombre o correo
             for (Adoptantes a : getElementos().values()) {
-                if (identificador.equalsIgnoreCase(a.getNombre()) || 
-                    identificador.equalsIgnoreCase(a.getCorreo())) {
-                    adoptante = a;
-                    break;
+                if (identificador.equalsIgnoreCase(a.getNombre())) {
+                    resultados.add(a);
                 }
             }
         }
-        if (adoptante !=null){
-            System.out.println(adoptante);
-        }
-        return adoptante;
+        System.out.println("Resultados: "+ resultados.size());
+        System.out.println("-----------------------------------");       
+        resultados.forEach(System.out::println);        
     }     
+
+    @Override
+    public boolean eliminar(String identificador) {
+        Adoptantes adoptante= retornarElemento(identificador);
+        if (adoptante!=null){
+            getElementos().remove(String.valueOf(adoptante.getDni_persona()));
+            getElementos_lista().remove(adoptante);
+            guardarCambios(); 
+        }
+        return true;
+    }
 }   
