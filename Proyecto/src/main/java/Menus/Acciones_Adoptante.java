@@ -129,12 +129,18 @@ public class Acciones_Adoptante implements Menu_Acciones{
         System.out.print("Ingrese el nombre o ID del adoptante que desea eliminar: ");
         String datoEliminar=lector.LeerString();
         if (gestor_adoptante.existe(datoEliminar)){
+             Adoptantes adoptante=gestor_adoptante.retornarElemento(datoEliminar);
+            if (adoptante != null) {
+            // Obtener el NOMBRE DEL GATO que tenía adoptado
+            String nombreGatoAdoptado = adoptante.getGato_Adoptado();
+            
             if (gestor_adoptante.eliminar(datoEliminar)){
-                Gatos gato=gestor_gatos.retornarElemento(datoEliminar);
-                gestor_gatos.CambiarEstadoAdopcion(gato.getNombre());
+                gestor_gatos.CambiarEstadoAdopcion(nombreGatoAdoptado);
             }
+            
             System.out.println("==================================");
             System.out.println("Adoptante eliminado exitosamente!");
+            }
         }else {
             System.out.println("Adoptante no encontrado");
         }
