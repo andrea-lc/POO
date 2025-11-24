@@ -5,7 +5,6 @@
 package Menus;
 
 import Entidades.Adoptantes;
-import Entidades.Gatos;
 import Entidades.Persona;
 import Gestores.Gestor_Adoptante;
 import Gestores.Gestor_Gatos;
@@ -65,6 +64,7 @@ public class Acciones_Adoptante implements Menu_Acciones{
          //  Si el registro es exitoso, cambiar el estado del gato
          if (gestor_adoptante.registrar(nuevoAdoptante)) {
              gestor_gatos.CambiarEstadoAdoptado(gato_Adoptado);
+             System.out.println("==================================");
              System.out.println("Adopcion registrada exitosamente");
          }
         }   
@@ -130,12 +130,12 @@ public class Acciones_Adoptante implements Menu_Acciones{
         String datoEliminar=lector.LeerString();
         if (gestor_adoptante.existe(datoEliminar)){
              Adoptantes adoptante=gestor_adoptante.retornarElemento(datoEliminar);
+             
             if (adoptante != null) {
-            // Obtener el NOMBRE DEL GATO que tenía adoptado
             String nombreGatoAdoptado = adoptante.getGato_Adoptado();
             
-            if (gestor_adoptante.eliminar(datoEliminar)){
-                gestor_gatos.CambiarEstadoAdopcion(nombreGatoAdoptado);
+                if (gestor_adoptante.eliminar(datoEliminar)){
+                    gestor_gatos.CambiarEstadoEnAdopcion(nombreGatoAdoptado);
             }
             
             System.out.println("==================================");

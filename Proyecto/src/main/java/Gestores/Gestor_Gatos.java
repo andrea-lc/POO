@@ -238,7 +238,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         gato.setEstado_gato("Adoptado");          
             guardarCambios();
         } 
-        public void CambiarEstadoAdopcion (String datoModificar){
+        public void CambiarEstadoEnAdopcion (String datoModificar){
         Gatos gato= retornarElemento(datoModificar);
         gato.setEstado_gato("En Adopcion");             
             guardarCambios();

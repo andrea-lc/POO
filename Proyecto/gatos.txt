@@ -14,7 +14,7 @@
 5,Nala,1,Angora,3.00,Hembra,No,En adopcion,ninguno
 6,Coco,4,Criollo,4.50,Macho,Si,Adoptado,rehabilitacion muscular
 7,Mora,2,Siames,3.20,Hembra,Si,En adopcion,ninguno
-8,Leo,5,Maine Coon,6.20,Macho,Si,Adoptado,terapia articular
+8,Leo,5,Maine Coon,6.20,Macho,Si,En Adopcion,terapia articular
 9,Kiara,1,Criollo,2.90,Hembra,No,En adopcion,ninguno
 20,Rolo,4,Criollo,4.10,Macho,Si,Adoptado,recuperacion neurologica
 10,Felix,3,Bombay,4.00,Macho,Si,Adoptado,ninguno

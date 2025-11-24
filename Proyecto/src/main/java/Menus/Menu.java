@@ -159,6 +159,7 @@ public class Menu {
                 case 5:
                     // Eliminar algun dato
                     acciones.eliminar();
+                    break;
                 case 0: 
                     // Volver al menu principal
                     System.out.println("Volviendo al menu principal...");

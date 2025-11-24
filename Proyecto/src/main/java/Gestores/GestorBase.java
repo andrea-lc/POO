@@ -38,10 +38,10 @@ public abstract class GestorBase <T> implements GestorInterface<T> {
     
     public T retornarElemento(String identificador){
         T objeto = null;
-        if(getElementos().containsKey(identificador)){
+        if(getElementos().containsKey(identificador)){ //busca por id o dni :0
             objeto=getElementos().get(identificador);
         }else {
-            for (T o : getElementos().values()) {
+            for (T o : getElementos().values()) { // busca por nombre 
             String nombre = null;
             //para verificar si objeto es una instancia de Gatos/Adoptantes/Voluntarios 
             // (como examinar de que tipo sera objeto)

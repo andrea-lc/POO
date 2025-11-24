@@ -1,5 +1,4 @@
 45967660,Fabricio,Calderon,934212455,fabri@gmail.com,Miercoles (Diurno): 10:00 - 12:00
-60594455,Alex,Lopes,95656777,alex@gmail.com,Miercoles (Diurno): 10:00 - 12:00
 12345678,Elena,Moreno,978901234,elena.moreno@gmail.com,Viernes (Diurno): 8:00 - 10:00
 12345679,David,Suarez,989012345,david.suarez@gmail.com,Jueves (Tarde): 15:00 - 17:00
 12345676,Sofia,Diaz,923456789,sofia.diaz@gmail.com,Lunes (Diurno): 9:00 - 11:00
