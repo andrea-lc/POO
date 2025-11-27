@@ -4,7 +4,12 @@
  */
 package Menus;
 
+import DB.BaseDatos;
+import Gestores.Gestor_Adoptante;
+import Gestores.Gestor_Gatos;
+import Gestores.Gestor_Voluntario;
 import Scanner.Lector;
+import Serializacion.SerializadorXML;
 
 /**
  *
@@ -67,6 +72,16 @@ public class Menu {
                 }
             }
         } while (opcion != 0); // Repite hasta que el usuario elija salir
+        System.out.println("\n Creando respaldos XML...");
+        SerializadorXML.guardarEnXML(Gestor_Gatos.getInstanciaGatos().getElementos_listaporId(),"gatos.xml");
+        SerializadorXML.guardarEnXML(Gestor_Adoptante.getInstanciaAdoptantes().getElementos_listaporNombre(),"adoptantes.xml");
+        SerializadorXML.guardarEnXML(Gestor_Voluntario.getInstanciaAdoptante().getElementos_listaporNombre(),"voluntarios.xml");
+        
+               
+         System.out.println("\n Guardando respaldos en Base de Datos...");
+        BaseDatos.guardarGatosEnBD(Gestor_Gatos.getInstanciaGatos().getElementos_listaporId());
+        BaseDatos.guardarAdoptantesEnBD(Gestor_Adoptante.getInstanciaAdoptantes().getElementos_listaporNombre());
+        BaseDatos.guardarVoluntariosEnBD(Gestor_Voluntario.getInstanciaAdoptante().getElementos_listaporNombre());
     }
     
     private void mostrarMenuGatos() {

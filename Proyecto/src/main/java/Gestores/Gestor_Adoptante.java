@@ -52,7 +52,6 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
                             gato_Adoptado);
                     
                     getElementos().put((String.valueOf(dni)),adoptante);
-                    getElementos_lista().add(adoptante);
                 }
             }
         } catch (IOException e) {
@@ -87,7 +86,6 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         }  
 
         getElementos().put((String.valueOf(adoptante.getDni_persona())), adoptante);
-        getElementos_lista().add(adoptante);
         guardarCambios();
         return true;     
     }
@@ -107,15 +105,11 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         if (getElementos().isEmpty()) {
             System.out.println("No hay adoptantes registrados en el sistema");
             return;
-        }  
-        
+        }        
         System.out.println("\n=== LISTA DE ADOPTANTES REGISTRADOS ===");
         System.out.println("Total de adoptantes: " + getElementos().size());
-        System.out.println("-----------------------------------");
-        getElementos_lista().sort((a1, a2) -> a1.getNombre().compareTo(a2.getNombre()));
-        
-        getElementos_lista().forEach(System.out::println);      
-
+        System.out.println("-----------------------------------");        
+        getElementos_listaporNombre().forEach(System.out::println);      
     }
 
     @Override
@@ -156,7 +150,6 @@ public class Gestor_Adoptante extends GestorBase<Adoptantes>{
         Adoptantes adoptante= retornarElemento(identificador);
         if (adoptante!=null){
             getElementos().remove(String.valueOf(adoptante.getDni_persona()));
-            getElementos_lista().remove(adoptante);
             guardarCambios(); 
         }
         return true;

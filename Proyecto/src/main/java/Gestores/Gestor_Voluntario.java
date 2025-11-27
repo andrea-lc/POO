@@ -54,7 +54,6 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
                             ,horarios_disponibles);
                     
                     getElementos().put((String.valueOf(dni)),voluntario);
-                    getElementos_lista().add(voluntario);
                 }
             }
         } catch (IOException e) {
@@ -88,7 +87,6 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
             return false;
         }      
         getElementos().put((String.valueOf(voluntario.getDni_persona())), voluntario);
-        getElementos_lista().add(voluntario);
         guardarCambios();
         return true;
     }
@@ -112,10 +110,8 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
         
         System.out.println("\n=== LISTA DE VOLUNTARIOS REGISTRADOS ===");
         System.out.println("Total de voluntarios: " + getElementos().size());
-        System.out.println("----------------------------------------");     
-        getElementos_lista().sort((v1, v2) -> v1.getNombre().compareTo(v2.getNombre()));
-        
-        getElementos_lista().forEach(System.out::println);      
+        System.out.println("----------------------------------------");             
+        getElementos_listaporNombre().forEach(System.out::println);      
     }
 
     @Override
@@ -178,7 +174,6 @@ public class Gestor_Voluntario extends GestorBase<Voluntarios> {
         Voluntarios voluntario= retornarElemento(identificador);
         if (voluntario!=null){
             getElementos().remove(String.valueOf(voluntario.getDni_persona()));
-            getElementos_lista().remove(voluntario);
             guardarCambios();
         }
         return true;

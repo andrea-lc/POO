@@ -10,9 +10,28 @@
         <maven.compiler.release>8</maven.compiler.release>
         <exec.mainClass>com.mycompany.poo_project.POO_project</exec.mainClass>
     </properties>
-        <build>
+    
+        <!--¿Qué hace esta dependencia?
+        Te permite usar la clase XmlMapper, que es parte de la librería Jackson.
+        Jackson es una biblioteca muy popular en Java para convertir objetos Java a formatos 
+        como JSON o XML, y viceversa.-->
+    <dependencies>
+       <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.15.3</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>13.2.1.jre8</version>
+        </dependency>
+    </dependencies>
+    
+<build>
     <plugins>
-
+        <!-- Compilador Java 8 -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
@@ -23,20 +42,39 @@
             </configuration>
         </plugin>
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.2</version>
+        <!-- Generar JAR ejecutable con dependencias (fat JAR) -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>3.5.0</version>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
             <configuration>
-                <archive>
-                    <manifest>
-                        <addClasspath>true</addClasspath>
-  
+                <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                         <mainClass>com.mycompany.poo_project.POO_project</mainClass>
-                    </manifest>
-                </archive>
+                    </transformer>
+                </transformers>
+                <!-- ¡IMPORTANTE! Elimina archivos de firma que causan el error -->
+                <filters>
+                    <filter>
+                        <artifact>*:*</artifact>
+                        <excludes>
+                            <exclude>META-INF/*.SF</exclude>
+                            <exclude>META-INF/*.DSA</exclude>
+                            <exclude>META-INF/*.RSA</exclude>
+                        </excludes>
+                    </filter>
+                </filters>
+                <createDependencyReducedPom>false</createDependencyReducedPom>
             </configuration>
-        </plugin>
+        </execution>
+    </executions>
+</plugin>
     </plugins>
 </build>
 </project>

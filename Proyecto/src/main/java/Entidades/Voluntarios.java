@@ -10,8 +10,11 @@ package Entidades;
  */
 public class Voluntarios extends Persona{
     public String Horarios_disponibles;
+
+    public Voluntarios() {
+    }
     
-            
+          
     public Voluntarios(Persona persona, String Horarios_disponibles){
         super (persona);
         this.Horarios_disponibles= Horarios_disponibles;

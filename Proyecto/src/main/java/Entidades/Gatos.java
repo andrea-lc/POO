@@ -18,6 +18,11 @@ public class Gatos {
     private String  esterilizacion;
     private String estado_gato;// Estado en el qe se encuentra el gato (En adopcion, Adoptado)
     private String cuidado_requerido;
+
+    public Gatos() {
+    }
+    
+    
     
     public Gatos(int id, String nombre, int edad, String raza, double peso, String genero,
             String esterilizacion, String estado_gato, String cuidado_requerido) {

@@ -33,6 +33,11 @@ public class Persona{
         this.telefono = otraPersona.telefono;
         this.correo = otraPersona.correo;
     }
+
+    public Persona() {
+    }
+    
+    
        
     @Override
     public String toString() {

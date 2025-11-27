@@ -15,7 +15,8 @@ import Scanner.Lector;
  */
 // Clase principal del proyecto
 public class POO_project {
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
+        
         Lector lector=Lector.getInstanciaLector();
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
         Gestor_usuarios usuarios= Gestor_usuarios.getInstanciaUsuario();

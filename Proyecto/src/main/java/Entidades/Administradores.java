@@ -10,13 +10,17 @@ package Entidades;
  */
 public class Administradores extends Persona {
     public String contraseña;
-  
+
+    public Administradores() {
+    }
+
 
     public Administradores(Persona otraPersona,String contraseña) {
         super(otraPersona);
         this.contraseña= contraseña;
     }
 
+  
     public String getContraseña() {
         return contraseña;
     }

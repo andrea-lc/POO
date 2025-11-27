@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author admin
  */
-public class  Lector {
+public class  Lector{
     private final Scanner scanner = new java.util.Scanner(System.in);
     
     private static Lector instancia;

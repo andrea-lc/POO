@@ -22,7 +22,7 @@ public class Gestor_usuarios extends GestorBase <Administradores>{
     private static Gestor_usuarios instancia;
     
     public Gestor_usuarios() {
-        super("Administradores.txt");
+        super("TXT/Administradores.txt");
     }
     
     public static Gestor_usuarios getInstanciaUsuario() {
@@ -37,22 +37,22 @@ public class Gestor_usuarios extends GestorBase <Administradores>{
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length == 6) { 
+                String[] datos = linea.split(",");              
+                if (datos.length == 6) {
                     int dni = Integer.parseInt(datos[0]);
                     String nombre = datos[1];
                     String apellido= datos[2];
                     int telefono = Integer.parseInt(datos[3]);
                     String correo = datos[4];
                     String contraseña = datos[5];
-                    Administradores administrador =new Administradores(new Persona(dni,nombre,apellido,telefono,correo), 
-                            contraseña);
+                    Administradores administradores= new Administradores(new Persona(dni,nombre,apellido,telefono,correo)
+                            ,contraseña);
                     
-                    getElementos().put(administrador.getCorreo(), administrador);
+                    getElementos().put(correo,administradores);
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar usuarios (puede que el archivo este vacio).");
+            System.out.println("No se pudo cargar voluntarios (puede que el archivo este vacio)");
         }
     }
 
@@ -60,35 +60,41 @@ public class Gestor_usuarios extends GestorBase <Administradores>{
     public boolean registrar(Administradores administrador) {
         if (getElementos().containsKey(administrador.getCorreo())) {   //verifica si el map contiene la clave
             System.out.println("Ese correo ya esta registrado.");
-            return true;
+            return false;
         }
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
-        // Escribir los datos de la persona en el formato correcto
-        String linea = String.format("%d,%s,%s,%d,%s,%s",          
-            administrador.getDni_persona(),           
-            administrador.getNombre(),
-            administrador.getApellido(),
-            administrador.getTelefono(),
-            administrador.getCorreo(),  
-            administrador.getContraseña());
-        bw.write(linea);
-        bw.newLine();
+
         System.out.println("Usuario agregado correctamente.");
 
         // Guardar en el HashMap (usando el correo como clave y la Persona como valor)
         getElementos().put(administrador.getCorreo(), administrador);
-        } catch (IOException ex) {
-            System.out.println("Error al guardar en usuarios.txt");
-        }
-    return true;
+        guardarCambios();       
+        return true;
     }
         @Override
     public void guardarCambios() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            for (Administradores admin : getElementos().values()) {
+                String linea = String.format("%d,%s,%s,%d,%s,%s",          
+                    admin.getDni_persona(),           
+                    admin.getNombre(),
+                    admin.getApellido(),
+                    admin.getTelefono(),
+                    admin.getCorreo(),  
+                    admin.getContraseña());
+                bw.write(linea);
+                bw.newLine();
+            }
+        } catch (IOException ex) {
+            System.out.println("Error al guardar cambios en el archivo de admiistradores");
+        }
     }
 
 
     public boolean login(String correo, String contraseña) {
+        if (getElementos().isEmpty()) {
+            System.out.println("No hay usuarios registrados en el sistema.");
+            return false;
+        }
         if (!getElementos().containsKey(correo)) {   
             return false; // correo (usuario) no encontrado
             

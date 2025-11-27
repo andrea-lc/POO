@@ -64,7 +64,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
                     
                     
                     getElementos().put(String.valueOf(gato.getId()), gato);
-                    getElementos_lista().add(gato);
                 }
             }
         } catch (IOException e) {
@@ -102,7 +101,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         }
        
         getElementos().put(String.valueOf(gatos.getId()), gatos);
-        getElementos_lista().add(gatos);
         guardarCambios();
         return true;
     }
@@ -148,8 +146,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         System.out.println("\n=== LISTA DE GATOS REGISTRADOS ===");
         System.out.println("Total de gatos: " + getElementos().size());
         System.out.println("-----------------------------------");
-        getElementos_lista().sort((g1,g2)->Integer.compare(g1.getId(), g2.getId()));
-        getElementos_lista().forEach(System.out::println);
+        getElementos_listaporId().forEach(System.out::println);
     }
 
     
@@ -189,7 +186,6 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
         Gatos gato= retornarElemento(identificador);
         if (gato!=null){ 
             getElementos().remove(String.valueOf(gato.getId()));
-            getElementos_lista().remove(gato);
             guardarCambios();
         }
         return true;
@@ -205,7 +201,7 @@ public class Gestor_Gatos extends GestorBase<Gatos> {
             return;            
         }  
             List<Gatos> Gatos_enAdopcion= new ArrayList<>();  
-            for (Gatos gato: getElementos_lista()){
+            for (Gatos gato: getElementos_listaporId()){
                 if (gato.getEstado_gato().equalsIgnoreCase("En adopcion"))
                     Gatos_enAdopcion.add(gato);
             }
